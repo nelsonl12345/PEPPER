@@ -1,0 +1,3 @@
+ppp_propietario_index:
+    path:     /index
+    defaults: { _controller: PPPCanBundle:Propietario:index }

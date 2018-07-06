@@ -1,0 +1,7 @@
+ppp_can:
+    resource: "@PPPCanBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

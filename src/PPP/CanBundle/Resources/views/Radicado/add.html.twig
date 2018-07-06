@@ -1,0 +1,57 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+	<div class="main container">
+		<div class="row well">
+			<div class="col-md-6">
+				<div class="page-header">
+					<h2>Crear nueva solicitud</h2>
+				</div>
+				{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'role' : 'form'}}) }}
+				    <h4 class="text-danger">{{ form_errors(form) }}</h4>
+
+					<fieldset>
+
+					    <div class="form-group">					    	
+					        {{ form_label(form.mascota) }}
+					        {{ form_widget(form.mascota, {'attr': {'class': 'form-control'}}) }}
+					        <span class="text-danger">{{ form_errors(form.mascota) }}</span>
+					    </div>
+
+					    <div class="form-group">
+					        {{ form_label(form.archivo1, ('Carnet de vacunación')) }} 
+					        {{ form_widget(form.archivo1) }} 
+					        <span class="text-danger">{{ form_errors(form.archivo1) }}</span> 
+					    </div>
+
+					    <div class="form-group">
+					        {{ form_label(form.archivo2, ('Poliza')) }}
+					        {{ form_widget(form.archivo2) }}
+					        <span class="text-danger">{{ form_errors(form.archivo2) }}</span>
+					    </div>
+
+					    <div class="form-group">
+					        {{ form_label(form.archivo3, ('Declaracion')) }}
+					        {{ form_widget(form.archivo3) }}
+					        <span class="text-danger">{{ form_errors(form.archivo3) }}</span>
+					    </div>
+
+                            {{ form_widget(form.estado, 
+                            {'attr': {                            
+                            'value': 'Radicado',
+                            'class': 'hidden'
+                         	}}) }}
+
+
+					</fieldset>
+					<br>
+				    <p>
+				        {{ form_widget(form.save, {'label' : 'Crear solicitud', 'attr': {'class': 'btn btn-success'}}) }}
+				    </p>
+
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

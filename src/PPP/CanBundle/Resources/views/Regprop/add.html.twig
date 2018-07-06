@@ -1,0 +1,150 @@
+{%  extends 'layout.html.twig' %}
+{% block body %}
+	{{ parent() }}
+	<div class="main container">
+		<div class="row well">
+			<div class="col-md-6">
+				<div class="page-header">
+					<h2>Registrarse</h2>
+				</div>
+
+	{{ form_start(form, { 'attr' : {'novalidate': 'novalidate', 'role' : 'form'} }) }}
+
+
+                <table border="0" WIDTH="1000">
+                        <tr>
+                            <td>
+                    {{ form_label(form.identificacion, ('Identificacion: ')) }}
+                </td>
+                <td>
+                    {{ form_widget(form.identificacion, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Numero de identificacion'} }) }}
+                    <span class="text-danger">{{ form_errors(form.identificacion) }}</span>
+                </td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;
+                    {{ form_label(form.nombres, ('Nombres: ')) }}
+                </td>
+                <td>
+                    {{ form_widget(form.nombres, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Nombres'} }) }}
+                    <span class="text-danger">{{ form_errors(form.nombres) }}</span>
+                </td>
+            </tr>
+
+                    <tr>
+                    <td> 
+                    {{ form_label(form.apellidos, ('Apellidos: ')) }}
+                </td>
+                <td>
+                    {{ form_widget(form.apellidos, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Apellidos'} }) }}
+                    <span class="text-danger">{{ form_errors(form.apellidos) }}</span>
+                </td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;
+			        {{ form_label(form.correo, ('Correo electronico: ')) }}
+                </td>
+                <td>    
+			        {{ form_widget(form.correo, {'attr': {'class': 'form-control', 'placeholder' : 'Correo electronico'}}) }}
+			        <span class="text-danger">{{ form_errors(form.correo) }}</span>
+                </td></tr>
+
+
+                    <tr>
+                        <td>
+                    {{ form_label(form.telefono,('Numero telefonico: ')) }}
+                </td>
+                <td>
+                    {{ form_widget(form.telefono, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Numero telefonico'} }) }}
+                    <span class="text-danger">{{ form_errors(form.telefono) }}</span>
+                </td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;
+                    {{ form_label(form.direccion, ('Direccion: ')) }}
+                </td>
+                <td>
+                    {{ form_widget(form.direccion, {'attr': {'class': 'form-control', 'placeholder' : 'Direccion de residencia'}}) }}
+                    <span class="text-danger">{{ form_errors(form.direccion) }}</span>
+                </td></tr>
+                    
+                <tr>
+                    <td>
+                    {{ form_label(form.barrio, ('Barrio: ')) }}
+                </td>
+                <td>
+                    {{ form_widget(form.barrio, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Barrio'} }) }}
+                    <span class="text-danger">{{ form_errors(form.barrio) }}</span>
+                </td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;
+                    {{ form_label(form.ocupacion, ('Ocupacion: ')) }}
+                </td>
+                <td>
+                    {{ form_widget(form.ocupacion, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Ocupacion'} }) }}
+                    <span class="text-danger">{{ form_errors(form.ocupacion) }}</span>
+                </td></tr>
+
+                <tr>
+                    <td>
+                    {{ form_label(form.usuario, ('Usuario: ')) }}
+                </td>
+                <td>
+                    {{ form_widget(form.usuario, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Nombre de usuario'} }) }}
+                    <span class="text-danger">{{ form_errors(form.usuario) }}</span>
+                </td>
+                <td>
+                    &nbsp;&nbsp;&nbsp;
+                    {{ form_label(form.contrasena, ('Contraseña: ')) }}
+                </td>
+                <td>
+                    {{ form_widget(form.contrasena, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Contraseña'} }) }}
+                    <span class="text-danger">{{ form_errors(form.contrasena) }}</span>
+                </td></tr>
+
+                <tr>
+                    <td>
+			        {{ form_label(form.role, ('Rol: ')) }}
+                </td>
+                <td>
+			        {{ form_widget(form.role, {'attr': {'class': 'form-control'}}) }}
+			        <span class="text-danger">{{ form_errors(form.role) }}</span>
+                </td>
+                <td>
+                </td></tr>
+
+                <tr>
+                    <td>                        
+                    {{ form_label(form.foto, ('Foto 3 x 4')) }}
+                </td>
+                <td>
+                    {{ form_widget(form.foto) }}
+                    <span class="text-danger">{{ form_errors(form.foto) }}</span>
+                </td>
+                <td>
+                    {{ form_label(form.imgcedula, ('Fotocopia de la cedula')) }}
+                </td>
+                <td>
+                    {{ form_widget(form.imgcedula) }}
+                    <span class="text-danger">{{ form_errors(form.imgcedula) }}</span>
+                </td></tr></table>
+
+
+				<div class="checkbox">
+				    <label>
+						{{ form_widget(form.isActive) }}{% trans %}Activo{% endtrans %}
+						<span class="text-danger">{{ form_errors(form.isActive) }}</span>
+				    </label>
+				</div>
+
+			</fieldset>
+
+		    <p>
+		        {{ form_widget(form.save, {'label' : 'Crear usuario', 'attr': {'class': 'btn btn-success'}}) }}
+		    </p>                
+        <a href="{{ path('ppp_usuario_login') }}"><b>Ingresar</b></a></li>        
+
+                {{ form_end(form) }}
+
+
+			</div>            
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        <h3 class="text-center">
+            {{ 'Bienvenido: ' }}
+            {{ app.user.nombres }}
+            {{ app.user.apellidos }}
+            <br>
+            {{ 'Rol: ' }}
+            {% if app.user.role == 'ROLE_JEFE_DEPARTAMENTO' %}
+                {{ 'Jefe de departamento' }}
+
+            {% elseif app.user.role == 'ROLE_COORDINADOR' %}
+                {{ 'Coordinador' }}
+
+            {% elseif app.user.role == 'ROLE_SECRETARIO' %}
+                {{ 'Secretario' }}
+
+            {% elseif app.user.role == 'ROLE_ZOOTECNISTA' %}
+                {{ 'Zootecnista' }}
+
+            {% elseif app.user.role == 'ROLE_PROPIETARIO' %}
+                {{ 'Propietario' }}            
+
+            {% endif %}
+            
+            
+
+        </h3>
+    </div>
+{% endblock %}

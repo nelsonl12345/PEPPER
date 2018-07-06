@@ -1,0 +1,156 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+	<div class="main container">
+		<div class="row well">
+			<div class="col-md-6">
+				<div class="page-header">
+					<h2>Editar mascota</h2>
+				</div>
+				{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'role' : 'form'}}) }}
+				    <h4 class="text-danger">{{ form_errors(form) }}</h4>
+
+					<fieldset>
+							<table border="0" WIDTH="1000">
+							<tr>
+							<td>
+					        {{ form_label(form.usuario, ('Propietario: ')) }}
+					    	</td>
+					    	<td>
+					        {{ form_widget(form.usuario, {'attr': {'class': 'form-control'}}) }}
+					        <span class="text-danger">{{ form_errors(form.usuario) }}</span>
+					    	</td>
+
+					    	<td>
+					    		&nbsp;&nbsp;&nbsp;
+					        {{ form_label(form.raza, ('Raza: ')) }}
+					    	</td>
+					    	<td>
+					        {{ form_widget(form.raza, {'attr': {'class': 'form-control'}}) }}
+					        <span class="text-danger">{{ form_errors(form.raza) }}</span>
+					    	</td>
+							</tr>
+					    	
+
+							<tr>
+							<td>						    
+					        {{ form_label(form.nombresm, ('Nombres: ')) }}
+					    	</td>
+					    	<td>
+					        {{ form_widget(form.nombresm, {'attr': {'class': 'form-control', 'placeholder' : 'Nombre mascota'}}) }}
+					        <span class="text-danger">{{ form_errors(form.nombresm) }}</span>
+					    	</td>
+
+					    	<td>
+					    		&nbsp;&nbsp;&nbsp;
+					        {{ form_label(form.aniom, ('Edad: ')) }}
+					    	</td>
+					    	<td colspan="3">
+					        {{ form_widget(form.aniom, {'attr': {'class': 'form-control-static','style': "width:90px" }}) }}
+					        <span class="text-danger">{{ form_errors(form.aniom) }}</span>
+
+					        {{ form_widget(form.mesm, {'attr': {'class': 'form-control-static','style': "width:90px"}}) }}
+					        <span class="text-danger">{{ form_errors(form.mesm) }}</span>
+
+					        {{ form_widget(form.diam, {'attr': {'class': 'form-control-static','style': "width:90px"}}) }}
+					        <span class="text-danger">{{ form_errors(form.diam) }}</span>		   </td>
+					    	</tr>
+			    
+					    	<tr>
+					    	<td>
+					        {{ form_label(form.oficiom, ('Oficio: ')) }}
+					        </td>
+					        <td>
+					        {{ form_widget(form.oficiom, {'attr': {'class': 'form-control', 'placeholder' : 'Oficio'}}) }}
+					        <span class="text-danger">{{ form_errors(form.oficiom) }}</span>
+					        </td>
+					        <td>
+					        	&nbsp;&nbsp;&nbsp;
+					        {{ form_label(form.generom, ('Genero: ')) }}
+					    	</td>
+					    	<td>
+					        {{ form_widget(form.generom, {'attr': {'class': 'form-control', 'placeholder' : 'Genero'}}) }}
+					        <span class="text-danger">{{ form_errors(form.generom) }}</span>
+					    	</td></tr>
+					    
+
+					    	<tr>
+					    	<td>	
+					        {{ form_label(form.colorm, ('Color: ')) }}
+					    	</td>
+					    	<td>
+					        {{ form_widget(form.colorm, {'attr': {
+					        'class': 'form-control',
+					        'onchange' : "d1(this)"
+					    }}) }}
+					        <span class="text-danger">{{ form_errors(form.colorm) }}</span>
+					    	</td>		
+
+					    	<td>
+					    		&nbsp;&nbsp;&nbsp;
+					        {{ form_label(form.cual, ('Cual?')) }}
+					    	</td>
+					    	<td>
+					        {{ form_widget(form.cual, 
+					        {'attr': {
+					        'class': 'form-control',
+					        'disabled': 'true'
+					     }}) }}
+					 		</td></tr>
+
+					    	<tr>
+					    	<td>	
+					        {{ form_label(form.estadom, ('Estado: ')) }}
+					    	</td>
+					    	<td>
+					        {{ form_widget(form.estadom, {'attr': {
+					        'class': 'form-control'					        
+					    }}) }}
+					        <span class="text-danger">{{ form_errors(form.estadom) }}</span>
+					    	</td>
+					    	<td></td>
+					    	<td></td>
+					    </tr>		
+
+
+					 	</table>
+					    
+
+
+					    
+					        {{ form_label(form.descripcionm, ('Descripcion')) }}
+					        {{ form_widget(form.descripcionm, {'attr': {'class': 'form-control', 'placeholder' : 'Descripcion'}}) }}
+					        <span class="text-danger">{{ form_errors(form.descripcionm) }}</span>
+					    	<br>
+
+					    	<table border="0">
+					    		<tr>
+					    			<td>
+					        {{ form_label(form.foto1m, ('Foto de perfil')) }} 
+					        {{ form_widget(form.foto1m) }} 
+					        <span class="text-danger">{{ form_errors(form.foto1m) }}</span> 
+					    		</td>
+					    		<td>
+					        {{ form_label(form.foto2m, ('Foto desde arriba')) }}
+					        {{ form_widget(form.foto2m) }}
+					        <span class="text-danger">{{ form_errors(form.foto2m) }}</span>
+					    		</td>
+					    		<td>
+					        {{ form_label(form.foto3m, ('Foto Lateral')) }}
+					        {{ form_widget(form.foto3m) }}
+					        <span class="text-danger">{{ form_errors(form.foto3m) }}</span>
+					    </td></tr></table>
+
+
+					</fieldset>
+
+				    <p><br>
+				        {{ form_widget(form.save, {'label' : 'Editar mascota', 'attr': {'class': 'btn btn-success'}}) }}
+				    </p>
+
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+	{{ parent() }}
+	<div class="container well">
+	    <div class="col-md-9">
+	    <h2> </h2>
+	        <br>
+	        <dl>
+	            {#
+	            <dt></dt>
+	            <dd>
+				{% set carpeta1 = 'uploads/mascotas/' %}
+				{% set imagen1 = mascota.foto1m %}
+				{% set concatenar1 = carpeta1 ~ imagen1  %}
+					{% if mascota.foto1m == NULL %}
+					<img src="{{ asset('uploads/mascotas/sinfoto.jpg') }}" alt="Sin foto" width="250" height="200">&nbsp&nbsp&nbsp
+					{% else %}
+					<img src={{ asset( concatenar1 ) }} width="250" height="200"> 
+					&nbsp&nbsp&nbsp
+					{% endif %}
+
+
+				{% set carpeta2 = 'uploads/mascotas/' %}
+				{% set imagen2 = mascota.foto2m %}
+				{% set concatenar2 = carpeta2 ~ imagen2  %}		
+					{% if mascota.foto2m == NULL %}
+					<img src="{{ asset('uploads/mascotas/sinfoto.jpg') }}" alt="Sin foto" width="250" height="200">&nbsp&nbsp&nbsp
+					{% else %}
+					<img src={{ asset( concatenar2 ) }} width="250" height="200"> 
+					&nbsp&nbsp&nbsp
+					{% endif %}
+
+
+				{% set carpeta3 = 'uploads/mascotas/' %}
+				{% set imagen3 = mascota.foto3m %}
+				{% set concatenar3 = carpeta3 ~ imagen3  %}						 
+					{% if mascota.foto3m == NULL %}
+					<img src="{{ asset('uploads/mascotas/sinfoto.jpg') }}" alt="Sin foto" width="250" height="200">&nbsp&nbsp&nbsp
+					{% else %}
+					<img src={{ asset( concatenar3 ) }} width="250" height="200"> 
+					&nbsp&nbsp&nbsp
+					{% endif %}
+
+	            </dd>	
+	            <br>
+				#}
+
+
+	         	<dt>{{'Propietario'}}</dt>
+	            <dd>
+	                {{ usuario.nombres }}
+	                &nbsp;
+	            </dd>
+	            <br>
+
+	            <dt>{{'Mascota'}} </dt>
+	            <dd>
+	                {{ mascota.nombresm }}
+	                &nbsp;
+	            </dd>
+	            <br>
+
+
+	            <dt>{{'Estado'}} </dt>
+	            <dd>
+	                {{ radicado.estado }}
+	                &nbsp;
+	            </dd>
+	            <br>
+
+
+	            <dt>{{'Creado'}}</dt>
+	            <dd>
+	                {{ radicado.createdAtradi | date('d-m-y H:i')}}
+	                &nbsp;
+	            </dd>
+	            <br>
+
+	            <dt>{{'Actualizado'}}</dt>
+	            <dd>
+	                {{ radicado.updatedAtradi | date('d-m-y H:i')}}
+	                &nbsp;
+	            </dd>
+	            <br>
+
+	            <dt>{{'Documentos'}}</dt>
+
+	           	<dd>
+	           	
+	           	{% set foo1 = 'uploads/radicados/' ~  radicado.archivo1 %}
+	           		{% set foo2 = 'uploads/radicados/' ~  radicado.archivo2 %}
+	           			{% set foo3 = 'uploads/radicados/' ~  radicado.archivo3 %}
+	           			           	
+<a class="sb" href="{{ asset(  foo1  ) }}">{{ radicado.archivo1 }}</a>
+
+	            </dd>
+
+	           	<dd>
+<a class="sb" href="{{ asset( foo2 ) }}">{{ radicado.archivo2 }}</a>
+	              
+	            </dd>
+
+	           	<dd>
+<a class="sb" href="{{ asset( foo3 ) }}">{{ radicado.archivo3 }}</a>
+	                
+	            </dd>
+
+	        </dl>
+	    </div>	    		
+  </div>
+	    
+{% endblock %}

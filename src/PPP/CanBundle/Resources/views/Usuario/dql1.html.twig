@@ -1,0 +1,19 @@
+{#} También es posible pedir solo algunos campos y no un SELECT * poniendo los nombres de las propiedades del objeto usando el alias: select a.id, a.title, c.author from MDWDemoBundle:Articles a #}
+
+	<table border="1">
+		<thead>
+	<tr>
+
+<th>{{ knp_pagination_sortable(pagination, 'Nombres', 'u.nombres') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Apellidos', 'u.identificacion') }}</th>		
+	</tr>
+</thead>
+<tbody>
+	{% for usuario in pagination %}	
+		<tr>
+			<td>{{ usuario.nombres }}</td>
+			<td>{{ usuario.identificacion }}</td>
+		</tr>
+	{% endfor %}
+</tbody>
+</table>

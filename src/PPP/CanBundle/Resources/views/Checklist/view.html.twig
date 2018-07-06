@@ -1,0 +1,143 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+	{{ parent() }}
+	<div class="container well">
+	    <div class="col-md-9">
+	    <h2 class="padding-none"><font color="BLACK">Gestionar solicitud</font></h2>
+	        <br>
+	        <dl>
+
+				{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'role' : 'form'}}) }}
+				    <h4 class="text-danger">{{ form_errors(form) }}</h4>
+
+
+{{ form_widget(form.radicado, {'attr': {'class': 'text', 'value': radicado.id }}) }}
+{{ form_widget(form.usuario, {'attr': {'class': 'text', 'value': app.user.id }}) }}
+	            <table border="1" WIDTH="800" bordercolor="#A9D0F5">
+	            	<tr><td bgcolor="#ECE0F8">
+	         	{{'Propietario'}}
+	         		</td>
+	            	<td>
+
+	                {{ usuario.nombres }}
+	                {{ usuario.apellidos }}
+	            	</td>
+
+	            	<td bgcolor="#ECE0F8">
+	            {{'Mascota'}} 
+	        		</td>
+	            	<td>
+	                {{ mascota.nombresm }}
+	            	</td>
+	            </tr>
+
+	            <tr>
+	            	<td bgcolor="#ECE0F8">
+	            {{'Estado'}} 
+	        	</td>
+	        	<td>
+	                {{ radicado.estado }}
+	            </td>
+	            <td bgcolor="#ECE0F8">
+	            {{'Creado'}}
+	        	</td>
+	        	<td>	            
+	                {{ radicado.createdAtradi | date('d-m-y H:i')}}
+	            </td>
+	        </tr>
+
+	        	<tr>
+	        		<td bgcolor="#ECE0F8">
+	            {{'Actualizado'}}
+	        	</td>
+	        	<td colspan="3">
+	                {{ radicado.updatedAtradi | date('d-m-y H:i')}}
+				</td>	     
+				</tr>
+
+				<tr>
+				<td colspan="4" bgcolor="#ECE0F8"> 				
+				<p align="center">	            	
+					<b>
+	            {{'Documentos'}}
+	        		</b>
+	        	</td>
+	        </tr>
+
+	       <tr>
+	           <td>
+	           	{{'Carnet de vacunación'}}
+	           	</td>
+	           	<td>
+	           		{% set foo1 = 'uploads/radicados/' ~  radicado.archivo1 %}
+	         <center><a class="sb" href="{{ asset(  foo1  ) }}">{{ radicado.archivo1 }}</a></center>
+	           	</td>
+	           	<td colspan="2">
+
+				{{ form_widget(form.archivo1c, {'attr': {'class': 'form-control-static','style': "width:200px" }}) }}
+				<span class="text-danger">{{ form_errors(form.archivo1c) }}</span>
+
+	           	</td>
+	           </tr>
+
+	           <tr>
+	           	<td>
+	           		{{'Póliza'}}
+	           	</td>
+	           	<td>
+	         		{% set foo2 = 'uploads/radicados/' ~  radicado.archivo2 %}
+	       	<center><a class="sb" href="{{ asset( foo2 ) }}">{{ radicado.archivo2 }}</a></center>
+	       		</td>
+	           	<td colspan="2">
+	           	{{ form_widget(form.archivo2c, {'attr': {'class': 'form-control-static','style': "width:200px" }}) }}
+				<span class="text-danger">{{ form_errors(form.archivo2c) }}</span>
+
+	           	</td>
+	           </tr>
+
+	           <tr>
+	           <td>	       		
+				{{'Declaración'}}
+				</td>
+				<td>
+			{% set foo3 = 'uploads/radicados/' ~  radicado.archivo3 %}					
+			<center><a class="sb" href="{{ asset( foo3 ) }}">{{ radicado.archivo3 }}</a></center>
+				</td>
+		     	<td colspan="2">
+
+	           	{{ form_widget(form.archivo3c, {'attr': {'class': 'form-control-static','style': "width:200px" }}) }}
+				<span class="text-danger">{{ form_errors(form.archivo3c) }}</span>
+
+	           	</td>
+	           </tr>
+				
+				<tr>
+				<td colspan="4" bgcolor="#ECE0F8"> 				
+				<p align="left">	            	
+					<b>
+	            {{'Comentario'}}
+	        		</b>
+	        	</td>
+	        </tr>
+
+	        <tr>
+	        	<td colspan="4">
+				{{ form_widget(form.comentario, {'attr': {'class': 'form-control', 'placeholder' : 'Comentario'}}) }}
+				<span class="text-danger">{{ form_errors(form.comentario) }}</span>	        		
+	        	</td>
+	        </tr>
+	       </table>
+
+	       <br>
+
+		{{ form_widget(form.usuario, {'attr': {'class': 'text'}}) }}	       
+
+		{{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
+ {{ form_end(form) }}
+
+	                
+	    </div>	    		
+  </div>
+	    
+{% endblock %}

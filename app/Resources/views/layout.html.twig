@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %} PEPPER {% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('public/css/style.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('public/css/smoothbox.css') }}">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    </head>
+    <body>
+        {% block body %} 
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}  
+                {{ include('menu.html.twig') }}
+            {% endif %}  
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('public/js/jquery-3.2.1.min.js') }}"></script>
+            <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('public/js/bootbox.min.js') }}"></script>
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+            <script src="{{ asset('public/js/smoothbox.js') }}"></script>
+            <script src="{{ asset('public/js/uno.js') }}"></script>
+
+        {% endblock %}
+    </body>
+</html>

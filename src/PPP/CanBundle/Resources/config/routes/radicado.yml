@@ -1,0 +1,23 @@
+ppp_radicado_add:
+    path:     /add
+    defaults: { _controller: PPPCanBundle:Radicado:add }
+
+ppp_radicado_view:
+  path:     /view/{id}
+  defaults: { _controller: PPPCanBundle:Radicado:view }
+
+ppp_radicado_create:
+    path:     /create
+    defaults: { _controller: PPPCanBundle:Radicado:create }
+    methods: POST 
+
+ppp_radicado_redirect_add:
+  path: /create
+  defaults:
+    _controller: PPPCanBundle:Radicado:add
+    path: /add
+    permanent: true
+
+ppp_radicado_index:
+    path:   /index
+    defaults: { _controller: PPPCanBundle:Radicado:index }

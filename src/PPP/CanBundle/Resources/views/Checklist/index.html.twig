@@ -1,0 +1,54 @@
+{%  extends 'layout.html.twig' %}
+
+{% block body %}
+	{{ parent() }}
+
+	{{ include('PPPCanBundle:Usuario:messages/success.html.twig') }}
+	{{ include('PPPCanBundle:Usuario:messages/danger.html.twig') }}
+	<div class="container">
+		<div class="col-md-12">
+			<div class="page-header margin-none">
+<h2 class="padding-none"><font color="BLACK">Gestionar solicitudes</font></h2>
+</div>
+<div class="table-responsive">
+	Total registros: <span id="total">{{ pagination.getTotalItemCount }}</span>	
+	<table class="table table-striped table-hover">
+		<thead>
+	<tr>
+
+<th>{{ knp_pagination_sortable(pagination, 'Propietario', 'p.nombres') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Mascota', 'm.nombresm') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Estado', 'r.estado') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Creado', 'r.createdAtradi') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Actualizado', 'r.updatedAtradi') }}</th>		
+	
+		<th>Acciones</th>
+	</tr>
+</thead>
+<tbody>
+	{% for radicado in pagination %}	
+		<tr data-id="{{ radicado.id }}" >
+			<td>{{ radicado.nombres }}</td>
+			<td>{{ radicado.nombresm }}</td>			
+			<td>{{ radicado.estado }}</td>			
+			<td>{{ radicado.createdAtradi | date('d-m-y H:i') }}</td>
+			<td>{{ radicado.updatedAtradi | date('d-m-y H:i') }}</td>
+
+			<td calss="actions">
+	<a href="{{ path('ppp_checklist_view', { id: radicado.id  }) }}" class="btn btn-sm btn-info">Gestionar</a>
+	
+			</td>
+		</tr>
+	{% endfor %}
+</tbody>
+</table>
+ {# display navigation #}
+<div class="navigation">
+{{ knp_pagination_render(pagination) }}
+</div>
+
+</div>
+</div>
+</div>
+{% endblock %}
+

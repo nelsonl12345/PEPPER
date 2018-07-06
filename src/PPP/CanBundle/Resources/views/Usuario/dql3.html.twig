@@ -1,0 +1,24 @@
+	<table border="1">
+		<thead>
+	<tr>
+
+<th>{{ knp_pagination_sortable(pagination, 'Mascota', 'm.nombresm') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Edad', 'm.edadm') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Genero', 'm.generom') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Raza', 'r.dtalleraza') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Propietario', 'p.nombres') }}</th>		
+
+	</tr>
+</thead>
+<tbody>
+	{% for mascota in pagination %}	
+		<tr>
+			<td>{{ mascota.nombresm }}</td>
+			<td>{{ mascota.edadm }}</td>
+			<td>{{ mascota.generom }}</td>
+			<td>{{ mascota.dtalleraza }}</td>			
+			<td>{{ mascota.nombres }} {{ mascota.apellidos }}</td>
+		</tr>
+	{% endfor %}
+</tbody>
+</table>

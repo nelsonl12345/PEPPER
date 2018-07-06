@@ -1,0 +1,62 @@
+ppp_usuario_usuario:
+    resource: "@PPPCanBundle/Resources/config/routes/usuario.yml"
+    prefix:   /usuario
+
+ppp_propietario_propietario:
+    resource: "@PPPCanBundle/Resources/config/routes/propietario.yml"
+    prefix:   /propietario
+
+
+ppp_raza_raza:
+    resource: "@PPPCanBundle/Resources/config/routes/raza.yml"
+    prefix:   /raza
+
+ppp_mascota_mascota:
+    resource: "@PPPCanBundle/Resources/config/routes/mascota.yml"
+    prefix:   /mascota
+
+ppp_radicado_radicado:
+    resource: "@PPPCanBundle/Resources/config/routes/radicado.yml"
+    prefix:   /radicado
+
+ppp_checklist_checklist:
+    resource: "@PPPCanBundle/Resources/config/routes/checklist.yml"
+    prefix:   /checklist
+
+
+#Rutas Autenticacion de usuarios del sistema
+
+ppp_usuario_homepage:
+    path:     /
+    defaults: { _controller: PPPCanBundle:Usuario:home }
+
+ppp_usuario_login:
+    path:     /login
+    defaults: { _controller: PPPCanBundle:Security:login }
+
+ppp_usuario_login_check:
+    path:     /login_check
+    defaults: { _controller: PPPCanBundle:Security:loginCheck }
+
+ppp_usuario_logout:
+    path:     /logout
+
+#Rutas para registro de propietarios
+
+ppp_regprop_add:
+    path:     /regprop/add
+    defaults: { _controller: PPPCanBundle:Propietario:add }
+
+ppp_regprop_create:
+    path:     /regprop/create
+    defaults: { _controller: PPPCanBundle:Propietario:create }
+    methods: POST 
+
+ppp_regprop_redirect_add:
+  path: /regprop/create
+  defaults:
+    _controller: PPPCanBundle:Propietario:add
+    path: /add
+    permanent: true
+
+

@@ -1,0 +1,25 @@
+{#
+$em = $this->getDoctrine()->getEntityManager();
+$dql = "select a from MDWDemoBundle:Articles a where a.author=:author and a.title like :title";
+$query = $em->createQuery($dql);
+$query->setParameter('author', 'John Doe');
+$query->setParameter('title', '%ejemplo 1%');
+$articulos = $query->getResult();
+Con la utilización del setParameter() ya no nos preocupamos de poner por ejemplo comillas a los filtros que no son numéricos ya que Doctrine ya sabe de que tipo de dato es cada columna por medio de la definición que hicimos de la entidad. #}
+	<table border="1">
+		<thead>
+	<tr>
+
+<th>{{ knp_pagination_sortable(pagination, 'Nombres', 'u.nombres') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Apellidos', 'u.identificacion') }}</th>		
+	</tr>
+</thead>
+<tbody>
+	{% for usuario in pagination %}	
+		<tr>
+			<td>{{ usuario.nombres }}</td>
+			<td>{{ usuario.identificacion }}</td>
+		</tr>
+	{% endfor %}
+</tbody>
+</table>

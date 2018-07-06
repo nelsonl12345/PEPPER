@@ -1,0 +1,44 @@
+ppp_usuario_index:
+    path:     /index
+    defaults: { _controller: PPPCanBundle:Usuario:index }
+
+ppp_usuario_add:
+    path:     /add
+    defaults: { _controller: PPPCanBundle:Usuario:add }
+
+ppp_usuario_create:
+    path:     /create
+    defaults: { _controller: PPPCanBundle:Usuario:create }
+    methods: POST 
+
+ppp_usuario_redirect_add:
+  path: /create
+  defaults:
+    _controller: PPPCanBundle:Usuario:add
+    path: /add
+    permanent: true
+
+ppp_usuario_edit:
+    path: /edit/{id}
+    defaults: {_controller: PPPCanBundle:Usuario:edit }
+
+ppp_usuario_update:
+    path: /update/{id}
+    defaults: {_controller: PPPCanBundle:Usuario:update }
+    methods: [POST, PUT]    
+
+ppp_usuario_redirect_edit:
+  path: /update/{id}
+  defaults:
+    _controller: PPPCanBundle:Usuario:edit
+    path: /edit/{id}
+    permanent: true     
+
+ppp_usuario_view:
+  path:     /view/{id}
+  defaults: { _controller: PPPCanBundle:Usuario:view }
+
+ppp_usuario_delete:
+  path:     /delete/{id}
+  defaults: { _controller: PPPCanBundle:Usuario:delete }
+  methods: [POST, DELETE]

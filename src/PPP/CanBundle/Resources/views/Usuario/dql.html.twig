@@ -1,0 +1,21 @@
+{#	SELECT * FROM articles
+	en DQL sería:
+	select a from MDWDemoBundle:Articles a  #}
+
+	<table border="1">
+		<thead>
+	<tr>
+
+<th>{{ knp_pagination_sortable(pagination, 'Nombres', 'u.nombres') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Apellidos', 'u.apellidos') }}</th>		
+	</tr>
+</thead>
+<tbody>
+	{% for usuario in pagination %}	
+		<tr>
+			<td>{{ usuario.nombres }}</td>
+			<td>{{ usuario.apellidos }}</td>
+		</tr>
+	{% endfor %}
+</tbody>
+</table>

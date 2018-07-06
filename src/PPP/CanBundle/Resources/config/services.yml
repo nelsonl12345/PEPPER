@@ -1,0 +1,8 @@
+services:
+#    ppp_can.example:
+#        class: PPP\CanBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+# ...
+parameters:
+    brochures_directory: '%kernel.root_dir%/public/uploads/brochures'

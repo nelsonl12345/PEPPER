@@ -1,0 +1,24 @@
+{%  extends 'layout.html.twig' %}
+{% block body %}
+	{{ parent() }}
+	<div class="main container">
+		<div class="row well">
+			<div class="col-md-6">
+				<div class="page-header">
+					<h2>Editar Raza</h2>
+				</div>
+				{{ form_start(form, {'attr' : {'novalidate': 'novalidate', 'role' : 'form'} }) }}
+                <div class="form-group">
+                    
+                    {{ form_widget(form.dtalleraza, { 'attr' : {'class' : 'form-control', 'placeholder' : 'Raza'} }) }}
+                    <span class="text-danger">{{ form_errors(form.dtalleraza) }}</span>
+                </div>
+			</fieldset>
+		    <p>
+		        {{ form_widget(form.save, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
+		    </p>                        
+                {{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

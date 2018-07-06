@@ -1,0 +1,23 @@
+ppp_checklist_index:
+    path:     /index
+    defaults: { _controller: PPPCanBundle:Checklist:index }
+
+ppp_checklist_add:
+    path:     /add
+    defaults: { _controller: PPPCanBundle:Checklist:add }
+
+ppp_checklist_create:
+    path:     /create
+    defaults: { _controller: PPPCanBundle:Checklist:create }
+    methods: POST 
+
+ppp_checklist_redirect_add:
+  path: /create
+  defaults:
+    _controller: PPPCanBundle:Checklist:add
+    path: /add
+    permanent: true
+
+ppp_checklist_view:
+  path:     /view/{id}
+  defaults: { _controller: PPPCanBundle:Checklist:view }
