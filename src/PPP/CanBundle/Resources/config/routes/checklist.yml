@@ -9,7 +9,7 @@ ppp_checklist_add:
 ppp_checklist_create:
     path:     /create
     defaults: { _controller: PPPCanBundle:Checklist:create }
-    methods: POST 
+    methods: POST
 
 ppp_checklist_redirect_add:
   path: /create
@@ -21,3 +21,7 @@ ppp_checklist_redirect_add:
 ppp_checklist_view:
   path:     /view/{id}
   defaults: { _controller: PPPCanBundle:Checklist:view }
+
+ppp_checklist_update:
+  path:     /update/{id}
+  defaults: { _controller: PPPCanBundle:Checklist:update }

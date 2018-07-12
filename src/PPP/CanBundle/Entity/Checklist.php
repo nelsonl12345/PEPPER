@@ -21,6 +21,24 @@ class Checklist
     protected $usuario;
 
     /**
+    * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="checklists")
+    * @ORM\JoinColumn(name="usuario1c_id", referencedColumnName="id", onDelete="CASCADE")
+    */
+    protected $usuario1c;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="checklists")
+    * @ORM\JoinColumn(name="usuario2c_id", referencedColumnName="id", onDelete="CASCADE")
+    */
+    protected $usuario2c;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="checklists")
+    * @ORM\JoinColumn(name="usuario3c_id", referencedColumnName="id", onDelete="CASCADE")
+    */
+    protected $usuario3c;
+
+    /**
     * @ORM\ManyToOne(targetEntity="Radicado", inversedBy="checklists")
     * @ORM\JoinColumn(name="radicado_id", referencedColumnName="id", onDelete="CASCADE")
     */
@@ -68,7 +86,7 @@ class Checklist
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -91,7 +109,7 @@ class Checklist
     /**
      * Get archivo1c
      *
-     * @return string 
+     * @return string
      */
     public function getArchivo1c()
     {
@@ -114,7 +132,7 @@ class Checklist
     /**
      * Get archivo2c
      *
-     * @return string 
+     * @return string
      */
     public function getArchivo2c()
     {
@@ -137,11 +155,81 @@ class Checklist
     /**
      * Get archivo3c
      *
-     * @return string 
+     * @return string
      */
     public function getArchivo3c()
     {
         return $this->archivo3c;
+    }
+
+
+    /**
+     * Set usuario1c
+     *
+     * @param string $usuario1c
+     * @return Checklist
+     */
+    public function setUsuario1c($usuario1c)
+    {
+        $this->usuario1c = $usuario1c;
+
+        return $this;
+    }
+
+    /**
+     * Get usuario1c
+     *
+     * @return string
+     */
+    public function getUsuario1c()
+    {
+        return $this->usuario1c;
+    }
+
+    /**
+     * Set usuario2c
+     *
+     * @param string $usuario2c
+     * @return Checklist
+     */
+    public function setUsuario2c($usuario2c)
+    {
+        $this->usuario2c = $usuario2c;
+
+        return $this;
+    }
+
+    /**
+     * Get usuario2c
+     *
+     * @return string
+     */
+    public function getUsuario2c()
+    {
+        return $this->usuario2c;
+    }
+
+    /**
+     * Set usuario3c
+     *
+     * @param string $usuario3c
+     * @return Checklist
+     */
+    public function setUsuario3c($usuario3c)
+    {
+        $this->usuario3c = $usuario3c;
+
+        return $this;
+    }
+
+    /**
+     * Get usuario3c
+     *
+     * @return string
+     */
+    public function getUsuario3c()
+    {
+        return $this->usuario3c;
     }
 
     /**
@@ -160,7 +248,7 @@ class Checklist
     /**
      * Get comentario
      *
-     * @return string 
+     * @return string
      */
     public function getComentario()
     {
@@ -183,7 +271,7 @@ class Checklist
     /**
      * Get usuario
      *
-     * @return \PPP\CanBundle\Entity\Usuario 
+     * @return \PPP\CanBundle\Entity\Usuario
      */
     public function getUsuario()
     {
@@ -206,7 +294,7 @@ class Checklist
     /**
      * Get radicado
      *
-     * @return \PPP\CanBundle\Entity\Radicado 
+     * @return \PPP\CanBundle\Entity\Radicado
      */
     public function getRadicado()
     {

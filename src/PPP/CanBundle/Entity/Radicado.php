@@ -18,7 +18,7 @@ class Radicado
     /**
     * @ORM\ManyToOne(targetEntity="Mascota", inversedBy="radicado")
     * @ORM\JoinColumn(name="mascota_id", referencedColumnName="id", onDelete="CASCADE")
-    * @Assert\NotBlank()    
+    * @Assert\NotBlank()
     */
     protected $mascota;
 
@@ -27,6 +27,11 @@ class Radicado
     * @ORM\OneToMany(targetEntity="Checklist", mappedBy="radicado")
     */
     protected $checklists;
+
+    /**
+    * @ORM\OneToOne(targetEntity="Checklist", mappedBy="radicado")
+    */
+    protected $checklist;
 
 
     /**
@@ -42,7 +47,7 @@ class Radicado
      * @var string
      *
      * @ORM\Column(name="archivo1", type="string", length=50)
-     * @Assert\NotBlank()     
+     * @Assert\NotBlank()
      */
     private $archivo1;
 
@@ -94,7 +99,7 @@ class Radicado
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -117,7 +122,7 @@ class Radicado
     /**
      * Get archivo1
      *
-     * @return string 
+     * @return string
      */
     public function getArchivo1()
     {
@@ -140,7 +145,7 @@ class Radicado
     /**
      * Get archivo2
      *
-     * @return string 
+     * @return string
      */
     public function getArchivo2()
     {
@@ -163,7 +168,7 @@ class Radicado
     /**
      * Get archivo3
      *
-     * @return string 
+     * @return string
      */
     public function getArchivo3()
     {
@@ -187,7 +192,7 @@ class Radicado
     /**
      * Get estado
      *
-     * @return string 
+     * @return string
      */
     public function getEstado()
     {
@@ -211,7 +216,7 @@ class Radicado
     /**
      * Get createdAtradi
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAtradi()
     {
@@ -234,7 +239,7 @@ class Radicado
     /**
      * Get updatedAtradi
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAtradi()
     {
@@ -247,7 +252,7 @@ class Radicado
     */
     public function setCreatedAtradiValue()
     {
-        $this->createdAtradi = new\DateTime(); 
+        $this->createdAtradi = new\DateTime();
     }
 
     /**
@@ -275,9 +280,22 @@ class Radicado
     }
 
     /**
+     * Set checklist
+     *
+     * @param \PPP\CanBundle\Entity\Checklist $checklist
+     * @return Radicado
+     */
+    public function setChecklist(\PPP\CanBundle\Entity\Checklist $checklist = null)
+    {
+        $this->checklist = $checklist;
+
+        return $this;
+    }
+
+    /**
      * Get mascota
      *
-     * @return \PPP\CanBundle\Entity\Mascota 
+     * @return \PPP\CanBundle\Entity\Mascota
      */
     public function getMascota()
     {
@@ -310,10 +328,20 @@ class Radicado
     /**
      * Get checklists
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChecklists()
     {
         return $this->checklists;
+    }
+
+    /**
+     * Get checklist
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChecklist()
+    {
+        return $this->checklist;
     }
 }

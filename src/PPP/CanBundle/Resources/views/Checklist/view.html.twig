@@ -25,7 +25,7 @@
 	            	</td>
 
 	            	<td bgcolor="#ECE0F8">
-	            {{'Mascota'}} 
+	            {{'Mascota'}}
 	        		</td>
 	            	<td>
 	                {{ mascota.nombresm }}
@@ -34,7 +34,7 @@
 
 	            <tr>
 	            	<td bgcolor="#ECE0F8">
-	            {{'Estado'}} 
+	            {{'Estado'}}
 	        	</td>
 	        	<td>
 	                {{ radicado.estado }}
@@ -42,7 +42,7 @@
 	            <td bgcolor="#ECE0F8">
 	            {{'Creado'}}
 	        	</td>
-	        	<td>	            
+	        	<td>
 	                {{ radicado.createdAtradi | date('d-m-y H:i')}}
 	            </td>
 	        </tr>
@@ -53,12 +53,12 @@
 	        	</td>
 	        	<td colspan="3">
 	                {{ radicado.updatedAtradi | date('d-m-y H:i')}}
-				</td>	     
+				</td>
 				</tr>
 
 				<tr>
-				<td colspan="4" bgcolor="#ECE0F8"> 				
-				<p align="center">	            	
+				<td colspan="4" bgcolor="#ECE0F8">
+				<p align="center">
 					<b>
 	            {{'Documentos'}}
 	        		</b>
@@ -77,7 +77,9 @@
 
 				{{ form_widget(form.archivo1c, {'attr': {'class': 'form-control-static','style': "width:200px" }}) }}
 				<span class="text-danger">{{ form_errors(form.archivo1c) }}</span>
-
+					{% if checklist.usuario1c %}
+						Ult. Revisión: {{checklist.usuario1c.getNombres()}} {{checklist.usuario1c.getApellidos()}}
+            {% endif %}
 	           	</td>
 	           </tr>
 
@@ -92,29 +94,36 @@
 	           	<td colspan="2">
 	           	{{ form_widget(form.archivo2c, {'attr': {'class': 'form-control-static','style': "width:200px" }}) }}
 				<span class="text-danger">{{ form_errors(form.archivo2c) }}</span>
+						{% if checklist.usuario2c %}
+						Ult. Revisión: {{checklist.usuario2c.getNombres()}} {{checklist.usuario2c.getApellidos()}}
+            {% endif %}
 
 	           	</td>
 	           </tr>
 
 	           <tr>
-	           <td>	       		
+	           <td>
 				{{'Declaración'}}
 				</td>
 				<td>
-			{% set foo3 = 'uploads/radicados/' ~  radicado.archivo3 %}					
+			{% set foo3 = 'uploads/radicados/' ~  radicado.archivo3 %}
 			<center><a class="sb" href="{{ asset( foo3 ) }}">{{ radicado.archivo3 }}</a></center>
 				</td>
 		     	<td colspan="2">
 
 	           	{{ form_widget(form.archivo3c, {'attr': {'class': 'form-control-static','style': "width:200px" }}) }}
 				<span class="text-danger">{{ form_errors(form.archivo3c) }}</span>
+            {% if checklist.usuario3c %}
+				Ult. Revisión: {{checklist.usuario3c.getNombres()}} {{checklist.usuario3c.getApellidos()}}
+            {% endif %}
+
 
 	           	</td>
 	           </tr>
-				
+
 				<tr>
-				<td colspan="4" bgcolor="#ECE0F8"> 				
-				<p align="left">	            	
+				<td colspan="4" bgcolor="#ECE0F8">
+				<p align="left">
 					<b>
 	            {{'Comentario'}}
 	        		</b>
@@ -124,20 +133,20 @@
 	        <tr>
 	        	<td colspan="4">
 				{{ form_widget(form.comentario, {'attr': {'class': 'form-control', 'placeholder' : 'Comentario'}}) }}
-				<span class="text-danger">{{ form_errors(form.comentario) }}</span>	        		
+				<span class="text-danger">{{ form_errors(form.comentario) }}</span>
 	        	</td>
 	        </tr>
 	       </table>
 
 	       <br>
 
-		{{ form_widget(form.usuario, {'attr': {'class': 'text'}}) }}	       
+		{{ form_widget(form.usuario, {'attr': {'class': 'text'}}) }}
 
 		{{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
  {{ form_end(form) }}
 
-	                
-	    </div>	    		
+
+	    </div>
   </div>
-	    
+
 {% endblock %}
