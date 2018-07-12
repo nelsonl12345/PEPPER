@@ -32,6 +32,86 @@ class ReportesController extends Controller
         return $this->render('PPPCanBundle:Reportes:index.html.twig');
     }
 
+    public function mascotasEntreAction(Request $request)
+    {
+        $start_date = $request->query->get('start_date');
+        $end_date = $request->query->get('end_date');
+
+        $repository = $this->getDoctrine()->getRepository('PPPCanBundle:Mascota');
+
+        $razas = $this->getDoctrine()
+            ->getRepository('PPPCanBundle:Raza')
+            ->findAll();
+
+        $qBase = $repository->createQueryBuilder('n')
+            ->where('n.generom = :generom')
+            ->andWhere('n.createdAtm > :start_date')
+            ->andWhere('n.createdAtm < :end_date')
+            ->select('count(n.id)')
+            ->setParameter('start_date', $start_date)
+            ->setParameter('end_date', $end_date);
+
+        $qHembra = clone $qBase;
+        $qMacho = clone $qBase;
+
+        $cHembra = $qHembra
+            ->setParameter('generom', 'HEMBRA')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $cMacho = $qMacho
+            ->setParameter('generom', 'MACHO')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+
+        $data = [
+            'config' => [
+                "start_date" => $start_date,
+                "end_date" => $end_date
+            ],
+            "result" => [
+                "razas" => [],
+                "genero" => [
+                    [
+                        'cantidad' => $cHembra,
+                        'nombre' => 'Hembra'
+                    ],
+                    [
+                        'cantidad' => $cMacho,
+                        'nombre' => 'Macho'
+                    ]
+                ]
+            ]
+        ];
+
+        foreach ($razas as $raza) {
+            $qRazaBase = $repository->createQueryBuilder('n')
+                ->innerJoin('n.raza', 'r')
+                ->where('r.id = :raza_id')
+                ->andWhere('n.createdAtm > :start_date')
+                ->andWhere('n.createdAtm < :end_date')
+                ->select('count(n.id)')
+                ->setParameter('start_date', $start_date)
+                ->setParameter('end_date', $end_date);
+
+            $cRaza = $qRazaBase
+                ->setParameter('raza_id', $raza->getId())
+                ->getQuery()
+                ->getSingleScalarResult();
+
+            array_push(
+                $data['result']['razas'],
+                [
+                    'cantidad' => $cRaza,
+                    'nombre' => $raza->getDtalleraza(),
+                ]
+            );
+        }
+
+        return new JsonResponse($data);
+    }
+
     public function radicadosEntreAction(Request $request)
     {
         $start_date = $request->query->get('start_date');
@@ -51,7 +131,7 @@ class ReportesController extends Controller
         $qAprobados = clone $qBase;
         $qRechazados = clone $qBase;
 
-         $cRadicados = $qRadicados
+        $cRadicados = $qRadicados
             ->setParameter('estado', 'Radicado')
             ->getQuery()
             ->getSingleScalarResult();
@@ -74,15 +154,15 @@ class ReportesController extends Controller
             "result" => [
                 [
                     'cantidad' => $cRadicados,
-                    'nombre' => 'radicados'
+                    'nombre' => 'Radicados'
                 ],
                 [
                     'cantidad' => $cAprobado,
-                    'nombre' => 'aprobado'
+                    'nombre' => 'Aprobado'
                 ],
                 [
                     'cantidad' => $cRechazados,
-                    'nombre' => 'rechazados'
+                    'nombre' => 'Rechazados'
                 ]
             ]
         ];

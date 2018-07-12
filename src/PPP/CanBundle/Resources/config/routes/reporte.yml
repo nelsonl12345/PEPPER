@@ -13,3 +13,7 @@ ppp_reportes_radicados:
 ppp_reportes_radicados_entre:
     path:     /query/radicados
     defaults: { _controller: PPPCanBundle:Reportes:radicadosEntre }
+
+ppp_reportes_mascotas_entre:
+    path:     /query/mascotas
+    defaults: { _controller: PPPCanBundle:Reportes:mascotasEntre }

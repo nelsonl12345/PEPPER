@@ -15,17 +15,29 @@
 
 		<div class="row">
 			<div class="col-md-6">
-				<h2>Mascotas</h2>
-				<input type='text' class='mascotas-date input-date start-date'/>
-				<input type='text' class='mascotas-date input-date end-date'/>
-				<div id="chart_mascotas"></div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2>Mascotas</h2>
+				</div>
+				<div class="panel-body">
+					<input type='text' class='mascotas-date input-date start-date'/>
+					<input type='text' class='mascotas-date input-date end-date'/>
+					<div id="chart_mascotas_genero"></div>
+					<div id="chart_mascotas_raza"></div>
+				</div>
+			</div>
 
 			</div>
 			<div class="col-md-6">
-				<h2>Radicados</h2>
-				<input type='text' class='radicado-date input-date start-date'/>
-				<input type='text' class='radicado-date input-date end-date'/>
-				<div id="chart_radicados"></div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h2>Radicados</h2>
+				</div>
+				<div class="panel-body">
+					<input type='text' class='radicado-date input-date start-date'/>
+					<input type='text' class='radicado-date input-date end-date'/>
+					<div id="chart_radicados"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -41,9 +53,11 @@
 
    <script type="text/javascript">
 			var chartRadicados
+			var chartMascotasGenero
+			var chartMascotasRaza
 
       // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
+      google.charts.load('current', {'packages':['corechart', 'bar']});
 
       // Set a callback to run when the Google Visualization API is loaded.
       google.charts.setOnLoadCallback(function () {
@@ -63,13 +77,37 @@
 
         chartRadicados.draw(data, options);
       }
+
+      function drawMascotasGenero(rows) {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Genero');
+        data.addColumn('number', 'Cantidad');
+        data.addRows(rows);
+
+        var options = {'title': 'Genero', 'width':400, 'height':300};
+
+        chartMascotasGenero.draw(data, options);
+      }
+      function drawMascotasRaza(rows) {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Raz');
+        data.addColumn('number', 'Cantidad');
+        data.addRows(rows);
+
+        var options = {'title': 'Raza', 'width':400, 'height':300, pieHole: 0.4,};
+
+        chartMascotasRaza.draw(data, options);
+      }
     </script>
 		<script>
 		function queryRadicados () {
 			var start_date = $('.radicado-date.start-date').val()
 			var end_date = $('.radicado-date.end-date').val()
-
-			if (!start_date && !end_date) return
+			if (!start_date || !end_date) return
 
 			$.ajax({
 				url: '/reportes/query/radicados',
@@ -84,26 +122,47 @@
 				}
 			})
 		}
+		function queryMascotas () {
+			var start_date = $('.mascotas-date.start-date').val()
+			var end_date = $('.mascotas-date.end-date').val()
+
+			if (!start_date || !end_date) return
+
+			$.ajax({
+				url: '/reportes/query/mascotas',
+				type: 'GET',
+				data: {
+					'start_date': start_date,
+					'end_date': end_date,
+				},
+				success: function(res) {
+					let generos = res.result.genero.map(item => {return [item.nombre, parseInt(item.cantidad)]})
+					let razas = res.result.razas.map(item => {return [item.nombre, parseInt(item.cantidad)]})
+					drawMascotasGenero(generos)
+					drawMascotasRaza(razas)
+				}
+			})
+		}
 		function initPage() {
 			chartRadicados = new google.visualization.PieChart(document.getElementById('chart_radicados'));
+			chartMascotasRaza = new google.visualization.BarChart(document.getElementById('chart_mascotas_raza'));
+			chartMascotasGenero = new google.visualization.ColumnChart(document.getElementById('chart_mascotas_genero'));
 
-			$('.radicado-date').datepicker({
+			let config = {
 				dateFormat: 'yyyy-mm-dd',
 				language: 'es',
 				todayButton: new Date(),
-				autoClose: true,
-				onSelect: function onSelect(fd, date) {
-					queryRadicados()
-				}
-			})
-			$('.mascotas-date').datepicker({
-				dateFormat: 'yyyy-mm-dd',
-				language: 'es',
-				todayButton: new Date(),
-				autoClose: true,
-				onSelect: function onSelect(fd, date) {
-				}
-			})
+				autoClose: true
+			}
+
+			let congifR = Object.assign({}, config)
+			let congifM = Object.assign({}, config)
+
+			congifR.onSelect = function onSelect(fd, date) { queryRadicados() }
+			congifM.onSelect = function onSelect(fd, date) { queryMascotas() }
+
+			$('.radicado-date').datepicker(congifR)
+			$('.mascotas-date').datepicker(congifM)
 
 			var currentDate = new Date()
 
