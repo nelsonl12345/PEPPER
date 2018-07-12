@@ -1,15 +1,19 @@
-<html>
-<body>
-	<h1>Reporte de Radicados</h1>
+{%  extends 'reports.html.twig' %}
 
+{% block body %}
+	{{ parent() }}
+	<header class="text-center">
+		<h1>Reporte de Radicados</h1>
+		<h4> Desde {{data['config']['start_date']}} Hasta {{data['config']['end_date']}}</h4>
+	</header>
 	<div>
 		<h2>Relación por Estado</h2>
 
 		<table>
 			<thead>
 				<tr>
-					<th>Estao</th>
-					<th>Cantidad</th>
+					<th width="50%">Estado</th>
+					<th width="50%">Cantidad</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -22,5 +26,4 @@
 			</tbody>
 		</table>
 	</div>
-</body>
-</html>
+{% endblock body %}
