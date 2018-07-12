@@ -133,34 +133,31 @@ class ChecklistController extends Controller
             $em->persist($checklist);
             $em->flush();
 
-            if ($checklist->getArchivo1c() === 'Aceptado' &&
-                $checklist->getArchivo2c() === 'Aceptado' &&
-                $checklist->getArchivo3c() === 'Aceptado'
-            ) {
-                $radicado = $checklist->getRadicado();
-                $radicado->setEstado('Aprobado');
+            $radicado = $checklist->getRadicado();
+            if ($checklist->someFileRejected() || $checklist->allFileRejected()) {
+                if ($radicado->getEstado() !== 'Rechazado') {
+                    $radicado->setEstado('Rechazado');
 
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($radicado);
-                $em->flush();
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($radicado);
+                    $em->flush();
 
-                $mensaje .= "El estado se cambio a Aprobado (Mail enviado)";
-
-                $this->enviarMailRadicado($radicado);
+                    $mensaje .= " El estado se cambio a Rechazado (Mail enviado)";
+                    $this->enviarMailRadicado($radicado);
+                }
             }
-            if ($checklist->getArchivo1c() === 'Rechazado' &&
-                $checklist->getArchivo2c() === 'Rechazado' &&
-                $checklist->getArchivo3c() === 'Rechazado'
-            ) {
-                $radicado = $checklist->getRadicado();
-                $radicado->setEstado('Rechazado');
 
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($radicado);
-                $em->flush();
+            if ($checklist->allFileApproved()) {
+                if ($radicado->getEstado() !== 'Aprobado') {
+                    $radicado->setEstado('Aprobado');
 
-                $mensaje .= "El estado se cambio a Rechazado (Mail enviado)";
-                $this->enviarMailRadicado($radicado);
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($radicado);
+                    $em->flush();
+
+                    $mensaje .= " El estado se cambio a Aprobado (Mail enviado)";
+                    $this->enviarMailRadicado($radicado);
+                }
             }
 
             $this->addFlash('mensaje', $mensaje);

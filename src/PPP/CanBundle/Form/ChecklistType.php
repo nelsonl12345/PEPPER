@@ -23,18 +23,18 @@ class ChecklistType extends AbstractType
         $builder
 
             ->add('archivo1c','choice', array('choices'=> array(
-                'Aceptado' => 'Aceptado',
+                'Aprobado' => 'Aprobado',
                 'Rechazado' => 'Rechazado'
                 ), 'placeholder' => 'Seleccione una opcion...'))
 
 
                 ->add('archivo2c','choice', array('choices'=> array(
-                'Aceptado' => 'Aceptado',
+                'Aprobado' => 'Aprobado',
                 'Rechazado' => 'Rechazado'
                 ), 'placeholder' => 'Seleccione una opcion...'))
 
             ->add('archivo3c','choice', array('choices'=> array(
-                'Aceptado' => 'Aceptado',
+                'Aprobado' => 'Aprobado',
                 'Rechazado' => 'Rechazado'
                 ), 'placeholder' => 'Seleccione una opcion...'))
 

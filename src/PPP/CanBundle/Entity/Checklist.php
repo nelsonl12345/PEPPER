@@ -300,4 +300,48 @@ class Checklist
     {
         return $this->radicado;
     }
+
+    public function someFileApproved()
+    {
+        if ($this->getArchivo1c() === 'Aprobado' ||
+            $this->getArchivo2c() === 'Aprobado' ||
+            $this->getArchivo3c() === 'Aprobado'
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+    public function someFileRejected()
+    {
+        if ($this->getArchivo1c() === 'Rechazado' ||
+            $this->getArchivo2c() === 'Rechazado' ||
+            $this->getArchivo3c() === 'Rechazado'
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+    public function allFileApproved()
+    {
+        if ($this->getArchivo1c() === 'Aprobado' &&
+            $this->getArchivo2c() === 'Aprobado' &&
+            $this->getArchivo3c() === 'Aprobado'
+        ) {
+            return true;
+        }
+        return false;
+    }
+
+    public function allFileRejected()
+    {
+        if ($this->getArchivo1c() === 'Rechazado' &&
+            $this->getArchivo2c() === 'Rechazado' &&
+            $this->getArchivo3c() === 'Rechazado'
+        ) {
+            return true;
+        }
+        return false;
+    }
 }
