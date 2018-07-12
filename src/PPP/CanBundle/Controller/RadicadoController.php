@@ -145,6 +145,14 @@ class RadicadoController extends Controller
             'radicado'  => $radicado,
             'mascota'  => $mascota,
             'propietario'  => $propietario,
+            'mascota_foto' => "{$this->get('kernel')->getRootDir()}/../web/uploads/mascotas/{$mascota->getFoto1m()}",
+            "config" => [
+                "watermark" => "{$this->get('kernel')->getRootDir()}/../web/public/images/escudo_girardot_watermark.png",
+            ],
+            "firma" => [
+                "nombre" => "MANUEL REINALDO DIAS GONZALEZ",
+                "cargo" => "Secretario de Salud",
+            ],
             'fechas' => [
                 "generacion" => [
                     "dia" => $fecha_generacion->format('d'),
@@ -159,7 +167,7 @@ class RadicadoController extends Controller
             ]
         ));
 
-        $filename = "certificado";
+        $filename = "Certificado Radicado #{$radicado->getId()} - " . date('Ymdhis');
 
         return new Response(
             $this->get('knp_snappy.pdf')->getOutputFromHtml($html),

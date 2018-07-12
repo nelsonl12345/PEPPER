@@ -2,44 +2,59 @@
 <head>
   <meta charset="UTF-8">
 </head>
-<body>
+<body
+	background="{{config['watermark']}}"
+	style="font-size:18px; background-size: 100%; background-repeat: no-repeat"
+>
 	<p>Girardot {{fechas['generacion']['dia']}}, de {{fechas['generacion']['mes']}} de {{fechas['generacion']['ano']}}</p>
 
-	<h2>Certifico Que:</h2>
+	<h1 style="text-align: center; margin-top: 50px; margin-bottom: 120px;">Certifico Que:</h1>
 
 	<p>
 		El señor {{propietario.nombres}} {{propietario.apellidos}}, identificado con la C.C. {{propietario.identificacion}}
-		N de _________ con vivienda ubicada en {{propietario.direccion}} y el telefono numero {{propietario.telefono}},
-		entrego el {{fechas['radicado']['dia']}} de {{fechas['radicado']['mes']}} de {{fechas['radicado']['ano']}}
-		a la Secretaria de Salud toda la documentación exigida para la tenencia responsable de Perros de Razas Potencialmente Peligrosas
-		especificadas en el codigo de Policía Nacional.
+		N de _________ con vivienda ubicada en {{propietario.direccion}} y el teléfono número {{propietario.telefono}},
+		entregó el {{fechas['radicado']['dia']}} de {{fechas['radicado']['mes']}} de {{fechas['radicado']['ano']}}
+		a la Secretaría de Salud toda la documentación exigida para la tenencia responsable de Perros de Razas Potencialmente Peligrosas
+		especificadas en el código de Policía Nacional.
 	</p>
-	<h3>Características de Canino</h3>
+
+	<h3 style="margin-top: 50px;">Características de Canino</h3>
 
 	<div>
-		<div>
-			<ul>
-				<li>Raza: {{ mascota.raza.dtalleraza }}</li>
-				<li>Nombre: {{ mascota.nombresm }} </li>
-				<li>Edad </li>
-				<li>Color: {{mascota.colorm}}</li>
-				<li>Ocupación del canino </li>
-				<li>Carnet de vacinas vigente </li>
-				<li>Acta de Acte de declaración Juramentada ante notaria asumiendo responsabilidad ante cualquier daño ocasionado por el canino a humanos u otros animales </li>
-			</ul>
-		</div>
-		<div>
-			<h6>Foto del canino</h6>
-		</div>
+		<table>
+			<tr>
+				<td width="80%">
+					<ul>
+						<li>Raza: {{ mascota.raza.dtalleraza }}</li>
+						<li>Nombre: {{ mascota.nombresm }} </li>
+						<li>Edad </li>
+						<li>Color: {{mascota.colorm}}</li>
+						<li>Ocupación del canino </li>
+						<li>Carnet de vacunas vigente </li>
+						<li>
+							Acta de Acta de declaración Juramentada ante notaria, <br/>
+							asumiendo responsabilidad ante cualquier daño ocasionado <br/>
+							por el canino a humanos u otros animales
+						</li>
+					</ul>
+				</td>
+				<td width="20%">
+					<div>
+						<h6>Foto del canino</h6>
+						<img src="{{mascota_foto}}" alt="Sin foto" width="250" height="200">
+					</div>
+				</td>
+			</tr>
+		</table>
 	</div>
 
-	<p>Cordialmente,</p>
+	<p style="margin-top: 60px; margin-bottom: 70px;">Cordialmente,</p>
 
 
-	<h3>
-		[MANUEL REINALDO DIAS GONZALEZ]
+	<h3 style="text-align: center;">
+		{{ firma.nombre }}
 		<br/>
-		[Secretario de Salud]
+		{{ firma.cargo }}
 	</h3>
 
 
