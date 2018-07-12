@@ -9,7 +9,11 @@ ppp_radicado_view:
 ppp_radicado_create:
     path:     /create
     defaults: { _controller: PPPCanBundle:Radicado:create }
-    methods: POST 
+    methods: POST
+
+ppp_radicado_certificado:
+    path:     /certificado
+    defaults: { _controller: PPPCanBundle:Radicado:certificado }
 
 ppp_radicado_redirect_add:
   path: /create

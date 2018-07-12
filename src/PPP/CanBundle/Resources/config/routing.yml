@@ -23,6 +23,10 @@ ppp_checklist_checklist:
     resource: "@PPPCanBundle/Resources/config/routes/checklist.yml"
     prefix:   /checklist
 
+ppp_reporte_reporte:
+    resource: "@PPPCanBundle/Resources/config/routes/reporte.yml"
+    prefix:   /reportes
+
 
 #Rutas Autenticacion de usuarios del sistema
 
@@ -50,7 +54,7 @@ ppp_regprop_add:
 ppp_regprop_create:
     path:     /regprop/create
     defaults: { _controller: PPPCanBundle:Propietario:create }
-    methods: POST 
+    methods: POST
 
 ppp_regprop_redirect_add:
   path: /regprop/create

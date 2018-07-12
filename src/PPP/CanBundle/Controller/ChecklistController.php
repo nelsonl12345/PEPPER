@@ -9,9 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use PPP\CanBundle\Entity\Checklist;
 use PPP\CanBundle\Form\ChecklistType;
 
-// use Knp\Bundle\SnappyBundle\Snappy\Response;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
-
 class ChecklistController extends Controller
 {
 
@@ -67,24 +64,6 @@ class ChecklistController extends Controller
             'method' => 'POST'
         ));
         return $form;
-    }
-
-    public function pdfAction()
-    {
-        $html = $this->renderView('Reportes/mascotas.html.twig', array(
-            'name'  => 'carlos'
-        ));
-
-        $filename = "mascotas";
-
-        return new Response(
-            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
-            200,
-            array(
-                'Content-Type'          => 'application/pdf',
-                'Content-Disposition'   => 'attachment; filename="'.$filename.'.pdf"'
-            )
-        );
     }
 
     public function createAction(Request $request)

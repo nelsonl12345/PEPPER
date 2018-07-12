@@ -12,8 +12,10 @@
 				    <h4 class="text-danger">{{ form_errors(form) }}</h4>
 
 
+{#
 {{ form_widget(form.radicado, {'attr': {'class': 'text', 'value': radicado.id }}) }}
 {{ form_widget(form.usuario, {'attr': {'class': 'text', 'value': app.user.id }}) }}
+#}
 	            <table border="1" WIDTH="800" bordercolor="#A9D0F5">
 	            	<tr><td bgcolor="#ECE0F8">
 	         	{{'Propietario'}}
@@ -140,7 +142,9 @@
 
 	       <br>
 
+		{#
 		{{ form_widget(form.usuario, {'attr': {'class': 'text'}}) }}
+		#}
 
 		{{ form_widget(form.enviar, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
  {{ form_end(form) }}

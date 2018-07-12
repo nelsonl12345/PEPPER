@@ -1,0 +1,119 @@
+{%  extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" href="{{ asset('public/library/air-datepicker/css/datepicker.min.css') }}">
+
+
+{% endblock %}
+
+{% block body %}
+	{{ parent() }}
+
+	<div class="container">
+		<h1>Reportes</h1>
+
+		<div class="row">
+			<div class="col-md-6">
+				<h2>Mascotas</h2>
+				<input type='text' class='mascotas-date input-date start-date'/>
+				<input type='text' class='mascotas-date input-date end-date'/>
+				<div id="chart_mascotas"></div>
+
+			</div>
+			<div class="col-md-6">
+				<h2>Radicados</h2>
+				<input type='text' class='radicado-date input-date start-date'/>
+				<input type='text' class='radicado-date input-date end-date'/>
+				<div id="chart_radicados"></div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('public/library/air-datepicker/js/datepicker.min.js') }}"></script>
+	<script src="{{ asset('public/library/air-datepicker/js/i18n/datepicker.es.js') }}"></script>
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+   <script type="text/javascript">
+			var chartRadicados
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(function () {
+				initPage()
+			});
+
+
+      function drawRadicados(rows) {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Estado');
+        data.addColumn('number', 'Cantidad');
+        data.addRows(rows);
+
+        var options = {'title': 'Radicados', 'width':400, 'height':300};
+
+        chartRadicados.draw(data, options);
+      }
+    </script>
+		<script>
+		function queryRadicados () {
+			var start_date = $('.radicado-date.start-date').val()
+			var end_date = $('.radicado-date.end-date').val()
+
+			if (!start_date && !end_date) return
+
+			$.ajax({
+				url: '/reportes/query/radicados',
+				type: 'GET',
+				data: {
+					'start_date': start_date,
+					'end_date': end_date,
+				},
+				success: function(res) {
+					let rows = res.result.map(item => {return [item.nombre, parseInt(item.cantidad)]})
+					drawRadicados(rows)
+				}
+			})
+		}
+		function initPage() {
+			chartRadicados = new google.visualization.PieChart(document.getElementById('chart_radicados'));
+
+			$('.radicado-date').datepicker({
+				dateFormat: 'yyyy-mm-dd',
+				language: 'es',
+				todayButton: new Date(),
+				autoClose: true,
+				onSelect: function onSelect(fd, date) {
+					queryRadicados()
+				}
+			})
+			$('.mascotas-date').datepicker({
+				dateFormat: 'yyyy-mm-dd',
+				language: 'es',
+				todayButton: new Date(),
+				autoClose: true,
+				onSelect: function onSelect(fd, date) {
+				}
+			})
+
+			var currentDate = new Date()
+
+			$('.start-date').each((i, e) => {
+				$(e).data('datepicker').selectDate(new Date(currentDate.getFullYear(), 0, 1))
+			})
+			$('.end-date').each((i, e) => {
+				$(e).data('datepicker').selectDate(currentDate)
+			})
+		}
+
+		</script>
+{% endblock %}

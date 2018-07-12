@@ -39,6 +39,7 @@ class ChecklistType extends AbstractType
                 ), 'placeholder' => 'Seleccione una opcion...'))
 
             ->add('comentario')
+            /*
             ->add('usuario', EntityType::class, array(
                 'placeholder' => 'Seleccione una opcion...',
                 'class'=> Usuario::class, // 'PPPCanBundle:Usuario',
@@ -53,6 +54,7 @@ class ChecklistType extends AbstractType
                 'choice_name' => 'id',
                 'choice_value' => 'id',
                 ))
+                */
             // ->add('usuario', TextType::class)
             // ->add('radicado', TextType::class)
 
