@@ -64,10 +64,18 @@ class PepperRadicadosEstadoCommand extends ContainerAwareCommand
                     $radicado->setEstado("Rechazado");
                     $checklist = $radicado->getChecklist();
                     if ($checklist) {
-                        $checklist->setComentario('tope de dias hab iles superado');
-                        $em->persist($radicado);
+                        $checklist->setComentario('Han pasado 8 dias habiles desde la radicacion y no se ha completado el proceso');
+                        $em->persist($checklist);
+
+                        $checklist->setArchivo1c("Rechazado");
+                        $checklist->setArchivo2c("Rechazado");
+                        $checklist->setArchivo3c("Rechazado");
+
+                        $checklist->setUsuario1c(null);
+                        $checklist->setUsuario2c(null);
+                        $checklist->setUsuario3c(null);
                     }
-                    $em->persist($checklist);
+                    $em->persist($radicado);
                     $em->flush();
 
                     $message = (new \Swift_Message('Estado de radicado'))

@@ -126,12 +126,8 @@ class RadicadoController extends Controller
     public function certificadoAction(Request $request, $id)
     {
         $radicado = $this->getDoctrine()->getRepository('PPPCanBundle:Radicado')->find($id);
-        // dump($radicado);
         $mascota = $radicado->getMascota();
-        // dump($mascota);
         $propietario = $mascota->getUsuario();
-        // dump($propietario);
-        // exit();
 
         $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");

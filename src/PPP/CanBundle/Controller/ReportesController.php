@@ -213,9 +213,6 @@ class ReportesController extends Controller
             ]
         ];
 
-        // dump($data);
-        // exit();
-
         return $data;
     }
 
