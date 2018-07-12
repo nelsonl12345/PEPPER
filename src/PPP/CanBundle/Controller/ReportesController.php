@@ -19,20 +19,40 @@ class ReportesController extends Controller
     /**
      * Reporte de mascotas registradas en un rango de fechas
      */
-    public function mascotasAction(Request $request)
+    public function mascotasExportarAction(Request $request)
     {
-        return $this->render('PPPCanBundle:Reportes:index.html.twig');
+        $data = $this->getDataMascotas($request);
+        $html = $this->renderView('PDF/reportes/mascotas.html.twig', array('data'  => $data));
+        $filename = "mascotas";
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="'.$filename.'.pdf"'
+            )
+        );
     }
 
     /**
      * Reporte de los radicados por estado en un rango de fechas
      */
-    public function radicadosAction(Request $request)
+    public function radicadosExportarAction(Request $request)
     {
-        return $this->render('PPPCanBundle:Reportes:index.html.twig');
+        $data = $this->getDataRadicados($request);
+        $html = $this->renderView('PDF/reportes/radicados.html.twig', array('data'  => $data));
+        $filename = "radicados";
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="'.$filename.'.pdf"'
+            )
+        );
     }
 
-    public function mascotasEntreAction(Request $request)
+    public function getDataMascotas(Request $request)
     {
         $start_date = $request->query->get('start_date');
         $end_date = $request->query->get('end_date');
@@ -72,7 +92,7 @@ class ReportesController extends Controller
             ],
             "result" => [
                 "razas" => [],
-                "genero" => [
+                "generos" => [
                     [
                         'cantidad' => $cHembra,
                         'nombre' => 'Hembra'
@@ -109,10 +129,10 @@ class ReportesController extends Controller
             );
         }
 
-        return new JsonResponse($data);
+        return $data;
     }
 
-    public function radicadosEntreAction(Request $request)
+    public function getDataRadicados(Request $request)
     {
         $start_date = $request->query->get('start_date');
         $end_date = $request->query->get('end_date');
@@ -152,22 +172,37 @@ class ReportesController extends Controller
                 "end_date" => $end_date
             ],
             "result" => [
-                [
-                    'cantidad' => $cRadicados,
-                    'nombre' => 'Radicados'
-                ],
-                [
-                    'cantidad' => $cAprobado,
-                    'nombre' => 'Aprobado'
-                ],
-                [
-                    'cantidad' => $cRechazados,
-                    'nombre' => 'Rechazados'
+                "estados" => [
+                    [
+                        'cantidad' => $cRadicados,
+                        'nombre' => 'Radicados'
+                    ],
+                    [
+                        'cantidad' => $cAprobado,
+                        'nombre' => 'Aprobado'
+                    ],
+                    [
+                        'cantidad' => $cRechazados,
+                        'nombre' => 'Rechazados'
+                    ]
                 ]
             ]
         ];
 
+        return $data;
+    }
+
+    public function mascotasEntreAction(Request $request)
+    {
+        $data = $this->getDataMascotas($request);
+
         return new JsonResponse($data);
     }
 
+    public function radicadosEntreAction(Request $request)
+    {
+        $data = $this->getDataRadicados($request);
+
+        return new JsonResponse($data);
+    }
 }

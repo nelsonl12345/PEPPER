@@ -1,0 +1,26 @@
+<html>
+<body>
+	<h1>Reporte de Radicados</h1>
+
+	<div>
+		<h2>Relación por Estado</h2>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Estao</th>
+					<th>Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for estado in data['result']['estados'] %}
+					<tr>
+						<td>{{ estado['nombre'] }}</td>
+						<td>{{ estado['cantidad'] }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

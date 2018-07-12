@@ -2,13 +2,13 @@ ppp_reportes_index:
     path:     /
     defaults: { _controller: PPPCanBundle:Reportes:index }
 
-ppp_reportes_mascotas:
-    path:     /mascotas
-    defaults: { _controller: PPPCanBundle:Reportes:mascotas }
+ppp_reportes_mascotas_exportar:
+    path:     /mascotas/exportar
+    defaults: { _controller: PPPCanBundle:Reportes:mascotasExportar }
 
-ppp_reportes_radicados:
-    path:     /radicados
-    defaults: { _controller: PPPCanBundle:Reportes:radicados }
+ppp_reportes_radicados_exportar:
+    path:     /radicados/exportar
+    defaults: { _controller: PPPCanBundle:Reportes:radicadosExportar }
 
 ppp_reportes_radicados_entre:
     path:     /query/radicados

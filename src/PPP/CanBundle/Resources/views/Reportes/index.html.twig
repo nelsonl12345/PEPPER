@@ -20,10 +20,25 @@
 					<h2>Mascotas</h2>
 				</div>
 				<div class="panel-body">
-					<input type='text' class='mascotas-date input-date start-date'/>
-					<input type='text' class='mascotas-date input-date end-date'/>
-					<div id="chart_mascotas_genero"></div>
-					<div id="chart_mascotas_raza"></div>
+					<form action="{{ path('ppp_reportes_mascotas_exportar') }}" target="blank">
+						<div class="row">
+							<div class="col-md-6">
+								<label for="mascotas-start-date">Desde</label>
+								<input name="start_date" id="mascotas-start-date" type='text' class='mascotas-date input-date start-date'/>
+							</div>
+							<div class="col-md-6">
+								<label for="mascotas-end-date">Hasta</label>
+								<input name="end_date" id="mascotas-end-date" type='text' class='mascotas-date input-date end-date'/>
+							</div>
+						</div>
+						<div class="row">
+							<div id="chart_mascotas_genero"></div>
+						</div>
+						<div class="row">
+							<div id="chart_mascotas_raza"></div>
+								<button class="btn btn-primary" type="submit">Exportar</a>
+						</div>
+					</form>
 				</div>
 			</div>
 
@@ -34,9 +49,22 @@
 					<h2>Radicados</h2>
 				</div>
 				<div class="panel-body">
-					<input type='text' class='radicado-date input-date start-date'/>
-					<input type='text' class='radicado-date input-date end-date'/>
-					<div id="chart_radicados"></div>
+					<form action="{{ path('ppp_reportes_radicados_exportar') }}" target="blank">
+						<div class="row">
+							<div class="col-md-6">
+							<label for="radicado-start-date">Desde</label>
+								<input name="start_date" id="radicado-start-date" type='text' class='radicado-date input-date start-date'/>
+							</div>
+							<div class="col-md-6">
+							<label for="radicado-end-date">Hasta</label>
+								<input name="end_date" id="radicado-end-date" type='text' class='radicado-date input-date end-date'/>
+							</div>
+						</div>
+						<div class="row">
+							<div id="chart_radicados"></div>
+							<button class="btn btn-primary" type="submit">Exportar</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -117,7 +145,7 @@
 					'end_date': end_date,
 				},
 				success: function(res) {
-					let rows = res.result.map(item => {return [item.nombre, parseInt(item.cantidad)]})
+					let rows = res.result.estados.map(item => {return [item.nombre, parseInt(item.cantidad)]})
 					drawRadicados(rows)
 				}
 			})
@@ -136,7 +164,7 @@
 					'end_date': end_date,
 				},
 				success: function(res) {
-					let generos = res.result.genero.map(item => {return [item.nombre, parseInt(item.cantidad)]})
+					let generos = res.result.generos.map(item => {return [item.nombre, parseInt(item.cantidad)]})
 					let razas = res.result.razas.map(item => {return [item.nombre, parseInt(item.cantidad)]})
 					drawMascotasGenero(generos)
 					drawMascotasRaza(razas)

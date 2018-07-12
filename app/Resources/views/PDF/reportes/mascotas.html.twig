@@ -1,0 +1,47 @@
+<html>
+<body>
+	<h1>Reporte de Mascotas</h1>
+
+	<div>
+		<h2>Relación por Genero</h2>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Genero</th>
+					<th>Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for genero in data['result']['generos'] %}
+					<tr>
+						<td>{{ genero['nombre'] }}</td>
+						<td>{{ genero['cantidad'] }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	<div>
+		<h2>Relación por Raza</h2>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Raza</th>
+					<th>Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for raza in data['result']['razas'] %}
+					<tr>
+						<td>{{ raza['nombre'] }}</td>
+						<td>{{ raza['cantidad'] }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
