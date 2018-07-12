@@ -126,8 +126,9 @@ class ChecklistController extends Controller
 
         $form = $this->createCreateForm($checklist);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            $mensaje = "Registro editado correctamente";
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($checklist);
             $em->flush();
@@ -143,6 +144,8 @@ class ChecklistController extends Controller
                 $em->persist($radicado);
                 $em->flush();
 
+                $mensaje .= "El estado se cambio a Aprobado (Mail enviado)";
+
                 $this->enviarMailRadicado($radicado);
             }
             if ($checklist->getArchivo1c() === 'Rechazado' &&
@@ -156,10 +159,11 @@ class ChecklistController extends Controller
                 $em->persist($radicado);
                 $em->flush();
 
+                $mensaje .= "El estado se cambio a Rechazado (Mail enviado)";
                 $this->enviarMailRadicado($radicado);
             }
 
-            $this->addFlash('mensaje', 'Registro editado correctamente');
+            $this->addFlash('mensaje', $mensaje);
             return $this->redirectToRoute('ppp_checklist_index');
         }
 

@@ -29,10 +29,10 @@ class UsuarioController extends Controller
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $usuarios, $request->query->getInt('page', 1),
-            10    
+            10
         );
 
-        $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'ppp_usuario_delete');        
+        $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'ppp_usuario_delete');
 
 return $this->render('PPPCanBundle:Usuario:index.html.twig', array('pagination' => $pagination, 'delete_form_ajax'=> $deleteFormAjax->createView()));
  	}
@@ -47,7 +47,7 @@ return $this->render('PPPCanBundle:Usuario:index.html.twig', array('pagination' 
 
     private function createCreateForm(Usuario $entity)
     {
-    	$form = $this->createForm(new UsuarioType(), $entity, array(     		
+    	$form = $this->createForm(new UsuarioType(), $entity, array(
     			'action' => $this->generateUrl('ppp_usuario_create'),
     			'method' => 'POST'
     		));
@@ -61,11 +61,11 @@ return $this->render('PPPCanBundle:Usuario:index.html.twig', array('pagination' 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
-        {    
-            
+        {
+
             $foto = $form->get('foto')->getData();
             if (!empty($foto))
-            {                
+            {
 
             //start upload file
             $file = $usuario->getFoto();
@@ -81,28 +81,28 @@ return $this->render('PPPCanBundle:Usuario:index.html.twig', array('pagination' 
 
 
         	$contrasena = $form->get('contrasena')->getData();
-            
+
             $passwordConstraint = new Assert\NotBlank();
             $errorList = $this->get('validator')->validate($contrasena, $passwordConstraint);
             if(count($errorList)==0)
             {
         	$encoder = $this->container->get('security.password_encoder');
         	$encoded = $encoder->encodePassword($usuario, $contrasena);
-			$usuario->setContrasena($encoded);         
-            
-    
+			$usuario->setContrasena($encoded);
+
+
        	    $em = $this->getDoctrine()->getManager();
             $em->persist($usuario);
             $em->flush();
 
             $this->addFlash('mensaje','El usuario ha sido creado.');
 
-            return $this->redirectToRoute('ppp_usuario_index');  
-			}  //termina if    
+            return $this->redirectToRoute('ppp_usuario_index');
+			}  //termina if
             else{
                 $errorMessage = new FormError($errorList[0]->getMessage());
                 $form->get('contrasena')->addError($errorMessage);
-            }       
+            }
 
 
         }
@@ -115,45 +115,45 @@ return $this->render('PPPCanBundle:Usuario:index.html.twig', array('pagination' 
     {
         $em = $this->getDoctrine()->getManager();
         $usuario = $em->getRepository('PPPCanBundle:Usuario')->find($id);
-        
+
         if(!$usuario)
         {
             throw $this->createNotFoundException('Usuario no encontrado.');
         }
-        
+
         $form = $this->createEditForm($usuario);
-        
-        return $this->render('PPPCanBundle:Usuario:edit.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));        
+
+        return $this->render('PPPCanBundle:Usuario:edit.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
     }
-    
+
     private function createEditForm(Usuario $entity)
     {
-        $form = $this->createForm(new UsuarioType(), $entity, array('action' => $this->generateUrl('ppp_usuario_update', array('id' => $entity->getId())), 'method' => 'PUT'));        
+        $form = $this->createForm(new UsuarioType(), $entity, array('action' => $this->generateUrl('ppp_usuario_update', array('id' => $entity->getId())), 'method' => 'PUT'));
         return $form;
     }
 
-    
+
 
 public function updateAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        
+
         $usuario = $em->getRepository('PPPCanBundle:Usuario')->find($id);
 
         if(!$usuario)
         {
             throw $this->createNotFoundException('Usuario No encontrado');
         }
-        
+
         $form = $this->createEditForm($usuario);
         $form->handleRequest($request);
-        
+
         if($form->isSubmitted() && $form->isValid())
         {
 
             $foto = $form->get('foto')->getData();
             if (!empty($foto))
-            {                
+            {
             //start upload file
             $file = $usuario->getFoto();
             $ext = $file->guessExtension();
@@ -174,28 +174,28 @@ public function updateAction($id, Request $request)
             {
                 $encoder = $this->container->get('security.password_encoder');
                 $encoded = $encoder->encodePassword($usuario, $contrasena);
-                $usuario->setContrasena($encoded);  
+                $usuario->setContrasena($encoded);
             }
             else
             {
                 $recoverPass = $this->recoverPass($id);
-                $usuario->setContrasena($recoverPass[0]['contrasena']);                
+                $usuario->setContrasena($recoverPass[0]['contrasena']);
             }
-            
+
             if($form->get('role')->getData() == 'ROLE_COORDINADOR' || 'ROLE_JEFE_DEPARTAMENTO')
             {
                 $usuario->setIsActive(1);
             }
 
             $em->flush();
-            
+
             $this->addFlash('mensaje', 'El Usuario ha sido modificado correctamente');
             return $this->redirectToRoute('ppp_usuario_index', array('id' => $usuario->getId()));
         }
         return $this->render('PPPCanBundle:Usuario:edit.html.twig', array('usuario' => $usuario, 'form' => $form->createView()));
     }
-    
-    private function recoverFoto($id)    
+
+    private function recoverFoto($id)
     {
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
@@ -217,11 +217,11 @@ public function updateAction($id, Request $request)
         $query = $em->createQuery(
             'SELECT u.contrasena
             FROM PPPCanBundle:Usuario u
-            WHERE u.id = :id'    
+            WHERE u.id = :id'
         )->setParameter('id', $id);
-        
+
         $currentPass = $query->getResult();
-        
+
         return $currentPass;
     }
 
@@ -254,18 +254,18 @@ public function viewAction($id)
         //$form = $this->createDeleteForm($user);
         $form = $this->createCustomForm($user->getId(), 'DELETE', 'ppp_usuario_delete');
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) 
+        if ($form->isSubmitted() && $form->isValid())
         {
-            if ($request->isXMLHttpRequest()) 
+            if ($request->isXMLHttpRequest())
             {
-                $res = $this->deleteUser($user->getRole(), $em, $user);   
+                $res = $this->deleteUser($user->getRole(), $em, $user);
 
                 return new Response(
                     json_encode(array('removed' => $res['removed'], 'message' => $res['message'], 'countUsers' => $countUsers)),
                     200,
                     array('Content-Type' => 'application/json')
-                );            
-            }            
+                );
+            }
 
             $res = $this->deleteUser($user->getRole(), $em, $user);
 
@@ -277,22 +277,22 @@ public function viewAction($id)
 
     private function deleteUser($role, $em, $user)
     {
-        if ($role == 'ROLE_COORDINADOR' || $role == 'ROLE_SECRETARIO' || $role == 'ROLE_ZOOTECNISTA' || $role == 'ROLE_PROPIETARIO') 
+        if ($role == 'ROLE_COORDINADOR' || $role == 'ROLE_SECRETARIO' || $role == 'ROLE_ZOOTECNISTA' || $role == 'ROLE_PROPIETARIO')
         {
             $em->remove($user);
             $em->flush();
 
-            //$message = $this->addFlash('mensaje', 'El Usuario ha sido eliminado correctamente');     
-            $message = $this->get('translator')->trans('El usuario ha sido eliminado.');       
+            //$message = $this->addFlash('mensaje', 'El Usuario ha sido eliminado correctamente');
+            $message = $this->get('translator')->trans('El usuario ha sido eliminado.');
             $removed = 1;
             $alert = 'mensaje';
         }
-        elseif ($role == 'ROLE_JEFE_DEPARTAMENTO') 
+        elseif ($role == 'ROLE_JEFE_DEPARTAMENTO')
         {
             //$message = $this->addFlash('mensaje', 'El Usuario NO se ha eliminado debido a que es un administrador');
-            $message = $this->get('translator')->trans('Usuario no pudo ser eliminado por que es de rol Jefe del departamento.');             
+            $message = $this->get('translator')->trans('Usuario no pudo ser eliminado por que es de rol Jefe del departamento.');
             $removed = 0;
-            $alert = 'error'; 
+            $alert = 'error';
         }
         return array('removed' => $removed, 'message' => $message, 'alert' => $alert);
     }
@@ -305,6 +305,42 @@ public function viewAction($id)
             ->getForm();
     }
 
+    public function solicitudesAction(Request $request, $idUsuario)
+    {
+        /*
+        $repository = $this->getDoctrine()->getRepository('PPPCanBundle:Radicado');
+
+        $query = $repository->createQueryBuilder('r')
+            ->innerJoin('r.mascota', 'm')
+            ->innerJoin('m.usuario', 'p')
+            ->where('p.id = :usuario_id')
+            ->select('r')
+            ->addSelect('m')
+            ->addSelect('p')
+            ->setParameter('usuario_id', $idUsuario)
+            ->getQuery();
+        */
+        $em = $this->getDoctrine()->getManager();
+        //$dql = "SELECT u FROM PPPCanBundle:Radicado u ORDER BY u.id DESC";
+        $dql = "SELECT r.id, r.archivo1, m.nombresm, p.nombres, r.createdAtradi, r.updatedAtradi, r.estado
+                FROM PPPCanBundle:Radicado r
+                JOIN r.mascota m
+                JOIN m.usuario p
+                WHERE p.id = $idUsuario";
+
+        $query = $em->createQuery($dql);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+
+        return $this->render('PPPCanBundle:Usuario:solicitudes.html.twig', array('pagination' => $pagination));
+
+
+    }
 }
 
 

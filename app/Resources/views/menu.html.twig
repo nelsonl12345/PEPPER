@@ -66,7 +66,14 @@
             <li><a href="{{ path('ppp_radicado_index') }}">Listar solicitudes</a></li>
             <li><a href="{{ path('ppp_radicado_add') }}">Crear solicitudes</a></li>
             <li><a href="{{ path('ppp_checklist_index') }}">Gestionar solicitudes</a></li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li><a href="{{ path('ppp_usuario_solicitudes', {'idUsuario': app.user.id}) }}">Mis solicitudes</a></li>
+            {% endif %}
+
           </ul>
+        </li>
+        <li class="dropdown">
+          <a href="{{ path('ppp_reportes_index') }}">Reportes </a>
         </li>
 
 

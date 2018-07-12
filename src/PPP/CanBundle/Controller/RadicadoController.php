@@ -23,7 +23,6 @@ class RadicadoController extends Controller
          		FROM PPPCanBundle:Radicado r
          		JOIN r.mascota m
          		JOIN m.usuario p
-
         ";
 
 
