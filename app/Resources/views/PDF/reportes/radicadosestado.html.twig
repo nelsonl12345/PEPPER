@@ -1,0 +1,39 @@
+{%  extends 'reports.html.twig' %}
+
+{% block body %}
+	{{ parent() }}
+	<header class="text-center">
+		<h1>Reporte de Radicados</h1>
+		<h4> Desde {{data['config']['start_date']}} Hasta {{data['config']['end_date']}}</h4>
+	</header>
+	<div>
+		<h2>Listado de Radicados Rechazados</h2>
+
+		<table>
+			<thead>
+				<tr>
+					<th width="5%"># Radicado</th>
+					<th width="10%">Propietario</th>
+					<th width="10%">Mascota</th>
+					<th width="25%">Raza</th>
+					<th width="50%">Comentario</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for radicado in data['objects']['estados']['rechazados'] %}
+					<tr>
+						<td>{{ radicado.id }}</td>
+						<td>{{ radicado.mascota.usuario.nombres }} {{ radicado.mascota.usuario.apellidos }}</td>
+						<td>{{ radicado.mascota.nombresm }}</td>
+						<td>{{ radicado.mascota.raza.dtalleraza }}</td>
+						<td>
+							{% if radicado.checklist %}
+								{{ radicado.checklist.comentario }}
+							{% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock body %}

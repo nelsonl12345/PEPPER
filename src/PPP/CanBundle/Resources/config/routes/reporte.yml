@@ -10,6 +10,10 @@ ppp_reportes_radicados_exportar:
     path:     /radicados/exportar
     defaults: { _controller: PPPCanBundle:Reportes:radicadosExportar }
 
+ppp_reportes_radicados_estado_exportar:
+    path:     /radicados/exportar/estado
+    defaults: { _controller: PPPCanBundle:Reportes:radicadosPorEstadoExportar }
+
 ppp_reportes_radicados_entre:
     path:     /query/radicados
     defaults: { _controller: PPPCanBundle:Reportes:radicadosEntre }

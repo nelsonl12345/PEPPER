@@ -52,6 +52,24 @@ class ReportesController extends Controller
         );
     }
 
+    /**
+     * Reporte de los radicados por estado en un rango de fechas
+     */
+    public function radicadosPorEstadoExportarAction(Request $request)
+    {
+        $data = $this->getDataRadicados($request);
+        $html = $this->renderView('PDF/reportes/radicadosestado.html.twig', array('data'  => $data));
+        $filename = "radicados por estado";
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'attachment; filename="'.$filename.'.pdf"'
+            )
+        );
+    }
+
     public function getDataMascotas(Request $request)
     {
         $start_date = $request->query->get('start_date');
@@ -143,7 +161,6 @@ class ReportesController extends Controller
             ->where('n.estado = :estado')
             ->andWhere('n.createdAtradi > :start_date')
             ->andWhere('n.createdAtradi < :end_date')
-            ->select('count(n.id)')
             ->setParameter('start_date', $start_date)
             ->setParameter('end_date', $end_date);
 
@@ -151,20 +168,20 @@ class ReportesController extends Controller
         $qAprobados = clone $qBase;
         $qRechazados = clone $qBase;
 
-        $cRadicados = $qRadicados
-            ->setParameter('estado', 'Radicado')
-            ->getQuery()
-            ->getSingleScalarResult();
+        $qRadicados->setParameter('estado', 'Radicado');
+        $qAprobados->setParameter('estado', 'Aprobado');
+        $qRechazados->setParameter('estado', 'Rechazado');
 
-        $cAprobado = $qAprobados
-            ->setParameter('estado', 'Aprobado')
-            ->getQuery()
-            ->getSingleScalarResult();
+        $oRadicados = $qRadicados->getQuery()->getResult();
+        $oAprobados = $qAprobados->getQuery()->getResult();
+        $oRechazados = $qRechazados->getQuery()->getResult();
 
-        $cRechazados = $qRechazados
-            ->setParameter('estado', 'Rechazado')
-            ->getQuery()
-            ->getSingleScalarResult();
+
+        $cRadicados = $qRadicados->select('count(n.id)')->getQuery()->getSingleScalarResult();
+
+        $cAprobado = $qAprobados->select('count(n.id)')->getQuery()->getSingleScalarResult();
+
+        $cRechazados = $qRechazados->select('count(n.id)')->getQuery()->getSingleScalarResult();
 
         $data = [
             'config' => [
@@ -186,8 +203,18 @@ class ReportesController extends Controller
                         'nombre' => 'Rechazados'
                     ]
                 ]
+            ],
+            "objects" => [
+                "estados" => [
+                    "radicados" => $oRadicados,
+                    "aprobados" => $oAprobados,
+                    "rechazados" => $oRechazados,
+                ]
             ]
         ];
+
+        // dump($data);
+        // exit();
 
         return $data;
     }
@@ -202,7 +229,6 @@ class ReportesController extends Controller
     public function radicadosEntreAction(Request $request)
     {
         $data = $this->getDataRadicados($request);
-
         return new JsonResponse($data);
     }
 }
