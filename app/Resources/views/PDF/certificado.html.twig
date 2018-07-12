@@ -1,21 +1,28 @@
 <html>
+<head>
+  <meta charset="UTF-8">
+</head>
 <body>
-	<p>Girardot [día], de [mes] de [año]</p>
+	<p>Girardot {{fechas['generacion']['dia']}}, de {{fechas['generacion']['mes']}} de {{fechas['generacion']['ano']}}</p>
 
 	<h2>Certifico Que:</h2>
 
 	<p>
-		El señor _______________, identificado con la C.C. ____________ N de _________ con vivienda ubicada en ____________ y el telefono numero ___________, entrego el [día] de [mes] de [año]  a la Secretaria de Salud toda la documentación exigida para la tenencia responsable de Perros de Razas Ptencialmente Peligrosas especificadas en el codigo de Policía Nacional.
+		El señor {{propietario.nombres}} {{propietario.apellidos}}, identificado con la C.C. {{propietario.identificacion}}
+		N de _________ con vivienda ubicada en {{propietario.direccion}} y el telefono numero {{propietario.telefono}},
+		entrego el {{fechas['radicado']['dia']}} de {{fechas['radicado']['mes']}} de {{fechas['radicado']['ano']}}
+		a la Secretaria de Salud toda la documentación exigida para la tenencia responsable de Perros de Razas Potencialmente Peligrosas
+		especificadas en el codigo de Policía Nacional.
 	</p>
 	<h3>Características de Canino</h3>
 
 	<div>
 		<div>
 			<ul>
-				<li>Raza: </li>
-				<li>Nombre </li>
+				<li>Raza: {{ mascota.raza.dtalleraza }}</li>
+				<li>Nombre: {{ mascota.nombresm }} </li>
 				<li>Edad </li>
-				<li>Color </li>
+				<li>Color: {{mascota.colorm}}</li>
 				<li>Ocupación del canino </li>
 				<li>Carnet de vacinas vigente </li>
 				<li>Acta de Acte de declaración Juramentada ante notaria asumiendo responsabilidad ante cualquier daño ocasionado por el canino a humanos u otros animales </li>

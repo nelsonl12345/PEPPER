@@ -85,6 +85,22 @@ class ChecklistController extends Controller
         return $this->render('PPPCanBundle:Checklist:view.html.twig', array('form' => $form->createView()));
     }
 
+    public function enviarMailRadicado($radicado)
+    {
+        $message = (new \Swift_Message('Estado de radicado'))
+            ->setFrom('carlosturnerbenites@gmail.com')
+            ->setTo('carlosturnerbenites@gmail.com')
+            ->setBody(
+                $this->renderView(
+                    'Emails/radicado.html.twig',
+                    array('radicado' => $radicado)
+                ),
+                'text/html'
+            );
+
+        $this->get('mailer')->send($message);
+    }
+
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -116,29 +132,18 @@ class ChecklistController extends Controller
             $em->persist($checklist);
             $em->flush();
 
-            $message = (new \Swift_Message('Estado de radicado'))
-                ->setFrom('carlosturnerbenites@gmail.com')
-                ->setTo('carlosturnerbenites@gmail.com')
-                ->setBody(
-                    $this->renderView(
-                        // app/Resources/views/Emails/registration.html.twig
-                        'Emails/radicado.html.twig',
-                        array('name' => 'carlos')
-                    ),
-                    'text/html'
-                );
-
-            // $this->get('mailer')->send($message);
-
             if ($checklist->getArchivo1c() === 'Aceptado' &&
                 $checklist->getArchivo2c() === 'Aceptado' &&
                 $checklist->getArchivo3c() === 'Aceptado'
             ) {
                 $radicado = $checklist->getRadicado();
                 $radicado->setEstado('Aprobado');
+
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($radicado);
                 $em->flush();
+
+                $this->enviarMailRadicado($radicado);
             }
             if ($checklist->getArchivo1c() === 'Rechazado' &&
                 $checklist->getArchivo2c() === 'Rechazado' &&
@@ -146,9 +151,12 @@ class ChecklistController extends Controller
             ) {
                 $radicado = $checklist->getRadicado();
                 $radicado->setEstado('Rechazado');
+
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($radicado);
                 $em->flush();
+
+                $this->enviarMailRadicado($radicado);
             }
 
             $this->addFlash('mensaje', 'Registro editado correctamente');

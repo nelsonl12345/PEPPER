@@ -124,10 +124,39 @@ class RadicadoController extends Controller
         return $this->render('PPPCanBundle:Radicado:view.html.twig', array('radicado' => $radicado, 'mascota' => $mascota, 'usuario' => $usuario));
     }
 
-    public function certificadoAction(Request $request)
+    public function certificadoAction(Request $request, $id)
     {
+        $radicado = $this->getDoctrine()->getRepository('PPPCanBundle:Radicado')->find($id);
+        // dump($radicado);
+        $mascota = $radicado->getMascota();
+        // dump($mascota);
+        $propietario = $mascota->getUsuario();
+        // dump($propietario);
+        // exit();
+
+        $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
+
+        $fecha_generacion = new \DateTime();
+        $fecha_radicado = $radicado->getCreatedAtradi();
+
         $html = $this->renderView('PDF/certificado.html.twig', array(
-            'name'  => 'carlos'
+            'radicado'  => $radicado,
+            'mascota'  => $mascota,
+            'propietario'  => $propietario,
+            'fechas' => [
+                "generacion" => [
+                    "dia" => $fecha_generacion->format('d'),
+                    "mes" => $meses[$fecha_generacion->format('n')-1],
+                    "ano" => $fecha_generacion->format('Y'),
+                ],
+                "radicado" => [
+                    "dia" => $fecha_radicado->format('d'),
+                    "mes" => $meses[$fecha_radicado->format('n')-1],
+                    "ano" => $fecha_radicado->format('Y'),
+                ]
+            ]
         ));
 
         $filename = "certificado";

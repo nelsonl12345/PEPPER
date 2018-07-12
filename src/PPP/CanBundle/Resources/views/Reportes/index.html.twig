@@ -3,70 +3,87 @@
 {% block stylesheets %}
 	{{ parent() }}
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/library/air-datepicker/css/datepicker.min.css') }}">
-
+	<style>
+		.google-chart div {
+			margin: 0 auto;
+		}
+	</style>
 
 {% endblock %}
 
 {% block body %}
 	{{ parent() }}
 
-	<div class="container">
+	<div class="container-fluid">
 		<h1>Reportes</h1>
 
 		<div class="row">
-			<div class="col-md-6">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h2>Mascotas</h2>
-				</div>
-				<div class="panel-body">
-					<form action="{{ path('ppp_reportes_mascotas_exportar') }}" target="blank">
-						<div class="row">
-							<div class="col-md-6">
-								<label for="mascotas-start-date">Desde</label>
-								<input name="start_date" id="mascotas-start-date" type='text' class='mascotas-date input-date start-date'/>
-							</div>
-							<div class="col-md-6">
-								<label for="mascotas-end-date">Hasta</label>
-								<input name="end_date" id="mascotas-end-date" type='text' class='mascotas-date input-date end-date'/>
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<form action="{{ path('ppp_reportes_mascotas_exportar') }}" target="blank">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-sx-12 col-sm-9 col-md-9 col-lg-9">
+									<h2 class="m-0">Mascotas</h2>
+								</div>
+								<div class="col-sx-12 col-sm-3 col-md-3 col-lg-3">
+									<button class="btn btn-primary" type="submit">Exportar</a>
+								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div id="chart_mascotas_genero"></div>
+						<div class="panel-body">
+							<div class="row text-center">
+								<div class="col-sx-12 col-sm-6 col-md-6 col-lg-6">
+									<label for="mascotas-start-date">Desde</label>
+									<input name="start_date" id="mascotas-start-date" type='text' class='mascotas-date input-date start-date'/>
+								</div>
+								<div class="col-sx-12 col-sm-6 col-md-6 col-lg-6">
+									<label for="mascotas-end-date">Hasta</label>
+									<input name="end_date" id="mascotas-end-date" type='text' class='mascotas-date input-date end-date'/>
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="google-chart" id="chart_mascotas_genero"></div>
+							</div>
+							<div class="row">
+								<div class="google-chart" id="chart_mascotas_raza"></div>
+							</div>
 						</div>
-						<div class="row">
-							<div id="chart_mascotas_raza"></div>
-								<button class="btn btn-primary" type="submit">Exportar</a>
-						</div>
-					</form>
-				</div>
+					</div>
+				</form>
 			</div>
 
-			</div>
-			<div class="col-md-6">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h2>Radicados</h2>
-				</div>
-				<div class="panel-body">
-					<form action="{{ path('ppp_reportes_radicados_exportar') }}" target="blank">
-						<div class="row">
-							<div class="col-md-6">
-							<label for="radicado-start-date">Desde</label>
-								<input name="start_date" id="radicado-start-date" type='text' class='radicado-date input-date start-date'/>
-							</div>
-							<div class="col-md-6">
-							<label for="radicado-end-date">Hasta</label>
-								<input name="end_date" id="radicado-end-date" type='text' class='radicado-date input-date end-date'/>
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<form action="{{ path('ppp_reportes_radicados_exportar') }}" target="blank">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-sx-12 col-sm-9 col-md-9 col-lg-9">
+									<h2 class="m-0">Radicados</h2>
+								</div>
+								<div class="col-sx-12 col-sm-3 col-md-3 col-lg-3">
+									<button class="btn btn-primary" type="submit">Exportar</a>
+								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div id="chart_radicados"></div>
-							<button class="btn btn-primary" type="submit">Exportar</button>
+						<div class="panel-body">
+							<div class="row text-center">
+								<div class="col-sx-12 col-sm-6 col-md-6 col-lg-6">
+								<label for="radicado-start-date">Desde</label>
+									<input name="start_date" id="radicado-start-date" type='text' class='radicado-date input-date start-date'/>
+								</div>
+								<div class="col-sx-12 col-sm-6 col-md-6 col-lg-6">
+								<label for="radicado-end-date">Hasta</label>
+									<input name="end_date" id="radicado-end-date" type='text' class='radicado-date input-date end-date'/>
+								</div>
+							</div>
+							<div class="row">
+								<div class="google-chart" id="chart_radicados"></div>
+							</div>
 						</div>
-					</form>
-				</div>
-			</div>
+					</div>
+				</form>
 		</div>
 	</div>
 {% endblock %}
