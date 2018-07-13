@@ -24,6 +24,8 @@ class PepperRadicadosEstadoCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $output->writeln("[" . date('Y-m-d h:i:s') . "]");
+
         Carbon::macro('isHoliday', function () {
             return in_array([ $this->month, $this->day ], [
                 [1, 1], // 1 de enero: Año Nuevo
@@ -46,11 +48,12 @@ class PepperRadicadosEstadoCommand extends ContainerAwareCommand
                 [11, 25], // 25 de diciembre: Navidad
             ]);
         });
+
         $container = $this->getContainer();
         $em = $container->get('doctrine')->getManager();
-        $records = $em->getRepository("PPPCanBundle:Radicado")->findAll();
+        $radicados = $em->getRepository("PPPCanBundle:Radicado")->findAll();
 
-        foreach ($records as $radicado) {
+        foreach ($radicados as $radicado) {
             $fechaInicial = Carbon::instance($radicado->getCreatedAtradi());
             $hoy = $carbon = Carbon::now();
 
@@ -59,8 +62,11 @@ class PepperRadicadosEstadoCommand extends ContainerAwareCommand
                 $notIsWeekend = !$date->isWeekend();
                 return $notIsWeekend && $notIsHoliday;
             }, $hoy);
+
             if ($diffDays >= 8) {
                 if ($radicado->getEstado() !== "Rechazado") {
+                    $output->writeln("Radicado # {$radicado->getId()} Rechazado. Enviando Mail ...");
+
                     $radicado->setEstado("Rechazado");
                     $checklist = $radicado->getChecklist();
                     if ($checklist) {
@@ -93,7 +99,5 @@ class PepperRadicadosEstadoCommand extends ContainerAwareCommand
                 }
             }
         }
-
-        $output->writeln('count '. count($records));
     }
 }
