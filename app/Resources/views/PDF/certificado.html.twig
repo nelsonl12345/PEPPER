@@ -27,9 +27,9 @@
 					<ul>
 						<li>Raza: {{ mascota.raza.dtalleraza }}</li>
 						<li>Nombre: {{ mascota.nombresm }} </li>
-						<li>Edad </li>
+						<li>Edad {{ mascota.aniom }} año(s) {{mascota.mesm}} mes(es) y {{mascota.diam}} día(s)</li>
 						<li>Color: {{mascota.colorm}}</li>
-						<li>Ocupación del canino </li>
+						<li>Ocupación del canino: {{mascota.oficiom}} </li>
 						<li>Carnet de vacunas vigente </li>
 						<li>
 							Acta de Acta de declaración Juramentada ante notaria, <br/>
@@ -39,10 +39,12 @@
 					</ul>
 				</td>
 				<td width="20%">
-					<div>
-						<h6>Foto del canino</h6>
-						<img src="{{mascota_foto}}" alt="Sin foto" width="250" height="200">
-					</div>
+					{% if mascota_foto %}
+						<div>
+							<h5>Foto del canino</h5>
+							<img src="{{mascota_foto}}" alt="Sin foto" width="250" height="200">
+						</div>
+					{% endif %}
 				</td>
 			</tr>
 		</table>

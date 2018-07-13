@@ -4,6 +4,7 @@ namespace PPP\CanBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Filesystem\Filesystem;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -135,11 +136,17 @@ class RadicadoController extends Controller
         $fecha_generacion = new \DateTime();
         $fecha_radicado = $radicado->getCreatedAtradi();
 
+        $mascota_foto = "{$this->get('kernel')->getRootDir()}/../web/uploads/mascotas/{$mascota->getFoto1m()}";
+        $fileSystem = new Filesystem();
+        if (!$fileSystem->exists($mascota_foto)) {
+            $mascota_foto = null;
+        }
+
         $html = $this->renderView('PDF/certificado.html.twig', array(
             'radicado'  => $radicado,
             'mascota'  => $mascota,
             'propietario'  => $propietario,
-            'mascota_foto' => "{$this->get('kernel')->getRootDir()}/../web/uploads/mascotas/{$mascota->getFoto1m()}",
+            'mascota_foto' => $mascota_foto,
             "config" => [
                 "watermark" => "{$this->get('kernel')->getRootDir()}/../web/public/images/escudo_girardot_watermark.png",
             ],
