@@ -79,8 +79,8 @@ class PepperRadicadosEstadoCommand extends ContainerAwareCommand
                     $em->flush();
 
                     $message = (new \Swift_Message('Estado de radicado'))
-                        ->setFrom('carlosturnerbenites@gmail.com')
-                        ->setTo('carlosturnerbenites@gmail.com')
+                        ->setFrom('proyectopepper@gmail.com')
+                        ->setTo($radicado->getMascota()->getUsuario()->getCorreo())
                         ->setBody(
                             $container->get('templating')->render(
                                 'Emails/radicado.html.twig',

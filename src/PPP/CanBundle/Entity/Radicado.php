@@ -54,15 +54,15 @@ class Radicado
     /**
      * @var string
      *
-     * @ORM\Column(name="archivo2", type="string", length=50)
-     * @Assert\NotBlank()
+     * @ORM\Column(name="archivo2", type="string", length=50, nullable=true)
      */
     private $archivo2;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="archivo3", type="string", length=50, nullable=true)
+     * @ORM\Column(name="archivo3", type="string", length=50)
+     * @Assert\NotBlank()
      */
     private $archivo3;
 

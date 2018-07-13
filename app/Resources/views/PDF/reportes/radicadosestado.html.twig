@@ -7,20 +7,20 @@
 		<h4> Desde {{data['config']['start_date']}} Hasta {{data['config']['end_date']}}</h4>
 	</header>
 	<div>
-		<h2>Listado de Radicados Rechazados</h2>
+		<h2>Listado de Radicados en estado '{{config['nombre']}}'</h2>
 
 		<table>
 			<thead>
 				<tr>
-					<th width="5%"># Radicado</th>
+					<th width="7%">Radicado#</th>
 					<th width="10%">Propietario</th>
 					<th width="10%">Mascota</th>
-					<th width="25%">Raza</th>
+					<th width="23%">Raza</th>
 					<th width="50%">Comentario</th>
 				</tr>
 			</thead>
 			<tbody>
-				{% for radicado in data['objects']['estados']['rechazados'] %}
+				{% for radicado in data['objects']['estados'][config['key']] %}
 					<tr>
 						<td>{{ radicado.id }}</td>
 						<td>{{ radicado.mascota.usuario.nombres }} {{ radicado.mascota.usuario.apellidos }}</td>

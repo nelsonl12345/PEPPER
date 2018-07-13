@@ -88,8 +88,8 @@ class ChecklistController extends Controller
     public function enviarMailRadicado($radicado)
     {
         $message = (new \Swift_Message('Estado de radicado'))
-            ->setFrom('carlosturnerbenites@gmail.com')
-            ->setTo('carlosturnerbenites@gmail.com')
+            ->setFrom('proyectopepper@gmail.com')
+            ->setTo($radicado->getMascota()->getUsuario()->getCorreo())
             ->setBody(
                 $this->renderView(
                     'Emails/radicado.html.twig',
@@ -134,7 +134,7 @@ class ChecklistController extends Controller
             $em->flush();
 
             $radicado = $checklist->getRadicado();
-            if ($checklist->someFileRejected() || $checklist->allFileRejected()) {
+            if ($checklist->allFileRejected()) {
                 if ($radicado->getEstado() !== 'Rechazado') {
                     $radicado->setEstado('Rechazado');
 

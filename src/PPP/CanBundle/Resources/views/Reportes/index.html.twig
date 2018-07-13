@@ -64,8 +64,24 @@
 								</div>
 								<div class="col-sx-12 col-sm-3 col-md-3 col-lg-3">
 									<button class="btn btn-primary" type="submit">Exportar</button>
-									<button onclick="exportarRechazados()" class="btn btn-primary" type="button" target="blank">Rechazados</button>
 								</div>
+							</div>
+							<div class="row text-center" style="margin-top: 10px">
+									<div class="input-group" style="width: 70%; margin: 0 auto">
+									  <span class="input-group-addon">Reporte por Estado</span>
+
+										<select class="form-control radicado-select estado">
+											<option value="radicado">Radicado</option>
+											<option value="aprobado">Aprobado</option>
+											<option selected value="rechazado">Rechazado</option>
+										</select>
+
+										<span class="input-group-btn">
+											<button onclick="exportarPorEstado()" class="btn btn-outline-primary" type="button" target="blank">
+												Generar
+											</button>
+										</span>
+									</div>
 							</div>
 						</div>
 						<div class="panel-body">
@@ -102,14 +118,17 @@
 			var chartMascotasGenero
 			var chartMascotasRaza
 
-			function exportarRechazados () {
+			function exportarPorEstado () {
 				var base = "{{url('ppp_reportes_radicados_estado_exportar')}}"
+
 				var start_date = $('.radicado-date.start-date').val()
-				console.log('start_date', start_date)
 				var end_date = $('.radicado-date.end-date').val()
-				console.log('end_date', end_date)
+
+				var estado = $('.radicado-select.estado').val()
+				console.log(estado)
+
 				if (!start_date || !end_date) return
-				var url = `${base}?start_date=${start_date}&end_date=${end_date}`
+				var url = `${base}?start_date=${start_date}&end_date=${end_date}&estado=${estado}`
 				window.open(url)
 			}
 

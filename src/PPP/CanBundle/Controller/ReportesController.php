@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use PPP\CanBundle\Entity\Checklist;
 
-
 class ReportesController extends Controller
 {
     public function indexAction(Request $request)
@@ -23,7 +22,7 @@ class ReportesController extends Controller
     {
         $data = $this->getDataMascotas($request);
         $html = $this->renderView('PDF/reportes/mascotas.html.twig', array('data'  => $data));
-        $filename = "mascotas";
+        $filename = "Estadistica de Mascotas " . date('Ymdhis');
         return new Response(
             $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
             200,
@@ -41,7 +40,7 @@ class ReportesController extends Controller
     {
         $data = $this->getDataRadicados($request);
         $html = $this->renderView('PDF/reportes/radicados.html.twig', array('data'  => $data));
-        $filename = "radicados";
+        $filename = "Estadistica de Radicados " . date('Ymdhis');
         return new Response(
             $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
             200,
@@ -58,8 +57,27 @@ class ReportesController extends Controller
     public function radicadosPorEstadoExportarAction(Request $request)
     {
         $data = $this->getDataRadicados($request);
-        $html = $this->renderView('PDF/reportes/radicadosestado.html.twig', array('data'  => $data));
-        $filename = "radicados por estado";
+        $estado = $request->query->get('estado', 'rechazado');
+
+        $config = [
+            'aprobado' => [
+                'key' => 'aprobados',
+                'nombre' => 'Aprobado'
+            ],
+            'rechazado' => [
+                'key' => 'rechazados',
+                'nombre' => 'Rechazado'
+            ],
+            'radicado' => [
+                'key' => 'radicados',
+                'nombre' => 'Radicado'
+            ],
+        ];
+
+        $configE = $config[$estado];
+
+        $html = $this->renderView('PDF/reportes/radicadosestado.html.twig', array('data'  => $data, 'config' => $configE));
+        $filename = "Radicados por Estado - {$configE['nombre']} - " . date('Ymdhis');
         return new Response(
             $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
             200,

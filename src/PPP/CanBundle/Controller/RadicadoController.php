@@ -71,27 +71,26 @@ class RadicadoController extends Controller
             $radicado->setArchivo1($file_name1);
             //end upload file
 
-
             $archivo2 = $form->get('archivo2')->getData();
-            //start upload file
             $file2 = $radicado->getArchivo2();
-            $ext2 = $file2->guessExtension();
-            $file_name2 = rand(1, 999999).".".$ext2;
-            $file2->move("uploads/radicados", $file_name2);
-            $radicado->setArchivo2($file_name2);
-            //end upload file
+            if ($file2) {
+                //start upload file
+                $ext2 = $file2->guessExtension();
+                $file_name2 = rand(1, 999999).".".$ext2;
+                $file2->move("uploads/radicados", $file_name2);
+                $radicado->setArchivo2($file_name2);
+                //end upload file
+            }
 
 
             $archivo3 = $form->get('archivo3')->getData();
             $file3 = $radicado->getArchivo3();
-            if ($file3) {
-                //start upload file
-                 $ext3 = $file3->guessExtension();
-                 $file_name3 = rand(1, 999999).".".$ext3;
-                 $file3->move("uploads/radicados", $file_name3);
-                 $radicado->setArchivo3($file_name3);
-                 //end upload file
-            }
+            //start upload file
+            $ext3 = $file3->guessExtension();
+            $file_name3 = rand(1, 999999).".".$ext3;
+            $file3->move("uploads/radicados", $file_name3);
+            $radicado->setArchivo3($file_name3);
+            //end upload file
 
 
             $em = $this->getDoctrine()->getManager();
