@@ -129,9 +129,14 @@ class RadicadoController extends Controller
         $mascota = $radicado->getMascota();
         $propietario = $mascota->getUsuario();
 
+        if ($radicado->getEstado() !== 'Aprobado') {
+            $this->addFlash('mensaje', 'El radicado no se ha aprobado.');
+            $referer = $request->headers->get('referer');
+            return $this->redirect($referer);
+        }
+
         $dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-
 
         $fecha_generacion = new \DateTime();
         $fecha_radicado = $radicado->getCreatedAtradi();

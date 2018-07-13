@@ -190,18 +190,22 @@ class ChecklistController extends Controller
             $checklist->setArchivo2c('Rechazado');
             $checklist->setArchivo3c('Rechazado');
             $checklist->setComentario('');
-            $checklist->setUsuario();
+            // $checklist->setUsuario();
             $checklist->setRadicado($radicado);
 
-            // tell Doctrine you want to (eventually) save the Product (no queries yet)
             $entityManager->persist($checklist);
 
-            // actually executes the queries (i.e. the INSERT query)
             $entityManager->flush();
         }
 
         $form = $this->createUpdateForm($checklist);
 
-        return $this->render('PPPCanBundle:Checklist:view.html.twig', array('checklist' => $checklist, 'radicado' => $radicado, 'mascota' => $mascota, 'usuario' => $usuario, 'form' => $form->createView()));
+        return $this->render('PPPCanBundle:Checklist:view.html.twig', array(
+            'checklist' => $checklist,
+            'radicado' => $radicado,
+            'mascota' => $mascota,
+            'usuario' => $usuario,
+            'form' => $form->createView()
+        ));
     }
 }

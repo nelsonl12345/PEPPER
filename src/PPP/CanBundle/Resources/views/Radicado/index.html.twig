@@ -36,7 +36,9 @@
 
 			<td calss="actions">
 	<a href="{{ path('ppp_radicado_view', { id: radicado.id  }) }}" class="btn btn-sm btn-info">Ver</a>
-	<a href="{{ path('ppp_radicado_certificado', { id: radicado.id  }) }}" class="btn btn-sm btn-info">Certificado</a>
+	{% if radicado.estado == 'Aprobado' %}
+		<a href="{{ path('ppp_radicado_certificado', { id: radicado.id  }) }}" class="btn btn-sm btn-info">Certificado</a>
+	{% endif %}
 
 			</td>
 		</tr>
