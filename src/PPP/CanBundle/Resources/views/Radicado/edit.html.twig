@@ -1,0 +1,86 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+	{{ include('PPPCanBundle:Usuario:messages/success.html.twig') }}
+	{{ include('PPPCanBundle:Usuario:messages/danger.html.twig') }}    
+	<div class="main container">
+		<div class="row well">
+			<div class="col-md-6">
+				<div class="page-header">
+					<h2>Editar solicitud</h2>
+				</div>
+				{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'role' : 'form'}}) }}
+				    <h4 class="text-danger">{{ form_errors(form) }}</h4>
+
+					<fieldset>
+
+					    <div class="form-group">					    	
+					        {{ form_label(form.mascota) }}
+					        {{ form_widget(form.mascota, {'attr': {'class': 'form-control'}}) }}
+					        <span class="text-danger">{{ form_errors(form.mascota) }}</span>
+					    </div>
+
+					    <dt>{{'Motivo de devolución'}}</dt>
+					    {{ checklist.comentario }}
+
+
+	            <dt>{{'Documentos'}}</dt>
+
+	           	<dd>
+	           	
+	           	{% set foo1 = 'uploads/radicados/' ~  radicado.archivo1 %}
+	           		{% set foo2 = 'uploads/radicados/' ~  radicado.archivo2 %}
+	           			{% set foo3 = 'uploads/radicados/' ~  radicado.archivo3 %}
+	           			           	
+<a class="sb" href="{{ asset(  foo1  ) }}">{{ radicado.archivo1 }}</a>
+
+	            </dd>
+
+	           	<dd>
+<a class="sb" href="{{ asset( foo2 ) }}">{{ radicado.archivo2 }}</a>
+	              
+	            </dd>
+
+	           	<dd>
+<a class="sb" href="{{ asset( foo3 ) }}">{{ radicado.archivo3 }}</a>
+	                
+	            </dd>
+
+
+					    <div class="form-group">
+					        {{ form_label(form.archivo1, ('Carnet de vacunación')) }} 
+					        {{ form_widget(form.archivo1, { 'attr' : {'accept' : '.jpg, .png, .bmp, .pdf'}}) }} 
+					        <span class="text-danger">{{ form_errors(form.archivo1) }}</span> 
+					    </div>
+
+					    <div class="form-group">
+					        {{ form_label(form.archivo2, ('Poliza')) }}
+					        {{ form_widget(form.archivo2, { 'attr' : {'accept' : '.jpg, .png, .bmp, .pdf'}}) }}
+					        <span class="text-danger">{{ form_errors(form.archivo2) }}</span>
+					    </div>
+
+					    <div class="form-group">
+					        {{ form_label(form.archivo3, ('Declaracion')) }}
+					        {{ form_widget(form.archivo3, { 'attr' : {'accept' : '.jpg, .png, .bmp, .pdf'}}) }}
+					        <span class="text-danger">{{ form_errors(form.archivo3) }}</span>
+					    </div>
+
+                            {{ form_widget(form.estado, 
+                            {'attr': {                            
+                            'value': 'Radicado',
+                            'class': 'hidden'
+                         	}}) }}
+
+
+					</fieldset>
+					<br>
+				    <p>
+				        {{ form_widget(form.save, {'label' : 'Editar solicitud', 'attr': {'class': 'btn btn-success'}}) }}
+				    </p>
+
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

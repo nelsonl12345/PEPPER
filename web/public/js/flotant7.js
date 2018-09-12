@@ -1,0 +1,5 @@
+  $(document).on("click", ".alert7", function(e) {        	
+            bootbox.alert("Caracteristicas.<br>Origen: Italia.<bR>Peso:68 Kg.<br> Altura:80 cm.<br>Esperanza de vida:10 años <br><br>Rasgos Fisicos: Fuerte, robusto,musculoso,orejas caídas,gran papada,El color de su pelo es muy variado.<br><br>Comportamiento<br> Este mastín es muy inteligente, manso y noble. Tiene un carácter muy equilibrado, defiende su territorio con firmeza, pero sabe controlar su fuerza y potencia, demostrando un gran autocontrol. Se muestra muy seguro de sí mismo. Es cariñoso y entrañable, sobre todo con los niños y con sus dueños, con quienes además se muestra siempre fiel.<br><br>Cuidadosy Salud<br> Necesita  un espacio muy amplio y abundante comida, así como ejercicio físico regular. Hay que cepillar su pelaje frecuentemente. Su gran tamaño puede acarrearle problemas como la torsión de estómago. ", function() {
+                console.log("Alert Callback");
+            });
+        });

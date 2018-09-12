@@ -1,0 +1,74 @@
+<html>
+<head>
+	<meta charset="UTF-8">	
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-12">
+			<div class="page-header margin-none">
+
+	{% if pagination.getTotalItemCount == 0 %}
+	{{'<h2 class="padding-none"><font color="BLACK">No se encontraron registros</font></h2>'}}
+
+		{% else %}
+
+<center><h2 class="padding-none"><font color="BLACK">Usuarios del sistema</font></h2></center>
+</div>
+<div class="table-responsive">
+	Total registros: <span id="total">{{ pagination.getTotalItemCount }}</span>	
+	<table class="table table-striped table-hover">
+		<thead>
+	<tr>
+
+		<th>{{ knp_pagination_sortable(pagination, 'Usuario', 'u.usuario') }}</th>		
+		<th>{{ knp_pagination_sortable(pagination, 'Nombres', 'u.nombres') }}</th>		
+		<th>{{ knp_pagination_sortable(pagination, 'Apellidos', 'u.apellidos') }}</th>		
+		<th>{{ knp_pagination_sortable(pagination, 'Identificacion', 'u.identificacion') }}</th>	
+		<th>{{ knp_pagination_sortable(pagination, 'Rol', 'u.role') }}</th>		
+
+	</tr>
+</thead>
+<tbody>
+	{% for user in pagination %}	
+			<tr data-id="{{ user.id }}">	
+			<td>{{ user.usuario }}</td>
+			<td>{{ user.nombres }}</td>
+			<td>{{ user.apellidos }}</td>
+			<td>{{ user.identificacion }}</td>
+			<td>
+				{%  if user.role=='ROLE_JEFE_DEPARTAMENTO' %}
+					<strong>Jefe departamento</strong>
+				{% elseif user.role=='ROLE_COORDINADOR' %}
+					<strong>Coordinador</strong>
+					{% elseif user.role=='ROLE_SECRETARIO' %}
+					<strong>Secretario</strong>
+					{% elseif user.role=='ROLE_ZOOTECNISTA' %}
+					<strong>Zootecnista</strong>
+					{% elseif user.role=='ROLE_PROPIETARIO' %}
+					<strong>Propietario</strong>					
+				{% endif %}
+			</td>
+		</tr>
+	{% endfor %}
+</tbody>
+</table>
+ {# display navigation #}
+<div class="navigation">
+{{ knp_pagination_render(pagination) }}
+</div>
+
+{% endif %}
+
+</div>
+</div>
+</div>
+
+    </body>
+</html>
+
+

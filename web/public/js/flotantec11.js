@@ -1,0 +1,5 @@
+  $(document).on("click", ".alert11", function(e) {        	
+            bootbox.alert( " Caracteristicas.<br>Peso: 34 kg.<br>altura: 56 cm. <br> Esperanza de vida: 10 a 14 años.<br> Origen: Birminghan en Inglaterra.<br><br>Rasgos físicos: Tamaño mediano,fuerte,musculoso,hocico sobresaliente, ojos pequeños, color Blanco, manchado o tricolor <br><br>Comportamiento<br> Es un perro muy valiente, leal, activo y apegado a su dueño. No soporta muy bien la soledad, se vuelve ansioso y puede llegar a romper cosas; necesita compañía y afecto.<br><br>cuidados y salud:<br> Debido a que su pelo es un pelo corto y duro no necesitan grandes cuidados. Tan solo un cepillado permitirá mantener el aspecto del Bull Terrier en perfecto estado. A pesar de que tienen un oído muy fino, es importante realizar pruebas de audición cuando son cachorros ya que esta raza es una de las más proclives a sorderas junto con los dálmatas.", function() {
+                console.log("Alert Callback ");
+            });
+        });

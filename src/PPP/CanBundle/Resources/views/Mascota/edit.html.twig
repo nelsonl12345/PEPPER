@@ -59,7 +59,7 @@
 			    
 					    	<tr>
 					    	<td>
-					        {{ form_label(form.oficiom, ('Oficio: ')) }}
+					        {{ form_label(form.oficiom, ('Ocupación: ')) }}
 					        </td>
 					        <td>
 					        {{ form_widget(form.oficiom, {'attr': {'class': 'form-control', 'placeholder' : 'Oficio'}}) }}
@@ -82,7 +82,7 @@
 					    	<td>
 					        {{ form_widget(form.colorm, {'attr': {
 					        'class': 'form-control',
-					        'onchange' : "d1(this)"
+					        'onchange' : "d0(this)"
 					    }}) }}
 					        <span class="text-danger">{{ form_errors(form.colorm) }}</span>
 					    	</td>		

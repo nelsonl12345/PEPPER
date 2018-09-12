@@ -99,7 +99,7 @@ class RadicadoController extends Controller
             $em->flush();
 
             $this->addFlash('mensaje', 'Registro creado correctamente');
-            return $this->redirectToRoute('ppp_radicado_index');
+            return $this->redirectToRoute('ppp_radicado_add');
         }
 
         return $this->render('PPPCanBundle:Radicado:add.html.twig', array('form' => $form->createView()));
@@ -122,6 +122,97 @@ class RadicadoController extends Controller
 
         return $this->render('PPPCanBundle:Radicado:view.html.twig', array('radicado' => $radicado, 'mascota' => $mascota, 'usuario' => $usuario));
     }
+
+
+//Controlador Editar registros
+
+    public function editAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $radicado = $em->getRepository('PPPCanBundle:Radicado')->find($id);
+
+        $checklist = $radicado->getChecklist();
+        
+        if(!$radicado)
+        {
+            throw $this->createNotFoundException('Registro no encontrado.');
+        }
+        
+        $form = $this->createEditForm($radicado);
+        
+        return $this->render('PPPCanBundle:Radicado:edit.html.twig', array(
+            'radicado' => $radicado,
+            'checklist' => $checklist,
+            'form' => $form->createView()));        
+    }
+    
+    private function createEditForm(Radicado $entity)
+    {
+        $form = $this->createForm(new RadicadoType(), $entity, array('action' => $this->generateUrl('ppp_radicado_update', array('id' => $entity->getId())), 'method' => 'PUT'));        
+        return $form;
+    }
+
+
+public function updateAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $radicado = $em->getRepository('PPPCanBundle:Radicado')->find($id);
+        $checklist = $radicado->getChecklist();
+
+        if(!$radicado)
+        {
+            throw $this->createNotFoundException('Solicitud No encontrada');
+        }
+        
+        $form = $this->createEditForm($radicado);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid())
+        {
+            
+            $archivo1 = $form->get('archivo1')->getData();
+            //start upload file
+            $file1 = $radicado->getArchivo1();
+            $ext1 = $file1->guessExtension();
+            $file_name1 = rand(1, 999999).".".$ext1;
+            $file1->move("uploads/radicados", $file_name1);
+            $radicado->setArchivo1($file_name1);
+            //end upload file
+
+            $archivo2 = $form->get('archivo2')->getData();
+            $file2 = $radicado->getArchivo2();
+            if ($file2) {
+                //start upload file
+                $ext2 = $file2->guessExtension();
+                $file_name2 = rand(1, 999999).".".$ext2;
+                $file2->move("uploads/radicados", $file_name2);
+                $radicado->setArchivo2($file_name2);
+                //end upload file
+            }
+
+
+            $archivo3 = $form->get('archivo3')->getData();
+            $file3 = $radicado->getArchivo3();
+            //start upload file
+            $ext3 = $file3->guessExtension();
+            $file_name3 = rand(1, 999999).".".$ext3;
+            $file3->move("uploads/radicados", $file_name3);
+            $radicado->setArchivo3($file_name3);
+            //end upload file            
+
+            $em->flush();
+            
+            $this->addFlash('mensaje', 'Registro modificado correctamente');
+            return $this->redirectToRoute('ppp_radicado_add', array('id' => $radicado->getId()));
+        }
+        return $this->render('PPPCanBundle:Radicado:edit.html.twig', array(
+            'radicado' => $radicado,
+            'checklist' => $checklist,
+             'form' => $form->createView()));
+    }
+
+
 
     public function certificadoAction(Request $request, $id)
     {

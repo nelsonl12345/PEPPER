@@ -14,7 +14,13 @@
 	{{ include('PPPCanBundle:Usuario:messages/danger.html.twig') }}
 	<div class="container">
 		<div class="col-md-12">
-			<div class="page-header margin-none">
+			<div class="page-header margin-none">1
+
+	{% if pagination.getTotalItemCount == 0 %}
+	{{'<h2 class="padding-none"><font color="BLACK">No se encontraron registros</font></h2>'}}
+
+		{% else %}
+
 <h2 class="padding-none"><font color="BLACK">Usuarios del sistema</font></h2>
 </div>
 <div class="table-responsive">
@@ -58,7 +64,7 @@
 			<td calss="actions">
 			<a href="{{ path('ppp_usuario_view', { id: user.id  }) }} " class="btn btn-sm btn-info">Ver</a>
 			<a href="{{ path('ppp_usuario_edit', { id: user.id  }) }} " class="btn btn-sm btn-primary">Editar</a> 
-			<a href="#" class="btn btn-sm btn-danger btn-delete">Eliminar</a>				
+			<!--<a href="#" class="btn btn-sm btn-danger btn-delete">Eliminar</a>-->				
 			</td>
 		</tr>
 	{% endfor %}
@@ -68,6 +74,8 @@
 <div class="navigation">
 {{ knp_pagination_render(pagination) }}
 </div>
+
+{% endif %}
 
 </div>
 </div>

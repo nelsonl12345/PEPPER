@@ -26,63 +26,216 @@
           </ul>
         </li>-->
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Razas <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ path('ppp_raza_add') }}">Crear Raza</a></li>
-            <li><a href="{{ path('ppp_raza_index') }}">Listar Razas</a></li>
-          </ul>
-        </li>
-
+          {% if is_granted('ROLE_JEFE_DEPARTAMENTO') %}
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ path('ppp_usuario_add') }}">Crear usuarios</a></li>
-            <li><a href="{{ path('ppp_usuario_index') }}">Listar usuarios</a></li>
+            <li><a href="{{ path('ppp_usuario_add') }}">Crear</a></li>
+            <li><a href="{{ path('ppp_usuario_index') }}">Listar</a></li>            
           </ul>
         </li>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Propietarios <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ path('ppp_propietario_index') }}">Listar propietarios</a></li>
+            <li><a href="{{ path('ppp_propietario_index') }}">Listar</a></li>            
           </ul>
         </li>
-
-
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mascotas <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ path('ppp_mascota_add') }}">Crear mascota</a></li>
-            <li><a href="{{ path('ppp_mascota_index') }}">Listar mascotas</a></li>
+            <li><a href="{{ path('ppp_mascota_index1') }}">Listar</a></li>
+          </ul>
+        </li>
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Solicitudes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_radicado_index') }}">Listar</a></li>
+            <li><a href="{{ path('ppp_checklist2_index2') }}">Gestionar</a></li>            
+          </ul>
+        </li>
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reportes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_reportes_index') }}">Solicitudes</a></li>
+            <li><a href="{{ path('ppp_reportes_usuarios') }}">Usuarios</a></li>            
+            <li><a href="{{ path('ppp_reportes_perros') }}">Mascotas</a></li>            
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ataques <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_ataque_add') }}">Crear</a></li>
+            <li><a href="{{ path('ppp_ataque_index') }}">Listar</a></li>            
+          </ul>
+        </li>
+
+
+          {% endif %}
+
+
+
+          {% if is_granted('ROLE_COORDINADOR') %} 
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Raza <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_raza_add') }}">Crear</a></li>
+            <li><a href="{{ path('ppp_raza_index') }}">Listar</a></li>            
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Propietarios<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_propietario_index') }}">Listar</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mascotas<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_mascota_index1') }}">Listar</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Solicitudes<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_radicado_index') }}">Listar</a></li>
+            <li><a href="{{ path('ppp_checklist_index') }}">Gestionar</a></li>
+          </ul>
+        </li>
+
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reportes <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_reportes_index') }}">Solicitudes</a></li>
+            <li><a href="{{ path('ppp_reportes_usuarios') }}">Usuarios</a></li>            
+            <li><a href="{{ path('ppp_reportes_perros') }}">Mascotas</a></li>            
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ataques <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_ataque_add') }}">Crear</a></li>
+            <li><a href="{{ path('ppp_ataque_index') }}">Listar</a></li>            
+          </ul>
+        </li>
+
+
+            {% endif %}
+
+
+
+          {% if is_granted('ROLE_ZOOTECNISTA') %}   
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Raza <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_raza_add') }}">Crear</a></li>
+            <li><a href="{{ path('ppp_raza_index') }}">Listar</a></li>            
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Propietarios<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_propietario_index') }}">Listar</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mascotas<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_mascota_index1') }}">Listar</a></li>
+          </ul>
+        </li>
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Solicitudes<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_radicado_index') }}">Listar</a></li>
+            <li><a href="{{ path('ppp_checklist1_index1') }}">Gestionar</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ataques <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_ataque_add') }}">Crear</a></li>
+            <li><a href="{{ path('ppp_ataque_index') }}">Listar</a></li>            
+          </ul>
+        </li>
+        
+
+          {% endif %}
+
+
+          {% if is_granted('ROLE_PROPIETARIO') %}  
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mascotas <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ path('ppp_mascota_add') }}">Crear</a></li>
+            <li><a href="{{ path('ppp_mascota_index', {'idUsuario': app.user.id}) }}">Listar</a></li>            
           </ul>
         </li>
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Solicitudes <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ path('ppp_radicado_index') }}">Listar solicitudes</a></li>
-            <li><a href="{{ path('ppp_radicado_add') }}">Crear solicitudes</a></li>
-            <li><a href="{{ path('ppp_checklist_index') }}">Gestionar solicitudes</a></li>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <li><a href="{{ path('ppp_usuario_solicitudes', {'idUsuario': app.user.id}) }}">Mis solicitudes</a></li>
-            {% endif %}
-
+            <li><a href="{{ path('ppp_radicado_add') }}">Crear</a></li>
+            
+            <li><a href="{{ path('ppp_usuario_solicitudesradi', {'idUsuario': app.user.id}) }}">Radicadas</a></li>            
+            <li><a href="{{ path('ppp_usuario_solicitudes', {'idUsuario': app.user.id}) }}">En proceso</a></li>            
+            <li><a href="{{ path('ppp_usuario_solicitudesreject', {'idUsuario': app.user.id}) }}"> Rechazadas</a></li>                        
+            <li><a href="{{ path('ppp_usuario_solicitudesapproved', {'idUsuario': app.user.id}) }}"> Aprobadas</a></li>                        
           </ul>
         </li>
-        <li class="dropdown">
-          <a href="{{ path('ppp_reportes_index') }}">Reportes </a>
-        </li>
 
 
+{% endif %}            
 
       </ul>
 
+
+
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                <a href="{{ path('ppp_usuario_logout') }}">{{ 'Salir' }}</a>
+              <li>
+            <font color="white">    
+            {{ app.user.nombres }}
+            {{ app.user.apellidos }}
+            {{ '  /  ' }}
+            {% if app.user.role == 'ROLE_JEFE_DEPARTAMENTO' %}
+                {{ 'Jefe de departamento' }}
+
+            {% elseif app.user.role == 'ROLE_COORDINADOR' %}
+                {{ 'Coordinador' }}
+
+            {% elseif app.user.role == 'ROLE_SECRETARIO' %}
+                {{ 'Secretario' }}
+
+            {% elseif app.user.role == 'ROLE_ZOOTECNISTA' %}
+                {{ 'Zootecnista' }}
+
+            {% elseif app.user.role == 'ROLE_PROPIETARIO' %}
+                {{ 'Propietario(a)' }}            
+
+            {% endif %}
+            </font>
+          </li>
+                <li>                  
+                <a href="{{ path('ppp_usuario_logout') }}">{{ 'Cerrar sesión' }}</a>
                 </li>
             </ul>
 

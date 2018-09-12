@@ -1,0 +1,24 @@
+ppp_ataque_index:
+    path:     /index
+    defaults: { _controller: PPPCanBundle:Ataque:index }
+
+ppp_ataque_add:
+    path:     /add
+    defaults: { _controller: PPPCanBundle:Ataque:add }
+
+ppp_ataque_create:
+    path:     /create
+    defaults: { _controller: PPPCanBundle:Ataque:create }
+    methods: POST 
+
+ppp_ataque_redirect_add:
+  path: /create
+  defaults:
+    _controller: PPPCanBundle:Ataque:add
+    path: /add
+    permanent: true
+
+
+ppp_ataque_view:
+  path:     /view/{id}
+  defaults: { _controller: PPPCanBundle:Ataque:view }

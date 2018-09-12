@@ -1,0 +1,93 @@
+{%  extends 'layout.html.twig' %}
+
+{% block body %}
+	{{ parent() }}
+
+	<div class="container-fluid">
+		<h1>Reportes: Mascotas</h1>
+		<div class="row">
+
+
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			<form action="{{ path('ppp_reportes_perrosraza') }}" target="blank" method="GET" {{ form_enctype(form) }}>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-sx-12 col-sm-9 col-md-9 col-lg-9">
+									<h2 class="m-0">Raza</h2>
+							</div>
+						</div>
+						<div class="row text-center" style="margin-top: 10px">
+						<div class="input-group" style="width: 80%; margin: 0 auto">
+						<span class="input-group-addon">Seleccionar Raza: </span>
+
+						
+					        {{ form_widget(form.raza, { 'attr': {'class': 'form-control' }}) }}
+					        <span class="text-danger">{{ form_errors(form.raza) }}</span>
+
+										<span class="input-group-btn">
+									<button class="btn btn-primary" type="submit">Generar</button>										
+										</span>
+									</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="row text-center">
+
+							</div>
+							<div class="row">
+								<div class="google-chart" id="chart_radicados"></div>
+							</div>
+						</div>
+					</div>
+				</form>
+		</div>
+
+
+
+
+
+
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+			<form action="{{ path('ppp_reportes_perrosocupacion') }}" target="blank" method="GET" {{ form_enctype(form) }}>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-sx-12 col-sm-9 col-md-9 col-lg-9">
+									<h2 class="m-0">Ocupación</h2>
+							</div>
+						</div>
+						<div class="row text-center" style="margin-top: 10px">
+						<div class="input-group" style="width: 80%; margin: 0 auto">
+						<span class="input-group-addon">Seleccionar ocupación: </span>
+
+						
+					        {{ form_widget(form.oficiom, { 'attr': {'class': 'form-control' }}) }}
+					        <span class="text-danger">{{ form_errors(form.oficiom) }}</span>
+
+										<span class="input-group-btn">
+									<button class="btn btn-primary" type="submit">Generar</button>										
+										</span>
+									</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="row text-center">
+
+							</div>
+							<div class="row">
+								<div class="google-chart" id="chart_radicados"></div>
+							</div>
+						</div>
+					</div>
+				</form>
+		</div>
+
+
+
+
+
+	</div>
+</div>
+
+{% endblock %}

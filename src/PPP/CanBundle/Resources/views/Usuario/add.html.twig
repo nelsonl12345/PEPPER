@@ -113,7 +113,7 @@
                 </td>
 
                 <td>
-                    {{ form_widget(form.foto) }}
+                    {{ form_widget(form.foto, { 'attr' : {'accept' : '.jpg, .png, .bmp'}}) }}
                     <span class="text-danger">{{ form_errors(form.foto) }}</span>
                 </td>
 

@@ -1,0 +1,62 @@
+
+<script>
+        $(document).on("click", ".alert", function(e) {         
+            bootbox.alert(" Hola lundo. ", function() {
+                console.log("Alert Callback");
+            });
+        });
+    </script>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+     
+      <img class="item1" src="{{ asset('public/images/img.jpg') }}"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        
+        <li><a href="{{ path('ppp_pagina_index') }}">Inicio</a></li>
+        <li><a href="{{ path('ppp_pagina_secretaria') }}">Quienes Somos</a></li>
+        
+
+
+         <li><a href="{{ path('ppp_pagina_perros') }}">Razas Peligrosas</a></li>
+
+          
+          
+           <!-- <li>
+          <a href="#" >Enlaces de Interes<span class="caret"></span></a>
+          
+            <a href="https://www.tiendanimal.es/perros-c-1.html" target="_blank">productos</a>
+            <a href="http://www.mundoanimalia.com/veterinarios/colombia/cundinamarca/girardot" target="_blank">veterinarias</a>          
+                      
+        
+        </li>            
+       -->
+
+         <li><a class="alert18" href=#>Acerca De</a></li>
+
+         
+        <li><a href="{{ path('ppp_pagina_ley') }}">Ley 746</a></li>   
+         <li><a href="{{ path('ppp_ingreso_login') }}"> Iniciar sesión</a></li>  
+         
+
+        
+       
+
+
+           
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

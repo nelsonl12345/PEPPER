@@ -6,7 +6,12 @@
         {% block stylesheets %}
             <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap.min.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('public/css/style.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('public/css/jsCalendar.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('public/css/smoothbox.css') }}">
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+            <link rel="stylesheet"  type="text/css"  href="{{ asset('public/css/nivo-slider.css') }}">
+            <link rel="stylesheet"  type="text/css"  href="{{ asset('public/css/mi-slider.css') }}">
+
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
@@ -17,13 +22,28 @@
                 {{ include('menu.html.twig') }}
             {% endif %}  
         {% endblock %}
-        {% block javascripts %}
+        {% block javascripts %}            
             <script src="{{ asset('public/js/jquery-3.2.1.min.js') }}"></script>
             <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('public/js/bootbox.min.js') }}"></script>
             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
             <script src="{{ asset('public/js/smoothbox.js') }}"></script>
             <script src="{{ asset('public/js/uno.js') }}"></script>
+            <script src="{{ asset('public/js/ataques.js') }}"></script>
+            <script src="{{ asset('public/js/combosdep.js') }}"></script>
+            <script src="{{ asset('public/js/combosdep.js') }}"></script>                        
+            <script src="{{ asset('public/js/combosdep1.js') }}"></script>                        
+            <script src="{{ asset('public/js/combosdep2.js') }}"></script>                        
+            <script src="{{ asset('public/js/particion.js') }}"></script>
+            <script src="{{ asset('public/js/validatefile1.js') }}"></script>
+
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>    
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" -type="text/javascript"></script>-->
+            <script src="{{ asset('public/js/jquery.nivo.slider.js') }}"></script>
+            <script src="{{ asset('public/js/galeria.js') }}"></script>
+            <script src="{{ asset('public/js/jsCalendar.js') }}"></script>              
+            <script src="{{ asset('public/js/calendario.js') }}"></script>              
 
         {% endblock %}
     </body>

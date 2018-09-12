@@ -8,35 +8,25 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use PPP\CanBundle\Entity\Mascota;
 use PPP\CanBundle\Form\MascotaType; 
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 
 class MascotaController extends Controller
 {
 
 //funciones para el listado de las mascotas
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $idUsuario)
     {
     	
-        /**
         $em = $this->getDoctrine()->getManager();
-        $dql = "SELECT u FROM PPPCanBundle:Mascota u ORDER BY u.id DESC";
-        $mascotas = $em->createQuery($dql);
-        $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-        $mascotas, $request->query->getInt('page', 1),
-            5    
-        );
-        **/
-
-        $em = $this->getDoctrine()->getManager();
-        //$dql = "SELECT u FROM PPPCanBundle:Mascota u ORDER BY u.id DESC";
         $dql = "SELECT m.id, m.nombresm, p.apellidos, p.nombres, r.dtalleraza, m.aniom, m.mesm, 
                        m.diam, m.generom
 
                 FROM PPPCanBundle:Mascota m  
 
                 JOIN  m.usuario p
-                JOIN  m.raza r ";
+                JOIN  m.raza r 
+                WHERE p.id = $idUsuario";
 
         $mascotas = $em->createQuery($dql);
 
@@ -51,6 +41,35 @@ class MascotaController extends Controller
 
 return $this->render('PPPCanBundle:Mascota:index.html.twig', array('pagination' => $pagination,'delete_form_ajax'=> $deleteFormAjax->createView()));
     }
+
+
+    public function index1Action(Request $request)
+    {
+        
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT m.id, m.nombresm, p.apellidos, p.nombres, r.dtalleraza, m.aniom, m.mesm, 
+                       m.diam, m.generom
+
+                FROM PPPCanBundle:Mascota m  
+
+                JOIN  m.usuario p
+                JOIN  m.raza r 
+                ";
+
+        $mascotas = $em->createQuery($dql);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+        $mascotas, $request->query->getInt('page', 1),
+            5    
+        );
+
+        
+    $deleteFormAjax = $this->createCustomForm(':USER_ID', 'DELETE', 'ppp_mascota_delete');                
+
+return $this->render('PPPCanBundle:Mascota:index1.html.twig', array('pagination' => $pagination,'delete_form_ajax'=> $deleteFormAjax->createView()));
+    }
+
 
     private function createCustomForm($id, $method, $route)
     {
@@ -140,7 +159,7 @@ return $this->render('PPPCanBundle:Mascota:index.html.twig', array('pagination' 
 			$em->flush();
 
 			$this->addFlash('mensaje', 'Mascota creada correctamente');
-			return $this->redirectToRoute('ppp_mascota_index');
+			return $this->redirectToRoute('ppp_mascota_add');
 		 }
 
 		return $this->render('PPPCanBundle:Mascota:add.html.twig', array('form' => $form->createView()));

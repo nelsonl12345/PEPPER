@@ -6753,5 +6753,15 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+
+ 
+@media (min-width: 76px) and (max-height: 15px) {
+  .cold-md-4 {
+  
+  }
+
+  
+
 }
+
 /*# sourceMappingURL=bootstrap.css.map */

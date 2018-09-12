@@ -1,0 +1,5 @@
+  $(document).on("click", ".alert10", function(e) {        	
+            bootbox.alert(" Historia. <br>James Hinks, presentó a la  sociedad un perro Desciende de las razas old english bulldog y old english terrier, ya desaparecidas, con algunas gotas genéticas de los dálmatas. En un principio, Hinks concibió los cruces para criar un buen can de peleas, a las que eran entonces muy aficionados en las Islas, pero los buenos resultados cosechados en certámenes de belleza le convencieron de potenciar sus rasgos estéticos. Aquel empeño dio como fruto la estirpe moderna, menos tosca que la de sus ancestros. El orgullo del criador británico fue una hembra totalmente blanca llamada Puss, que causó sensación por su elegancia en un concurso de 1863.", function() {
+                console.log("Alert Callback");
+            });
+        });

@@ -1,0 +1,15 @@
+ppp_checklistcoo_indexcoo:
+    path:     /indexcoo
+    defaults: { _controller: PPPCanBundle:Checklistcoo:indexcoo }
+
+ppp_checklistcoo_addcoo:
+  path:     /addcoo/{id}
+  defaults: { _controller: PPPCanBundle:Checklistcoo:addcoo }
+
+
+ppp_checklistcoo_createcoo:
+    path:     /createcoo
+    defaults: { _controller: PPPCanBundle:Checklistcoo:createcoo }
+    methods: POST
+
+

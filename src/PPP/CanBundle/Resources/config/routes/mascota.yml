@@ -3,8 +3,13 @@ ppp_mascota_view:
   defaults: { _controller: PPPCanBundle:Mascota:view }
 
 ppp_mascota_index:
-    path:     /index
+    path:     /index/{idUsuario}
     defaults: { _controller: PPPCanBundle:Mascota:index }
+
+ppp_mascota_index1:
+    path:     /index1
+    defaults: { _controller: PPPCanBundle:Mascota:index1 }
+
 
 ppp_mascota_add:
     path:     /add

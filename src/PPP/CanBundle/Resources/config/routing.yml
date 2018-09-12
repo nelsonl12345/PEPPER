@@ -6,7 +6,6 @@ ppp_propietario_propietario:
     resource: "@PPPCanBundle/Resources/config/routes/propietario.yml"
     prefix:   /propietario
 
-
 ppp_raza_raza:
     resource: "@PPPCanBundle/Resources/config/routes/raza.yml"
     prefix:   /raza
@@ -22,6 +21,25 @@ ppp_radicado_radicado:
 ppp_checklist_checklist:
     resource: "@PPPCanBundle/Resources/config/routes/checklist.yml"
     prefix:   /checklist
+
+ppp_checklist1_checklist1:
+    resource: "@PPPCanBundle/Resources/config/routes/checklist1.yml"
+    prefix:   /checklist1
+
+ppp_checklist2_checklist2:
+    resource: "@PPPCanBundle/Resources/config/routes/checklist2.yml"
+    prefix:   /checklist2
+
+
+ppp_checklistcoo_checklistcoo:
+    resource: "@PPPCanBundle/Resources/config/routes/checklistcoo.yml"
+    prefix:   /checklistcoo
+
+
+
+ppp_ataque_ataque:
+    resource: "@PPPCanBundle/Resources/config/routes/ataque.yml"
+    prefix:   /ataque
 
 ppp_reporte_reporte:
     resource: "@PPPCanBundle/Resources/config/routes/reporte.yml"
@@ -64,3 +82,32 @@ ppp_regprop_redirect_add:
     permanent: true
 
 
+#Rutas Pagina cliente
+
+ppp_pagina_index:
+    path:  /pagina/index
+    defaults: { _controller: PPPCanBundle:Pagina:index }
+
+
+ppp_pagina_secretaria:
+    path:  /pagina/secretaria
+    defaults: { _controller: PPPCanBundle:Pagina:secretaria }
+
+
+ppp_pagina_perros:
+    path:  /pagina/perros
+    defaults: { _controller: PPPCanBundle:Pagina:perros }
+
+
+
+
+ppp_pagina_ley:
+    path:  /pagina/ley
+    defaults: { _controller: PPPCanBundle:Pagina:ley }
+
+
+#Ruta para inicio de sesion de pagina cliente al software
+
+ppp_ingreso_login:
+    path:  /login
+    defaults: { _controller: PPPCanBundle:Ingreso:login }

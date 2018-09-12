@@ -3,6 +3,7 @@
 namespace PPP\CanBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Checklist
@@ -58,6 +59,7 @@ class Checklist
      * @var string
      *
      * @ORM\Column(name="archivo1c", type="string", length=45)
+     * @Assert\NotBlank()
      */
     private $archivo1c;
 
@@ -65,6 +67,7 @@ class Checklist
      * @var string
      *
      * @ORM\Column(name="archivo2c", type="string", length=45)
+     * @Assert\NotBlank()
      */
     private $archivo2c;
 
@@ -72,6 +75,7 @@ class Checklist
      * @var string
      *
      * @ORM\Column(name="archivo3c", type="string", length=45)
+     * @Assert\NotBlank()
      */
     private $archivo3c;
 
@@ -79,8 +83,10 @@ class Checklist
      * @var string
      *
      * @ORM\Column(name="comentario", type="text", length=500)
+     * @Assert\NotBlank()
      */
     private $comentario;
+
 
 
     /**
@@ -254,6 +260,8 @@ class Checklist
     {
         return $this->comentario;
     }
+
+
 
     /**
      * Set usuario

@@ -3,6 +3,9 @@
 {% block body %}
     {{ parent() }}
 	<div class="main container">
+	{{ include('PPPCanBundle:Usuario:messages/success.html.twig') }}
+	{{ include('PPPCanBundle:Usuario:messages/danger.html.twig') }}
+
 		<div class="row well">
 			<div class="col-md-6">
 				<div class="page-header">
@@ -19,7 +22,7 @@
 					        {{ form_label(form.usuario, ('Propietario: ')) }}
 					    	</td>
 					    	<td>
-					        {{ form_widget(form.usuario, {'attr': {'class': 'form-control'}}) }}
+					        {{ form_widget(form.usuario, {'attr': {'class': 'form-control', 'selected': app.user.id }}) }}
 					        <span class="text-danger">{{ form_errors(form.usuario) }}</span>
 					    	</td>
 
@@ -60,7 +63,7 @@
 			    
 					    	<tr>
 					    	<td>
-					        {{ form_label(form.oficiom, ('Oficio: ')) }}
+					        {{ form_label(form.oficiom, ('Ocupación: ')) }}
 					        </td>
 					        <td>
 					        {{ form_widget(form.oficiom, {'attr': {'class': 'form-control', 'placeholder' : 'Oficio'}}) }}
@@ -83,7 +86,7 @@
 					    	<td>
 					        {{ form_widget(form.colorm, {'attr': {
 					        'class': 'form-control',
-					        'onchange' : "d1(this)"
+					        'onchange' : "d0(this)"
 					    }}) }}
 					        <span class="text-danger">{{ form_errors(form.colorm) }}</span>
 					    	</td>		
@@ -112,17 +115,17 @@
 					    		<tr>
 					    			<td>
 					        {{ form_label(form.foto1m, ('Foto de perfil')) }} 
-					        {{ form_widget(form.foto1m) }} 
+					        {{ form_widget(form.foto1m, { 'attr' : {'accept' : '.jpg, .png, .bmp'}}) }} 
 					        <span class="text-danger">{{ form_errors(form.foto1m) }}</span> 
 					    		</td>
 					    		<td>
 					        {{ form_label(form.foto2m, ('Foto desde arriba')) }}
-					        {{ form_widget(form.foto2m) }}
+					        {{ form_widget(form.foto2m, { 'attr' : {'accept' : '.jpg, .png, .bmp'}}) }}
 					        <span class="text-danger">{{ form_errors(form.foto2m) }}</span>
 					    		</td>
 					    		<td>
 					        {{ form_label(form.foto3m, ('Foto Lateral')) }}
-					        {{ form_widget(form.foto3m) }}
+					        {{ form_widget(form.foto3m, { 'attr' : {'accept' : '.jpg, .png, .bmp'}}) }}
 					        <span class="text-danger">{{ form_errors(form.foto3m) }}</span>
 					    </td></tr></table>
 					</fieldset>

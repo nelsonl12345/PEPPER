@@ -24,6 +24,8 @@ class ChecklistController extends Controller
 
             JOIN r.mascota m
             JOIN m.usuario p
+
+            WHERE r.estado = 'Radicado' or r.estado = 'En proceso(coor)'
         ";
 
 
@@ -134,6 +136,7 @@ class ChecklistController extends Controller
             $em->flush();
 
             $radicado = $checklist->getRadicado();
+
             if ($checklist->allFileRejected()) {
                 if ($radicado->getEstado() !== 'Rechazado') {
                     $radicado->setEstado('Rechazado');
@@ -142,23 +145,37 @@ class ChecklistController extends Controller
                     $em->persist($radicado);
                     $em->flush();
 
-                    $mensaje .= " El estado se cambio a Rechazado (Mail enviado)";
+                    $mensaje .= " El estado se cambio a Rechazado";
                     $this->enviarMailRadicado($radicado);
                 }
-            }
+            }//termina if
 
-            if ($checklist->allFileApproved()) {
-                if ($radicado->getEstado() !== 'Aprobado') {
-                    $radicado->setEstado('Aprobado');
+            if ($checklist->someFileRejected()) {
+                if ($radicado->getEstado() !== 'Rechazado') {
+                    $radicado->setEstado('Rechazado');
 
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($radicado);
                     $em->flush();
 
-                    $mensaje .= " El estado se cambio a Aprobado (Mail enviado)";
+                    $mensaje .= " El estado se cambio a Rechazado";
                     $this->enviarMailRadicado($radicado);
                 }
-            }
+            }//termina if
+
+
+            if ($checklist->allFileApproved()) {
+                if ($radicado->getEstado() !== 'Aprobado') {
+                    $radicado->setEstado('En proceso(zoo)');
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($radicado);
+                    $em->flush();
+
+                    $mensaje .= " El estado se cambio a En proceso";
+                    $this->enviarMailRadicado($radicado);
+                }
+            }//termina if
 
             $this->addFlash('mensaje', $mensaje);
             return $this->redirectToRoute('ppp_checklist_index');

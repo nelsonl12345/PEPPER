@@ -1,0 +1,5 @@
+  $(document).on("click", ".alert", function(e) {        	
+            bootbox.alert( " Historia.<br> El origen de este dogo se encuentra en Argentina. Se trata de una nueva raza que surge tras varias generaciones de cruces, creada con el objetivo de obtener una mezcla superior con las mejores cualidades. Su creador fue un médico argentino que buscaba el perro perfecto para la caza mayor de jabalíes y zorros.<br>Por su carácter dominante y voraz, los primeros Dogos Argentinos fueron probados en combates y peleas para probar su capacidad como perro de presa. Su gran resistencia y valentía frente a otros animales le llevó a ganar un puesto de honor como raza de caza mayor. Era capaz de trabajar en jauría, de perseguir y prender a su presa en silencio, y acabar con ella o retenerla hasta la llegada del resto de perros de la cacería o del cazador.", function() {
+                console.log("Alert Callback ");
+            });
+        });

@@ -6,6 +6,10 @@ ppp_reportes_mascotas_exportar:
     path:     /mascotas/exportar
     defaults: { _controller: PPPCanBundle:Reportes:mascotasExportar }
 
+ppp_reportes_mascotas_entre:
+    path:     /query/mascotas
+    defaults: { _controller: PPPCanBundle:Reportes:mascotasEntre }
+
 ppp_reportes_radicados_exportar:
     path:     /radicados/exportar
     defaults: { _controller: PPPCanBundle:Reportes:radicadosExportar }
@@ -18,6 +22,51 @@ ppp_reportes_radicados_entre:
     path:     /query/radicados
     defaults: { _controller: PPPCanBundle:Reportes:radicadosEntre }
 
-ppp_reportes_mascotas_entre:
-    path:     /query/mascotas
-    defaults: { _controller: PPPCanBundle:Reportes:mascotasEntre }
+
+
+#Reporte consulta por usuarios del sistema
+
+ppp_reportes_usuarios:
+    path:     /usuarios
+    defaults: { _controller: PPPCanBundle:Reportes:usuarios }
+
+ppp_reportes_usuariostodos:
+    path:     /usuariostodos
+    defaults: { _controller: PPPCanBundle:Reportes:usuariostodos }
+
+ppp_reportes_usuariosid:
+    path:     /usuariosid
+    defaults: { _controller: PPPCanBundle:Reportes:usuariosid }
+
+ppp_reportes_usuariosrole:
+    path:     /usuariosrole
+    defaults: { _controller: PPPCanBundle:Reportes:usuariosrole }
+
+
+#Reporte de MASCOTAS
+
+#index
+ppp_reportes_perros:
+    path:     /perros
+    defaults: { _controller: PPPCanBundle:Reportes:perros }
+
+#Reporte seleccionando por Razas
+ppp_reportes_perrosraza:
+    path:     /perrosraza
+    defaults: { _controller: PPPCanBundle:Reportes:perrosraza }
+
+ppp_reportes_perrosrazacount:
+    path:     /perrosrazacount
+    defaults: { _controller: PPPCanBundle:Reportes:perrosrazacount }
+
+
+#Reporte seleccionando ocupacion de la mascota
+ppp_reportes_perrosocupacion:
+    path:     /perrosocupacion
+    defaults: { _controller: PPPCanBundle:Reportes:perrosocupacion }
+
+ppp_reportes_perrosocupacioncount:
+    path:     /perrosocupacioncount
+    defaults: { _controller: PPPCanBundle:Reportes:perrosocupacioncount }
+
+

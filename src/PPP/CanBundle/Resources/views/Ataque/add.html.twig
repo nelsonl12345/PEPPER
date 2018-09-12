@@ -1,0 +1,810 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+	<div class="main container">
+		<br>
+		<div class="row well">
+			<div class="col-md-6">	
+				<div class="page-header">
+					<h2>Formulario Regístro de ataques</h2>
+				</div>
+
+
+				{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'role' : 'form'}}) }}
+				    <h4 class="text-danger">{{ form_errors(form) }}</h4>
+
+			<fieldset>
+
+
+<!-- PARTICION 1 -->
+<div align="left" id="divcero" style="display: block;">
+
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Información general</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+<table border="0" WIDTH="1100">	
+<tr>
+	<td>{{ form_label(form.departamento, ('Departamento')) }}
+
+{{ form_widget(form.departamento, {'attr': {'class': 'form-control', 'id' : "primary"}}) }}
+<span class="text-danger">{{ form_errors(form.departamento) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.municipio, ('Municipio')) }}
+
+{{ form_widget(form.municipio, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.municipio) }}</span>
+
+
+</td>
+<td>
+
+	{{ form_label(form.codigo, ('Codigo')) }}
+
+{{ form_widget(form.codigo, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.codigo) }}</span>
+</td>
+
+</tr>
+
+
+
+<tr>
+<td>
+	{{ form_label(form.subindice, ('Subindice')) }}
+
+{{ form_widget(form.subindice, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.subindice) }}</span>
+</td>	
+<td>
+	{{ form_label(form.razonsocial, ('Razon social de la unidad primaria generadora del dato')) }}
+{{ form_widget(form.razonsocial, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.razonsocial) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.nombreevento, ('Nombre del evento')) }}
+
+{{ form_widget(form.nombreevento, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.nombreevento) }}</span>
+</td>
+</tr>
+
+
+<tr>
+<td>
+	{{ form_label(form.codevento, ('Codigo del evento')) }}
+
+{{ form_widget(form.codevento, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.codevento) }}</span>
+</td>	
+<td>
+	{{ form_label(form.fechanoti, ('Fecha del evento')) }}
+{{ form_widget(form.fechanoti, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.fechanoti) }}</span>
+</td>
+
+<td></td>
+</tr>
+</table>
+<br>
+<table border="0" WIDTH="1100"><tr><td align="center">	
+<input type="button" value="Siguiente" id="botoninicio" onClick="ocultar();" class="btn btn-success"></td></tr></table>
+</div>
+
+<!-- PARTICION 2 -->
+
+<div align="left" id="divprimero" style="display: none;" >
+
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Identifcación del paciente</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+<table border="0" WIDTH="1100">	
+<tr>
+<td>{{ form_label(form.tipodoc, ('Tipo de documento')) }}
+{{ form_widget(form.tipodoc, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.tipodoc) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.numdoc, ('Número de identifcación')) }}
+{{ form_widget(form.numdoc, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.numdoc) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.nombresp, ('Nombres')) }}
+{{ form_widget(form.nombresp, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.nombresp) }}</span>
+</td>
+</tr>
+
+
+
+<tr>
+<td>{{ form_label(form.apellidosp, ('Apellidos')) }}
+{{ form_widget(form.apellidosp, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.apellidosp) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.telefonop, ('Telefono')) }}
+{{ form_widget(form.telefonop, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.telefonop) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.fechanacimientop, ('Fecha de nacimiento')) }}
+{{ form_widget(form.fechanacimientop, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.fechanacimientop) }}</span>
+</td>
+</tr>
+
+
+
+<tr>
+<td>{{ form_label(form.edadp, ('Edad')) }}
+{{ form_widget(form.edadp, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.edadp) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.unidadmedida, ('Unidad de medida de la edad')) }}
+{{ form_widget(form.unidadmedida, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.unidadmedida) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.sexop, ('Sexo')) }}
+{{ form_widget(form.sexop, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.sexop) }}</span>
+</td>
+</tr>
+
+
+<tr>
+<td>{{ form_label(form.paiscaso, ('Pais de ocurrencia del caso')) }}
+{{ form_widget(form.paiscaso, {'attr': {'class': 'form-control', 'value': 'Colombia'}}) }}
+<span class="text-danger">{{ form_errors(form.paiscaso) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.departamentoocu, ('Departamento de ocurrencia')) }}
+{{ form_widget(form.departamentoocu, {'attr': {'class': 'form-control', 'onchange' : "cambia_provincia1()"}}) }}
+<span class="text-danger">{{ form_errors(form.departamentoocu) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.municipioocu, ('Municipio de ocurrencia')) }}
+{{ form_widget(form.municipioocu, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.municipioocu) }}</span>
+</td>
+</tr>
+
+
+<tr>
+<td>{{ form_label(form.areacaso, ('Area de ocurrencia del caso')) }}
+{{ form_widget(form.areacaso, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.areacaso) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.localidadcaso, ('Localidad de ocurrencia')) }}
+{{ form_widget(form.localidadcaso, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.localidadcaso) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.barriocaso, ('Barrio de ocurrencia')) }}
+{{ form_widget(form.barriocaso, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.barriocaso) }}</span>
+</td>
+</tr>
+
+
+<tr>
+<td>{{ form_label(form.veredaozona, ('Vereda/Zona')) }}
+{{ form_widget(form.veredaozona, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.veredaozona) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.ocupacionpaciente, ('Ocupación del paciente')) }}
+{{ form_widget(form.ocupacionpaciente, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.ocupacionpaciente) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.tiporegimen, ('Tipo de regimen en salud')) }}
+{{ form_widget(form.tiporegimen, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.tiporegimen) }}</span>
+</td>
+</tr>
+
+
+
+<tr>
+<td>{{ form_label(form.nombreadmin, ('Nombre de la administradora ')) }}
+	<br>
+	{{ form_label(form.nombreadmin, ('de planes de beneficios')) }}
+{{ form_widget(form.nombreadmin, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.nombreadmin) }}</span>
+</td>
+
+<td>
+	<br>
+	{{ form_label(form.codigoadmin, ('Codigo')) }}
+{{ form_widget(form.codigoadmin, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.codigoadmin) }}</span>
+</td>
+
+<td>
+	<br>
+	{{ form_label(form.etnica, ('Pertenencia etnica')) }}
+{{ form_widget(form.etnica, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.etnica) }}</span>
+</td>
+</tr>
+
+
+<tr>
+<td>{{ form_label(form.grupopoblacion, ('Grupo poblacional al que pertenece')) }}
+{{ form_widget(form.grupopoblacion, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.grupopoblacion) }}</span>
+</td>
+
+<td>
+{{ form_label(form.hclinica, ('Historia clinica')) }} 
+{{ form_widget(form.hclinica, { 'attr' : {'accept' : '.jpg, .png, .bmp, .pdf'}}) }} 
+<span class="text-danger">{{ form_errors(form.hclinica) }}</span> 
+</td>
+
+<td></td>
+</tr>
+</table>
+<br><br>
+<table border="0" WIDTH="1100"><tr><td align="center">	
+ <input type="button" class="btn btn-success" value="Anterior" onClick="ocultarcero();">
+ <input type="button" class="btn btn-success" value="Siguiente" id="btn1" onClick="ocultar2();">
+</td></tr></table>
+</div>
+
+
+<!-- PARTICION -->
+
+<div align="left" id="divsegundo" style="display:none;">
+
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Notificación</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+
+<table border="0" WIDTH="1100">	
+<tr>
+<td>
+	<br>
+	{{ form_label(form.codmuni, ('Codigo del municipio')) }}
+{{ form_widget(form.codmuni, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.codmuni) }}</span>
+</td>
+
+<td>
+	<br>
+	{{ form_label(form.departamentopac, ('Departamento de residencia del paciente')) }}
+{{ form_widget(form.departamentopac, {'attr': {'class': 'form-control', 'onchange' : "cambia_provincia2()"}}) }}
+<span class="text-danger">{{ form_errors(form.departamentopac) }}</span>
+</td>
+
+<td>
+	<br>
+	{{ form_label(form.municipiopac, ('Municipio de residencia del paciente')) }}
+{{ form_widget(form.municipiopac, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.municipiopac) }}</span>
+</td>
+</tr>
+
+
+<tr>
+<td>
+	{{ form_label(form.direccionpac, ('Dirección de residencia')) }}
+{{ form_widget(form.direccionpac, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.direccionpac) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.fechaconsulta, ('Fecha de consulta')) }}
+{{ form_widget(form.fechaconsulta, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.fechaconsulta) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.fechasintoma, ('Fecha de inicio de simtomas')) }}
+{{ form_widget(form.fechasintoma, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.fechasintoma) }}</span>
+</td>
+</tr>
+
+
+
+
+
+<tr>
+<td>
+	{{ form_label(form.clasificacioncaso, ('Clasificación inicial del caso')) }}
+{{ form_widget(form.clasificacioncaso, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.clasificacioncaso) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.hospitalizacion, ('Hospitalizado(a)?')) }}
+{{ form_widget(form.hospitalizacion, {'attr': {'class': 'form-control', 'onchange' : "d1(this)"}}) }}
+<span class="text-danger">{{ form_errors(form.hospitalizacion) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.fechahospit, ('Fecha de hospitalización')) }}
+{{ form_widget(form.fechahospit, {'attr': {'class': 'form-control','disabled': 'true'}}) }}
+<span class="text-danger">{{ form_errors(form.fechahospit) }}</span>
+</td>
+</tr>
+
+
+
+
+
+
+<tr>
+<td>
+{{ form_label(form.condfinal, ('Condición final')) }}
+{{ form_widget(form.condfinal, {'attr': {'class': 'form-control', 'onchange' : "d2(this)"}}) }}
+<span class="text-danger">{{ form_errors(form.condfinal) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.fechadefuncion, ('Fecha de defuncion')) }}
+{{ form_widget(form.fechadefuncion, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+<span class="text-danger">{{ form_errors(form.fechadefuncion) }}</span>
+</td>
+
+<td>
+{{ form_label(form.numdefuncion, ('Numero certificado de defuncion')) }}
+{{ form_widget(form.numdefuncion, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+<span class="text-danger">{{ form_errors(form.numdefuncion) }}</span>
+</td>
+</tr>
+
+
+
+
+<tr>
+<td>
+	{{ form_label(form.causasmuerte, ('Causa basica de muerte')) }}
+{{ form_widget(form.causasmuerte, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+<span class="text-danger">{{ form_errors(form.causasmuerte) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.nombreprofesional, ('Nombre del profesional que diligencia la ficha')) }}
+{{ form_widget(form.nombreprofesional, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.nombreprofesional) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.telefonoprofesional, ('Telefono')) }}
+{{ form_widget(form.telefonoprofesional, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.telefonoprofesional) }}</span>
+</td>
+</tr>
+</table>
+<br><br>
+<table border="0" WIDTH="1100"><tr><td align="center">	
+      <input type="button" class="btn btn-success" value="Anterior" onClick="atras1();"> 
+      <input type="button" class="btn btn-success" value="Siguiente" onClick="ocultar3();">
+</td></tr></table>
+
+</div>
+
+<!--PARTICION 3 -->
+<br>
+
+<div align="left" id="divtercero" style="display:none;">   
+
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Datos de la agresión o contacto, de la especie agresora y de la clasificación de la exposición</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+
+<table border="0" WIDTH="1100">	
+
+<tr>
+<td>
+	{{ form_label(form.agresion, ('Clasificación de la agresión')) }}
+{{ form_widget(form.agresion, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.agresion) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.tipoagresion, ('Tipo de agresión o contacto')) }}
+{{ form_widget(form.tipoagresion, {'attr': {'class': 'form-control','style': "width:400px"}}) }}
+<span class="text-danger">{{ form_errors(form.tipoagresion) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.agresionprov, ('¿Agresión provocada?')) }}
+{{ form_widget(form.agresionprov, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.agresionprov) }}</span>
+</td>
+</tr>
+
+
+
+
+<tr>
+<td>
+	{{ form_label(form.tipolesion, ('Tipo de lesión')) }}
+{{ form_widget(form.tipolesion, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.tipolesion) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.profundidad, ('Profundidad')) }}
+{{ form_widget(form.profundidad, {'attr': {'class': 'form-control','style': "width:400px"}}) }}
+<span class="text-danger">{{ form_errors(form.profundidad) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.fechaagre, ('Fecha de la agresión o contacto')) }}
+{{ form_widget(form.fechaagre, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.fechaagre) }}</span>
+</td>
+</tr>
+
+
+
+<tr>
+<td>
+	{{ form_label(form.especieagre, ('Especie agresora')) }}
+{{ form_widget(form.especieagre, {'attr': {'class': 'form-control', 'onchange' : "d8(this)"}}) }}
+<span class="text-danger">{{ form_errors(form.especieagre) }}</span>
+</td>
+
+
+<td>
+	{{ form_label(form.registrada, ('¿Especie agresora registrada? ')) }}
+{{ form_widget(form.registrada, {'attr': {'class': 'form-control', 'disabled': 'true', 'onchange' : "d9(this)"}}) }}
+<span class="text-danger">{{ form_errors(form.especieagre) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.propietarioymascota, ('propietario y mascota')) }}
+{{ form_widget(form.propietarioymascota, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+</td>
+</tr>
+
+
+<tr>
+<td>
+
+	{{ form_label(form.nombremascota, ('Nombre de la mascota')) }}
+{{ form_widget(form.nombremascota, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+
+
+</td>
+
+<td>
+	{{ form_label(form.nombreprop, ('Nombre del propietario o responsable del agresor')) }}
+{{ form_widget(form.nombreprop, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+<span class="text-danger">{{ form_errors(form.nombreprop) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.direccionprop, ('Direccion del propietario o responsable')) }}
+{{ form_widget(form.direccionprop, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+<span class="text-danger">{{ form_errors(form.direccionprop) }}</span>
+</td>
+</tr>
+
+
+<tr>
+
+<td>
+
+	{{ form_label(form.telefonoprop, ('Telefono')) }}
+{{ form_widget(form.telefonoprop, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+<span class="text-danger">{{ form_errors(form.telefonoprop) }}</span>
+
+
+</td>	
+<td>
+	{{ form_label(form.vacunado, ('Vacunado')) }}
+{{ form_widget(form.vacunado, {'attr': {'class': 'form-control','style': "width:400px", 'onchange' : "d3(this)"}}) }}
+<span class="text-danger">{{ form_errors(form.vacunado) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.fechavacunacion, ('Fecha de vacunacion')) }}
+{{ form_widget(form.fechavacunacion, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+<span class="text-danger">{{ form_errors(form.fechavacunacion) }}</span>
+</td>
+</tr>
+
+
+
+<tr>
+<td>
+	{{ form_label(form.estadoanimal, ('Estado del animal al momento de la agresión')) }}
+{{ form_widget(form.estadoanimal, {'attr': {'class': 'form-control','style': "width:400px"}}) }}
+<span class="text-danger">{{ form_errors(form.estadoanimal) }}</span>
+
+</td>
+
+<td>
+	{{ form_label(form.ubicacion, ('Ubicación')) }}
+{{ form_widget(form.ubicacion, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.ubicacion) }}</span>	
+</td>
+
+<td>
+	{{ form_label(form.exposicion, ('Clasificación de la exposición')) }}
+{{ form_widget(form.exposicion, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.exposicion) }}</span>	
+</td>
+</tr>
+
+
+</table>
+<br><br>	
+<table border="0" WIDTH="1100"><tr><td align="center">	
+          <input type="button" class="btn btn-success" value="Anterior" onClick="atras2();">
+        <input type="button" class="btn btn-success" value="Siguiente" onClick="ocultar4();">
+</td></tr></table>        
+</div>
+
+<!--  PARTICION 4 -->
+
+<div align="left" id="divcuarto" style="display:none;">   
+
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Antecedentes de inmunización del paciente</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+
+<table border="0" WIDTH="1100">	
+<tr>
+	<td colspan="6">Antes de la consulta actual el paciente habia recibido:</td>
+</tr>
+<tr>
+<td>
+	{{ form_label(form.suero, ('Suero antirrabico')) }}
+{{ form_widget(form.suero, {'attr': {'class': 'form-control', 'onchange' : "d4(this)"}}) }}
+<span class="text-danger">{{ form_errors(form.suero) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.fechasuero, ('Fecha de aplicación')) }}
+{{ form_widget(form.fechasuero, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+<span class="text-danger">{{ form_errors(form.fechasuero) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.vacuna, ('Vacuna antirrabica')) }}
+{{ form_widget(form.vacuna, {'attr': {'class': 'form-control', 'onchange' : "d5(this)"}}) }}
+<span class="text-danger">{{ form_errors(form.vacuna) }}</span>
+</td>
+</tr>
+
+
+
+
+
+
+<tr>
+<td>
+	{{ form_label(form.ndosis, ('Número de dosis')) }}
+{{ form_widget(form.ndosis, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+<span class="text-danger">{{ form_errors(form.ndosis) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.fechaultdosis, ('Fecha de última dosis')) }}
+{{ form_widget(form.fechaultdosis, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+<span class="text-danger">{{ form_errors(form.fechaultdosis) }}</span>
+</td>
+
+<td></td>
+</tr>
+</table>
+
+
+
+
+<br>
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Datos del tratamiento ordenado en la actualidad</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+<table border="0" WIDTH="1100">	
+
+<tr>
+<td>
+	{{ form_label(form.lavado, ('¿Lavado de herida con agua y jabon?')) }}
+{{ form_widget(form.lavado, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.lavado) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.sutura, ('¿Sutura de la herida?')) }}
+{{ form_widget(form.sutura, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.sutura) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.ordenosuero, ('¿Ordenó suero antirrábico?')) }}
+{{ form_widget(form.ordenosuero, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.ordenosuero) }}</span>
+</td>
+</tr>
+
+
+
+
+<tr>
+<td>
+	{{ form_label(form.ordenovacuna, ('¿Ordenó aplicación vacuna?')) }}
+{{ form_widget(form.ordenovacuna, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.ordenovacuna) }}</span>
+</td>
+
+<td></td>
+
+<td></td>
+</tr>
+</table>
+<br><br>
+<table border="0" WIDTH="1100"><tr><td align="center">	
+          <input type="button" class="btn btn-success" value="Anterior" onClick="atras3();">
+        <input type="button" class="btn btn-success" value="Siguiente" onClick="ocultar5();">
+</td></tr></table>        
+</div>
+
+<!--  PARTICION 5 --> 
+
+<div align="left" id="divquinto" style="display:none;">
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Datos de laboratorio</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+<table border="0" WIDTH="1100">	
+<tr>
+<td>
+	{{ form_label(form.pruebadiag, ('Prueba diagnostica confirmatoria')) }}
+{{ form_widget(form.pruebadiag, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.pruebadiag) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.resultado, ('Resultado')) }}
+{{ form_widget(form.resultado, {'attr': {'class': 'form-control', 'onchange' : "d7(this)"}}) }}
+<span class="text-danger">{{ form_errors(form.resultado) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.identifcacionvar, ('Identifcación variante')) }}
+{{ form_widget(form.identifcacionvar, {'attr': {'class': 'form-control'}}) }}
+<span class="text-danger">{{ form_errors(form.identifcacionvar) }}</span>
+</td>
+</tr>
+
+
+
+<tr>
+<td>
+	{{ form_label(form.varianteident, ('¿Variante identificada?')) }}
+{{ form_widget(form.varianteident, {'attr': {'class': 'form-control', 'onchange' : "d6(this)"}}) }}
+<span class="text-danger">{{ form_errors(form.varianteident) }}</span>
+</td>
+
+<td>
+	{{ form_label(form.cual, ('¿Cual?')) }}
+{{ form_widget(form.cual, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+<span class="text-danger">{{ form_errors(form.cual) }}</span>	
+</td>
+
+<td>
+	{{ form_label(form.fecharesultado, ('Fecha resultado positivo de laboratorio')) }}
+{{ form_widget(form.fecharesultado, {'attr': {'class': 'form-control', 'disabled': 'true'}}) }}
+<span class="text-danger">{{ form_errors(form.fecharesultado) }}</span>
+
+</td>
+</tr>
+
+
+</table>
+
+
+<br>
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Datos clinicos</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+
+
+
+<table border="0" WIDTH="1100">	
+<tr>
+<td>
+	{{ form_label(form.signosysintomas, ('Signos y sintomas')) }}
+{{ form_widget(form.signosysintomas) }}
+<span class="text-danger">{{ form_errors(form.signosysintomas) }}</span>
+</td>
+
+<td></td>
+<td></td>
+
+</table>
+
+<br><br>					  
+
+<table border="0" WIDTH="1100">
+<tr>
+<td align="center">
+	<input type="button" class="btn btn-success" value="Anterior" onClick="atras4();">
+	<input type="button" class="btn btn-success" value="Inicio" onClick="ocultarcero();">
+    {{ form_widget(form.save, {'label' : 'Enviar', 'attr': {'class': 'btn btn-success'}}) }}
+</td>
+</tr>
+</table>
+</div>
+
+
+</fieldset>
+
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -26,7 +26,7 @@ class PropietarioController extends Controller
             10    
         );        
 
-return $this->render('PPPCanBundle:Usuario:index.html.twig', array('pagination' => $pagination));
+return $this->render('PPPCanBundle:Propietario:index.html.twig', array('pagination' => $pagination));
  	}
 
 
@@ -119,6 +119,17 @@ return $this->render('PPPCanBundle:Usuario:index.html.twig', array('pagination' 
         return $this->render('PPPCanBundle:Propietario:add.html.twig', array('form'=>$form->createView()));
     }
 
+
+public function viewAction($id)
+    {
+        $repository = $this->getDoctrine()->getRepository('PPPCanBundle:Usuario');
+        $usuario=$repository->find($id);
+        if(!$usuario)
+        {
+            throw $this->createNotFoundException('Propietario no encontrado.');
+        }
+          return $this->render('PPPCanBundle:Propietario:view.html.twig', array('usuario' => $usuario));
+    }
 
 
 }

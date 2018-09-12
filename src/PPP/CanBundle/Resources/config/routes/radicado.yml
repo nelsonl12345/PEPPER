@@ -25,3 +25,22 @@ ppp_radicado_redirect_add:
 ppp_radicado_index:
     path:   /index
     defaults: { _controller: PPPCanBundle:Radicado:index }
+
+#Edicion de solicitudes
+
+ppp_radicado_edit:
+    path: /edit/{id}
+    defaults: {_controller: PPPCanBundle:Radicado:edit }
+
+
+ppp_radicado_update:
+    path: /update/{id}
+    defaults: {_controller: PPPCanBundle:Radicado:update }
+    methods: [POST, PUT]
+
+ppp_radicado_redirect_edit:
+  path: /update/{id}
+  defaults:
+    _controller: PPPCanBundle:Radicado:edit
+    path: /edit/{id}
+    permanent: true

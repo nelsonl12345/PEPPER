@@ -305,28 +305,18 @@ public function viewAction($id)
             ->getForm();
     }
 
+
+//Solicitudes usuario externo
     public function solicitudesAction(Request $request, $idUsuario)
     {
-        /*
-        $repository = $this->getDoctrine()->getRepository('PPPCanBundle:Radicado');
-
-        $query = $repository->createQueryBuilder('r')
-            ->innerJoin('r.mascota', 'm')
-            ->innerJoin('m.usuario', 'p')
-            ->where('p.id = :usuario_id')
-            ->select('r')
-            ->addSelect('m')
-            ->addSelect('p')
-            ->setParameter('usuario_id', $idUsuario)
-            ->getQuery();
-        */
         $em = $this->getDoctrine()->getManager();
-        //$dql = "SELECT u FROM PPPCanBundle:Radicado u ORDER BY u.id DESC";
         $dql = "SELECT r.id, r.archivo1, m.nombresm, p.nombres, r.createdAtradi, r.updatedAtradi, r.estado
                 FROM PPPCanBundle:Radicado r
                 JOIN r.mascota m
                 JOIN m.usuario p
-                WHERE p.id = $idUsuario";
+                WHERE p.id = $idUsuario AND 
+                (r.estado = 'En proceso(coo)' or r.estado = 'En proceso(zoo)' or r.estado = 'En proceso(jefe)' ) 
+                ";
 
         $query = $em->createQuery($dql);
 
@@ -339,8 +329,75 @@ public function viewAction($id)
 
         return $this->render('PPPCanBundle:Usuario:solicitudes.html.twig', array('pagination' => $pagination));
 
-
     }
+
+
+    public function solicitudesrejectAction(Request $request, $idUsuario)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT r.id, r.archivo1, m.nombresm, p.nombres, r.createdAtradi, r.updatedAtradi, r.estado
+                FROM PPPCanBundle:Radicado r
+                JOIN r.mascota m
+                JOIN m.usuario p
+                WHERE p.id = $idUsuario AND r.estado = 'Rechazado' ";
+
+        $query = $em->createQuery($dql);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+
+        return $this->render('PPPCanBundle:Usuario:solicitudesreject.html.twig', array('pagination' => $pagination));
+    }
+
+
+    public function solicitudesradiAction(Request $request, $idUsuario)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT r.id, r.archivo1, m.nombresm, p.nombres, r.createdAtradi, r.updatedAtradi, r.estado
+                FROM PPPCanBundle:Radicado r
+                JOIN r.mascota m
+                JOIN m.usuario p
+                WHERE p.id = $idUsuario AND r.estado = 'Radicado' ";
+
+        $query = $em->createQuery($dql);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+
+        return $this->render('PPPCanBundle:Usuario:solicitudesradi.html.twig', array('pagination' => $pagination));
+    }
+
+
+    public function solicitudesapprovedAction(Request $request, $idUsuario)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dql = "SELECT r.id, r.archivo1, m.nombresm, p.nombres, r.createdAtradi, r.updatedAtradi, r.estado
+                FROM PPPCanBundle:Radicado r
+                JOIN r.mascota m
+                JOIN m.usuario p
+                WHERE p.id = $idUsuario AND r.estado = 'Aprobado' ";
+
+        $query = $em->createQuery($dql);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+
+        return $this->render('PPPCanBundle:Usuario:solicitudesapproved.html.twig', array('pagination' => $pagination));
+    }
+
+
 }
 
 

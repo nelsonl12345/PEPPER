@@ -15,7 +15,13 @@
 	<div class="container">
 		<div class="col-md-12">
 			<div class="page-header margin-none">
-<h2 class="padding-none"><font color="BLACK">Usuarios del sistema</font></h2>
+
+	{% if pagination.getTotalItemCount == 0 %}
+	{{'<h2 class="padding-none"><font color="BLACK">No se encontraron registros</font></h2>'}}
+
+		{% else %}
+
+<h2 class="padding-none"><font color="BLACK">Propietarios</font></h2>
 </div>
 <div class="table-responsive">
 	Total registros: <span id="total">{{ pagination.getTotalItemCount }}</span>	
@@ -42,9 +48,9 @@
 			<td>{{ user.createdAt | date('d-m-y H:i') }}</td>
 			<td>{{ user.updatedAt | date('d-m-y H:i') }}</td>
 			<td calss="actions">
-			<a href="{{ path('ppp_usuario_view', { id: user.id  }) }} " class="btn btn-sm btn-info">Ver</a>
-			<a href="{{ path('ppp_usuario_edit', { id: user.id  }) }} " class="btn btn-sm btn-primary">Editar</a> 
-			<a href="#" class="btn btn-sm btn-danger btn-delete">Eliminar</a> 
+			<a href="{{ path('ppp_propietario_view', { id: user.id  }) }} " class="btn btn-sm btn-info">Ver</a>
+			<!--<a href="{{ path('ppp_usuario_edit', { id: user.id  }) }} " class="btn btn-sm btn-primary">Editar</a>--> 
+			<!--<a href="#" class="btn btn-sm btn-danger btn-delete">Eliminar</a> -->
 			</td>
 		</tr>
 	{% endfor %}
@@ -55,19 +61,14 @@
 {{ knp_pagination_render(pagination) }}
 </div>
 
+{% endif %}
+
 </div>
 </div>
 </div>
 
-   
-
-    {{ include('PPPCanBundle:Usuario:forms/form.html.twig', { form: delete_form_ajax, message: 'Esta seguro de eliminar el usuario?', id: 'form-delete', with_submit: false}) }}
-    
+       
 
 {% endblock %}
 
 
-{% block javascripts  %}
-	{{ parent() }}
-	<script src="{{ asset('bundles/pppcan/js/delete-user.js') }}"></script>
-{% endblock %}	

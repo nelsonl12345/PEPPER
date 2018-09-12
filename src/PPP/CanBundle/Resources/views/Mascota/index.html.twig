@@ -16,7 +16,13 @@
 	<div class="container">
 		<div class="col-md-12">
 			<div class="page-header margin-none">
-<h2 class="padding-none"><font color="BLACK">Mascotas</font></h2>
+
+	{% if pagination.getTotalItemCount == 0 %}
+	{{'<h2 class="padding-none"><font color="BLACK">No se encontraron registros</font></h2>'}}
+
+		{% else %}
+
+<h2 class="padding-none"><font color="BLACK">Mis mascotas</font></h2>
 
 
 </div>
@@ -54,6 +60,8 @@
 <div class="navigation">
 {{ knp_pagination_render(pagination) }}
 </div>
+
+{% endif %}
 
 </div>
 </div>

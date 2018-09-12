@@ -38,7 +38,7 @@
 					{% if mascota.foto3m == NULL %}
 					<img src="{{ asset('uploads/mascotas/sinfoto.jpg') }}" alt="Sin foto" width="250" height="200">&nbsp&nbsp&nbsp
 					{% else %}
-					<img src={{ asset( concatenar3 ) }} width="250" height="200"> 
+					<img src={{ asset( concatenar3 ) }} width="100" height="100"> 
 					&nbsp&nbsp&nbsp
 					{% endif %}
 
@@ -56,7 +56,7 @@
 				{% set imagen4 = usuario.foto %}
 				{% set concatenar4 = carpeta4 ~ imagen4  %}						 
 					{% if usuario.foto == NULL %}
-					<img src="{{ asset('uploads/usuarios/perfil.jpg') }}" alt="Sin foto" width="100" height="100">&nbsp&nbsp&nbsp
+					<img  class="item3" src="{{ asset('uploads/usuarios/perfil.jpg') }}" alt="Sin foto" width="100" height="100">&nbsp&nbsp&nbsp
 					{% else %}
 					<img src={{ asset( concatenar4 ) }} width="100" height="100"> 
 					&nbsp&nbsp&nbsp
@@ -78,7 +78,10 @@
 <tr><td bgcolor="#ECE0F8"><dt>{{'Creado: '}}</dt></td><td>{{ mascota.createdAtm|date('d-m-Y H:i') }} </td>	
 <td bgcolor="#ECE0F8"><dt>{{'Actualizado: '}}</dt></td><td>{{ mascota.updatedAtm|date('d-m-Y H:i') }}</td></tr>               
 
-<tr><td bgcolor="#ECE0F8"><dt>{{'Estado: '}}</dt></td><td colspan="3">{{ mascota.estadom }}</td></tr>
+<tr>
+	<td bgcolor="#ECE0F8"><dt>{{'Estado: '}}</dt></td><td>{{ mascota.estadom }}</td>
+	<td bgcolor="#ECE0F8"><dt>{{'Ocupación: '}}</dt></td><td>{{ mascota.oficiom }}</td>
+</tr>
 	            
 </table>
 	                

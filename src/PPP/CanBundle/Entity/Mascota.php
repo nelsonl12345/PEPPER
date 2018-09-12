@@ -123,6 +123,10 @@ class Mascota
      * @var string
      *
      * @ORM\Column(name="foto1m", type="string", length=50)
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     maxSizeMessage = "El archivo no puede ser mayor a 1024 kilobytes"
+     * )          
      */
     private $foto1m;
 
@@ -130,6 +134,10 @@ class Mascota
      * @var string
      *
      * @ORM\Column(name="foto2m", type="string", length=50)
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     maxSizeMessage = "El archivo no puede ser mayor a 1024 kilobytes"
+     * )          
      */
     private $foto2m;
 
@@ -137,6 +145,10 @@ class Mascota
      * @var string
      *
      * @ORM\Column(name="foto3m", type="string", length=50)
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     maxSizeMessage = "El archivo no puede ser mayor a 1024 kilobytes"
+     * )          
      */
     private $foto3m;
 

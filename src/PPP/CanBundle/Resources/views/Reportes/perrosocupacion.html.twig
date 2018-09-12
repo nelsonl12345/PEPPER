@@ -1,0 +1,101 @@
+<html>
+<head>
+	<meta charset="UTF-8">	
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+	<div class="container">
+		<div class="col-md-12">
+			<div class="page-header margin-none">
+
+	{% if pagination.getTotalItemCount == 0 %}
+	{{'<h2 class="padding-none"><font color="BLACK">No se encontraron registros</font></h2>'}}
+		{% else %}
+
+<center><h2 class="padding-none"><font color="BLACK">Reporte por Ocupación</font></h2></center>
+<h3 class="padding-none"><font color="BLACK">Ocupación seleccionada: 
+
+{% set break = false %}
+{% for mascota in pagination if not break  %}	
+{% if mascota.id > 1 %}
+        {% set break = true %}
+    {% endif %}
+	{{ mascota.oficiom   }}
+	{% endfor %}
+
+</font></h3>
+
+</div>
+
+<!-- cuantos -->
+<div class="table-responsive">
+
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr>
+					<th width="50%">Genero</th>
+					<th width="50%">Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for genero in data['result']['generos'] %}
+					<tr>
+						<td>{{ genero['nombre'] }}</td>
+						<td>{{ genero['cantidad'] }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+</div>
+
+<br><br>
+<!-- cuales -->
+
+<div class="table-responsive">
+	Total registros: <span id="total">{{ pagination.getTotalItemCount }}</span>	
+	<table class="table table-striped table-hover">
+		<thead>
+	<tr>
+<th>{{ knp_pagination_sortable(pagination, 'Fecha registro', 'm.createdAtm') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Nombres', 'm.nombresm') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Raza', 'r.dtalleraza') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Color', 'm.colorm') }}</th>		
+<th>{{ knp_pagination_sortable(pagination, 'Propietario', 'p.nombres') }}</th>		
+
+	</tr>
+</thead>
+<tbody>
+	{% for mascota in pagination %}	
+			<tr data-id="{{ mascota.id }}">	
+			<td>{{ mascota.createdAtm|date('d-m-Y H:i') }}</td>
+			<td>{{ mascota.nombresm }}</td>
+			<td>{{ mascota.dtalleraza }}</td>
+			<td>{{ mascota.colorm }}  {{ mascota.cual }}</td>			
+			<td>{{ mascota.nombres }} {{ mascota.apellidos }}</td>
+
+		</tr>
+	{% endfor %}
+</tbody>
+</table>
+</div>
+ {# display navigation #}
+<div class="navigation">
+{{ knp_pagination_render(pagination) }}
+</div>
+
+
+
+{% endif %}
+
+
+
+</div>
+</div>
+
+    </body>
+</html>
+
+

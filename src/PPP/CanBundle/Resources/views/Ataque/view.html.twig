@@ -1,0 +1,705 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+	<div class="main container">
+		<br>
+		<div class="row well">
+			<div class="col-md-6">	
+				<div class="page-header">
+					<h2>Regístro de ataques</h2>
+				</div>
+
+
+			<fieldset>
+
+
+<!-- PARTICION 1 -->
+<div align="left" id="divcero" style="display: block;">
+
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Información general</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+<table border="3" WIDTH="1100">	
+<tr>
+	<td>{{ '<b>Departamento: </b>' }}
+	{{ ataque.departamento }}
+</td>
+
+<td>
+	{{ '<b>Municipio</b>: ' }}
+	{{ ataque.municipio }}</span>
+
+
+</td>
+<td>
+
+	{{ '<b>Codigo</b>: ' }}
+    {{ ataque.codigo }}</span>
+</td>
+
+</tr>
+
+
+
+<tr>
+<td>
+	{{ '<b>Subindice</b>: '}}
+	{{ ataque.subindice }}
+</td>	
+<td>
+	{{ '<b>Razon social de la unidad primaria generadora del dato</b>: ' }}
+	{{ ataque.razonsocial }}
+
+</td>
+
+<td>
+	{{ '<b>Nombre del evento</b>: ' }}
+	{{ ataque.nombreevento }}
+</td>
+</tr>
+
+
+<tr>
+<td>
+	{{ '<b>Codigo del evento</b>: ' }}
+	{{ ataque.codevento }}
+</td>	
+<td>
+	{{ '<b>Fecha del evento</b>: ' }}
+	{{ ataque.fechanoti }}
+</td>
+
+<td></td>
+</tr>
+</table>
+<br>
+<table border="0" WIDTH="1100"><tr><td align="center">	
+<input type="button" value="Siguiente" id="botoninicio" onClick="ocultar();" class="btn btn-success"></td></tr></table>
+</div>
+
+<!-- PARTICION 2 -->
+
+<div align="left" id="divprimero" style="display: none;" >
+
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Identifcación del paciente</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+<table border="3" WIDTH="1100">	
+<tr>
+<td>{{ '<b>Tipo de documento</b>: ' }}
+{{ ataque.tipodoc }}
+</td>
+
+<td>
+	{{ '<b>Número de identifcación</b>: ' }}
+{{ ataque.numdoc }}
+</td>
+
+<td>
+	{{ '<b>Nombres</b>: ' }}
+{{ ataque.nombresp }}
+</td>
+</tr>
+
+
+
+<tr>
+<td>{{ '<b>Apellidos</b>: ' }}
+{{ ataque.apellidosp }}
+</td>
+
+<td>
+	{{ '<b>Telefono</b>: ' }}
+{{ ataque.telefonop }}
+</td>
+
+<td>
+	{{ '<b>Fecha de nacimiento</b>: ' }}
+{{ ataque.fechanacimientop }}
+</td>
+</tr>
+
+
+
+<tr>
+<td>{{ '<b>Edad</b>: ' }}
+{{ ataque.edadp }}
+</td>
+
+<td>
+	{{ '<b>Unidad de medida de la edad</b>: ' }}
+{{ ataque.unidadmedida }}
+</td>
+
+<td>
+	{{ '<b>Sexo</b>: ' }}
+{{ ataque.sexop }}
+</td>
+</tr>
+
+
+<tr>
+<td>{{ '<b>Pais de ocurrencia del caso</b>: ' }}
+{{ ataque.paiscaso }}
+</td>
+
+<td>
+	{{ '<b>Departamento de ocurrencia</b>: ' }}
+{{ ataque.departamentoocu }}
+</td>
+
+<td>
+	{{ '<b>Municipio de ocurrencia</b>: ' }}
+{{ ataque.municipioocu }}
+</td>
+</tr>
+
+
+<tr>
+<td>{{ '<b>Area de ocurrencia del caso</b>: ' }}
+{{ ataque.areacaso }}
+</td>
+
+<td>
+	{{ '<b>Localidad de ocurrencia</b>: ' }}
+{{ ataque.localidadcaso }}
+</td>
+
+<td>
+	{{ '<b>Barrio de ocurrencia</b>: ' }}
+{{ ataque.barriocaso }}
+</td>
+</tr>
+
+
+<tr>
+<td>{{ '<b>Vereda/Zona</b>: ' }}
+{{ ataque.veredaozona }}
+</td>
+
+<td>
+	{{ '<b>Ocupación del paciente</b>: ' }}
+{{ ataque.ocupacionpaciente }}
+</td>
+
+<td>
+	{{ '<b>Tipo de regimen en salud</b>: ' }}
+{{ ataque.tiporegimen }}
+</td>
+</tr>
+
+
+
+<tr>
+<td>{{ '<b>Nombre de la administradora</b> ' }}
+	<br>
+	{{ '<b>de planes de beneficios</b>: ' }}
+{{ ataque.nombreadmin }}
+</td>
+
+<td>
+	<br>
+	{{ '<b>Codigo</b>: ' }}
+{{ ataque.codigoadmin }}
+</td>
+
+<td>
+	<br>
+	{{ '<b>Pertenencia etnica</b>: ' }}
+{{ ataque.etnica }}
+</td>
+</tr>
+
+
+<tr>
+<td>{{ '<b>Grupo poblacional al que pertenece</b>: ' }}
+{{ ataque.grupopoblacion }}
+</td>
+
+<td>
+{{ '<b>Historia clinica</b>: ' }} 
+{{ ataque.hclinica }} 
+</td>
+
+<td></td>
+</tr>
+</table>
+<br><br>
+<table border="0" WIDTH="1100"><tr><td align="center">	
+ <input type="button" class="btn btn-success" value="Anterior" onClick="ocultarcero();">
+ <input type="button" class="btn btn-success" value="Siguiente" id="btn1" onClick="ocultar2();">
+</td></tr></table>
+</div>
+
+
+<!-- PARTICION -->
+
+<div align="left" id="divsegundo" style="display:none;">
+
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Notificación</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+
+<table border="3" WIDTH="1100">	
+<tr>
+<td>
+	<br>
+	{{ '<b>Codigo del municipio</b>: ' }}
+{{ ataque.codmuni }}
+</td>
+
+<td>
+	<br>
+	{{ '<b>Departamento de residencia del paciente</b>:' }}
+	{{ ataque.departamentopac }}
+</td>
+
+<td>
+	<br>
+	{{ '<b>Municipio de residencia del paciente</b>: ' }}
+{{ ataque.municipiopac }}
+</td>
+</tr>
+
+
+<tr>
+<td>
+	{{ '<b>Dirección de residencia</b>: ' }}
+{{ ataque.direccionpac }}
+</td>
+
+<td>
+	{{ '<b>Fecha de consulta</b>: ' }}
+{{ ataque.fechaconsulta }}
+</td>
+
+<td>
+	{{ '<b>Fecha de inicio de simtomas</b>: ' }}
+{{ ataque.fechasintoma }}
+</td>
+</tr>
+
+
+
+
+
+<tr>
+<td>
+	{{ '<b>Clasificación inicial del caso</b>: ' }}
+{{ ataque.clasificacioncaso }}
+</td>
+
+<td>
+	{{ '<b>Hospitalizado(a)?</b>: ' }}
+{{ ataque.hospitalizacion }}
+</td>
+
+<td>
+	{{ '<b>Fecha de hospitalización</b>: ' }}
+{{ ataque.fechahospit }}
+</td>
+</tr>
+
+
+
+
+
+
+<tr>
+<td>
+{{ '<b>Condición final</b>: ' }}
+{{ ataque.condfinal }}
+</td>
+
+<td>
+	{{ '<b>Fecha de defuncion</b>: ' }}
+{{ ataque.fechadefuncion }}
+</td>
+
+<td>
+{{ '<b>Numero certificado de defuncion</b>: ' }}
+{{ ataque.numdefuncion }}
+</td>
+</tr>
+
+
+
+
+<tr>
+<td>
+	{{ '<b>Causa basica de muerte</b>: ' }}
+{{ ataque.causasmuerte }}
+</td>
+
+<td>
+	{{ '<b>Nombre del profesional que diligencia la ficha</b>: ' }}
+{{ ataque.nombreprofesional }}
+</td>
+
+<td>
+	{{ '<b>Telefono</b>: ' }}
+{{ ataque.telefonoprofesional }}
+</td>
+</tr>
+</table>
+<br><br>
+<table border="0" WIDTH="1100"><tr><td align="center">	
+      <input type="button" class="btn btn-success" value="Anterior" onClick="atras1();"> 
+      <input type="button" class="btn btn-success" value="Siguiente" onClick="ocultar3();">
+</td></tr></table>
+
+</div>
+
+<!--PARTICION 3 -->
+<br>
+
+<div align="left" id="divtercero" style="display:none;">   
+
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Datos de la agresión o contacto, de la especie agresora y de la clasificación de la exposición</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+
+<table border="3" WIDTH="1100">	
+
+<tr>
+<td>
+	{{ '<b>Clasificación de la agresión</b>: ' }}
+{{ ataque.agresion }}
+</td>
+
+<td>
+	{{ '<b>Tipo de agresión o contacto</b>: ' }}
+{{ ataque.tipoagresion }}
+</td>
+
+<td>
+	{{ '<b>¿Agresión provocada?</b>: ' }}
+{{ ataque.agresionprov }}
+</td>
+</tr>
+
+
+
+
+<tr>
+<td>
+	{{ '<b>Tipo de lesión</b>: ' }}
+{{ ataque.tipolesion }}
+</td>
+
+<td>
+	{{ '<b>Profundidad</b>: ' }}
+{{ ataque.profundidad }}
+</td>
+
+<td>
+	{{ '<b>Fecha de la agresión o contacto</b>: ' }}
+{{ ataque.fechaagre }}
+</td>
+</tr>
+
+
+
+<tr>
+<td>
+	{{ '<b>Especie agresora</b>: ' }}
+{{ ataque.especieagre }}
+</td>
+
+<td>
+	{{ '<b>Vacunado</b>: ' }}
+{{ ataque.vacunado }}
+</td>
+
+<td>
+	{{ '<b>Fecha de vacunacion</b>: ' }}
+{{ ataque.fechavacunacion }}
+</td>
+</tr>
+
+
+
+<tr>
+<td>
+	{{ '<b>Presentó carné de vacunación?</b>: ' }}
+{{ ataque.carnet }}
+</td>
+
+<td>
+	{{ '<b>Nombre del propietario o responsable del agresor</b>: ' }}
+{{ ataque.nombreprop }}
+</td>
+
+<td>
+	{{ '<b>Direccion del propietario o responsable del agresor</b>: ' }}
+{{ ataque.direccionprop }}
+</td>
+</tr>
+
+
+
+
+<tr>
+<td>
+	{{ '<b>Telefono</b>: ' }}
+{{ ataque.telefonoprop }}
+</td>
+
+<td>
+	{{ '<b>Estado del animal al momento de la agresión</b>: ' }}
+{{ ataque.estadoanimal }}
+</td>
+
+<td>
+	{{ '<b>Ubicación</b>: ' }}
+{{ ataque.ubicacion }}
+</td>
+</tr>
+
+
+<tr>
+<td>
+	{{ '<b>lasificación de la exposición</b>: ' }}
+{{ ataque.exposicion }}
+</td>
+<td></td>
+<td></td>
+</tr>
+</table>
+<br><br>	
+<table border="0" WIDTH="1100"><tr><td align="center">	
+          <input type="button" class="btn btn-success" value="Anterior" onClick="atras2();">
+        <input type="button" class="btn btn-success" value="Siguiente" onClick="ocultar4();">
+</td></tr></table>        
+</div>
+
+<!--  PARTICION 4 -->
+
+<div align="left" id="divcuarto" style="display:none;">   
+
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Antecedentes de inmunización del paciente</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+
+<table border="3" WIDTH="1100">	
+<tr>
+	<td colspan="6">Antes de la consulta actual el paciente habia recibido:</td>
+</tr>
+<tr>
+<td>
+	{{ '<b>Suero antirrabico</b>: ' }}
+{{ ataque.suero }}
+</td>
+
+<td>
+	{{ '<b>Fecha de aplicación</b>: ' }}
+{{ ataque.fechasuero }}
+</td>
+
+<td>
+	{{ '<b>Vacuna antirrabica</b>: ' }}
+{{ ataque.vacuna }}
+</td>
+</tr>
+
+
+
+
+<tr>
+<td>
+	{{ '<b>Número de dosis</b>: ' }}
+{{ ataque.ndosis }}
+</td>
+
+<td>
+	{{ '<b>Fecha de última dosis</b>: ' }}
+{{ ataque.fechaultdosis }}
+</td>
+
+<td></td>
+</tr>
+</table>
+
+
+
+
+<br>
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Datos del tratamiento ordenado en la actualidad</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+<table border="3" WIDTH="1100">	
+
+<tr>
+<td>
+	{{ '<b>¿Lavado de herida con agua y jabon?</b>: ' }}
+{{ ataque.lavado }}
+</td>
+
+<td>
+	{{ '<b>¿Sutura de la herida?</b>: ' }}
+{{ ataque.sutura }}
+</td>
+
+<td>
+	{{ '<b>¿Ordenó suero antirrábico?</b>: ' }}
+{{ ataque.ordenosuero }}
+</td>
+</tr>
+
+
+
+
+<tr>
+<td>
+	{{ '<b>¿Ordenó aplicación vacuna?</b>: ' }}
+{{ ataque.ordenovacuna }}
+</td>
+
+<td></td>
+
+<td></td>
+</tr>
+</table>
+<br><br>
+<table border="0" WIDTH="1100"><tr><td align="center">	
+          <input type="button" class="btn btn-success" value="Anterior" onClick="atras3();">
+        <input type="button" class="btn btn-success" value="Siguiente" onClick="ocultar5();">
+</td></tr></table>        
+</div>
+
+<!--  PARTICION 5 --> 
+
+<div align="left" id="divquinto" style="display:none;">
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Datos de laboratorio</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+<table border="3" WIDTH="1100">	
+<tr>
+<td>
+	{{ '<b>Prueba diagnostica confirmatoria</b>: ' }}
+{{ ataque.pruebadiag }}
+</td>
+
+<td>
+	{{ '<b>Resultado</b>: ' }}
+{{ ataque.resultado }}
+</td>
+
+<td>
+	{{ '<b>Identifcación variante</b>: ' }}
+{{ ataque.identifcacionvar }}
+</td>
+</tr>
+
+
+
+<tr>
+<td>
+	{{ '<b>¿Variante identificada?</b>: ' }}
+{{ ataque.varianteident }}
+</td>
+
+<td>
+	{{ '<b>¿Cual?</b>: ' }}
+{{ ataque.cual }}
+</td>
+
+<td>
+	{{ '<b>Fecha resultado positivo de laboratorio</b>: ' }}
+{{ ataque.fecharesultado }}
+
+</td>
+</tr>
+
+
+</table>
+
+
+<br>
+<table border="1" BORDERCOLOR="#F78181" WIDTH="1100">	
+<tr>
+	<td BGCOLOR="#F3F781">
+	<center><b><font size="3">Datos clinicos</font></b></center>		
+	</td>
+</tr>
+</table>
+<br>
+
+
+
+
+<table border="3" WIDTH="1100">	
+<tr>
+<td>
+	{{ '<b>Signos y sintomas</b>: ' }}
+{{ ataque.signosysintomas }}
+</td>
+
+<td></td>
+<td></td>
+
+</table>
+
+<br><br>					  
+
+<table border="0" WIDTH="1100">
+<tr>
+<td align="center">
+	<input type="button" class="btn btn-success" value="Anterior" onClick="atras4();">
+	<input type="button" class="btn btn-success" value="Inicio" onClick="ocultarcero();">   
+</td>
+</tr>
+</table>
+</div>
+
+
+</fieldset>
+
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

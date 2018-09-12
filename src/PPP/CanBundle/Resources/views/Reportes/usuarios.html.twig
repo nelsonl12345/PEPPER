@@ -1,0 +1,119 @@
+{%  extends 'layout.html.twig' %}
+
+{% block body %}
+	{{ parent() }}
+
+	<div class="container-fluid">
+		<h1>Reportes: Usuarios del sistema</h1>
+		<div class="row">
+
+
+<!--  Listado general -->
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<form action="{{ path('ppp_reportes_usuariostodos') }}" target="blank" method="POST">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-sx-12 col-sm-9 col-md-9 col-lg-9">
+									<h2 class="m-0">Listado general</h2>
+								</div>
+							</div>
+							<div class="row text-center" style="margin-top: 10px">
+									<div class="input-group" style="width: 70%; margin: 0 auto">
+									  <span class="input-group-addon">Listado de los usuarios del sistema</span>
+								
+									<button class="btn btn-primary" type="submit">Generar</button>
+									
+									</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="row text-center">
+							</div>
+						</div>
+					</div>
+				</form>
+		</div>
+
+
+<!--  consulta de usuario por cedula de ciudadania -->
+
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<form action="{{ path('ppp_reportes_usuariosid') }}" target="blank" method="GET">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-sx-12 col-sm-9 col-md-9 col-lg-9">
+									<h2 class="m-0">Número de identificación</h2>
+							</div>
+						</div>
+						<div class="row text-center" style="margin-top: 10px">
+						<div class="input-group" style="width: 80%; margin: 0 auto">
+						<span class="input-group-addon">Consulta por Número de idenificación</span>
+							<input type="text" name="identificacion" class="form-control">						
+										<span class="input-group-btn">
+									<button class="btn btn-primary" type="submit">Generar</button>										
+										</span>
+									</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="row text-center">
+
+							</div>
+							<div class="row">
+								<div class="google-chart" id="chart_radicados"></div>
+							</div>
+						</div>
+					</div>
+				</form>
+		</div>
+
+
+
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+				<form action="{{ path('ppp_reportes_usuariosrole') }}" target="blank" method="GET">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-sx-12 col-sm-9 col-md-9 col-lg-9">
+									<h2 class="m-0">Rol</h2>
+							</div>
+						</div>
+						<div class="row text-center" style="margin-top: 10px">
+						<div class="input-group" style="width: 80%; margin: 0 auto">
+						<span class="input-group-addon">Consulta por Rol</span>
+						<select name="role" class="form-control">
+						  <option value="ROLE_JEFE_DEPARTAMENTO">Jefe de departamento</option>
+						  <option value="ROLE_COORDINADOR">Coordiandor</option>
+						  <option select value="ROLE_ZOOTECNISTA">Zootecnista</option>
+						</select>							
+										<span class="input-group-btn">
+									<button class="btn btn-primary" type="submit">Generar</button>										
+										</span>
+									</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<div class="row text-center">
+
+							</div>
+							<div class="row">
+								<div class="google-chart" id="chart_radicados"></div>
+							</div>
+						</div>
+					</div>
+				</form>
+		</div>
+
+
+
+
+
+		
+	</div>
+</div>
+
+{% endblock %}
+
+

@@ -50,13 +50,26 @@ security:
             algorithm: bcrypt
             cost: 12
 
+    
 
-    access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/$, roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/raza, roles: [ ROLE_ZOOTECNISTA, ROLE_SECRETARIO, ROLE_COORDINADOR, ROLE_JEFE_DEPARTAMENTO, ROLE_PROPIETARIO ] }
-        - { path: ^/usuario, roles: [ ROLE_ZOOTECNISTA, ROLE_SECRETARIO, ROLE_COORDINADOR, ROLE_JEFE_DEPARTAMENTO, ROLE_PROPIETARIO ] }
-        - { path: ^/mascota, roles: [ ROLE_ZOOTECNISTA, ROLE_SECRETARIO, ROLE_COORDINADOR, ROLE_JEFE_DEPARTAMENTO, ROLE_PROPIETARIO ] }
-        - { path: ^/radicado, roles: [ ROLE_ZOOTECNISTA, ROLE_SECRETARIO, ROLE_COORDINADOR, ROLE_JEFE_DEPARTAMENTO, ROLE_PROPIETARIO ] }
-
+    #access_control:
+    #    - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    #    - { path: ^/$, roles: IS_AUTHENTICATED_FULLY }
+    #    - { path: ^/ataque/add, roles: [ ROLE_PROPIETARIO ] }        
+    #    - { path: ^/ataque/index, roles: [ ROLE_PROPIETARIO ] }        
+    #    - { path: ^/checklist/index, roles: [ ROLE_ZOOTECNISTA, ROLE_COORDINADOR, ROLE_JEFE_DEPARTAMENTO ] }
+    #    - { path: ^/mascota/add, roles: [ ROLE_PROPIETARIO ] }
+    #    - { path: ^/mascota/index, roles: [ ROLE_PROPIETARIO ] }
+    #    - { path: ^/mascota/index1, roles: [ ROLE_ZOOTECNISTA, ROLE_COORDINADOR, ROLE_JEFE_DEPARTAMENTO ] }                
+    #    - { path: ^/propietario/index, roles: [ ROLE_ZOOTECNISTA, ROLE_COORDINADOR, ROLE_JEFE_DEPARTAMENTO ] }
+    #    - { path: ^/radicado/add, roles: [ ROLE_PROPIETARIO ] }
+    #    - { path: ^/radicado/index, roles: [ ROLE_ZOOTECNISTA, ROLE_COORDINADOR, ROLE_JEFE_DEPARTAMENTO ] }        
+    #    - { path: ^/raza/add, roles: [ ROLE_ZOOTECNISTA, ROLE_COORDINADOR ] }        
+    #    - { path: ^/raza/index, roles: [ ROLE_ZOOTECNISTA, ROLE_COORDINADOR ] }                
+    #    - { path: ^/reportes, roles: [ ROLE_COORDINADOR, ROLE_JEFE_DEPARTAMENTO ] }
+    #    - { path: ^/usuario/add, roles: [ ROLE_JEFE_DEPARTAMENTO ] }        
+    #    - { path: ^/usuario/index, roles: [ ROLE_JEFE_DEPARTAMENTO ] }                
+    #    - { path: ^/reportes/, roles: [ ROLE_JEFE_DEPARTAMENTO ] }                
+    #    - { path: ^/reportes/usuarios, roles: [ ROLE_JEFE_DEPARTAMENTO ] } 
+    #    - { path: ^/reportes/perros, roles: [ ROLE_JEFE_DEPARTAMENTO ] }                
 

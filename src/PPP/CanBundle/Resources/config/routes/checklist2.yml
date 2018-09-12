@@ -1,0 +1,27 @@
+ppp_checklist2_index2:
+    path:     /index2
+    defaults: { _controller: PPPCanBundle:Checklist2:index2 }
+
+ppp_checklist2_add2:
+    path:     /add2
+    defaults: { _controller: PPPCanBundle:Checklist2:add2 }
+
+ppp_checklist2_create2:
+    path:     /create2
+    defaults: { _controller: PPPCanBundle:Checklist2:create2 }
+    methods: POST
+
+ppp_checklist2_redirect_add2:
+  path: /create2
+  defaults:
+    _controller: PPPCanBundle:Checklist2:add2
+    path: /add2
+    permanent: true
+
+ppp_checklist2_view2:
+  path:     /view2/{id}
+  defaults: { _controller: PPPCanBundle:Checklist2:view2 }
+
+ppp_checklist2_update2:
+  path:     /update2/{id}
+  defaults: { _controller: PPPCanBundle:Checklist2:update2 }

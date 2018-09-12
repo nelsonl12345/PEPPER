@@ -1,0 +1,33 @@
+*{
+}
+.item1{
+    width: 13%;
+    height: 8%;
+    
+}
+
+.item2{
+    width: 100%;
+    height: 180%;
+    text-align: center;
+}
+    
+table {
+   width: 80%;
+}
+tr, td {
+   width: 30%;
+   text-align: justify;
+} 
+.item3{
+    width: 100%;
+    height: 100%;
+   
+}
+
+
+
+
+
+
+

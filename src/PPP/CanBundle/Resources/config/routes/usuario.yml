@@ -22,9 +22,6 @@ ppp_usuario_edit:
     path: /edit/{id}
     defaults: {_controller: PPPCanBundle:Usuario:edit }
 
-ppp_usuario_solicitudes:
-    path: /solicitudes/{idUsuario}
-    defaults: {_controller: PPPCanBundle:Usuario:solicitudes }
 
 ppp_usuario_update:
     path: /update/{id}
@@ -46,3 +43,20 @@ ppp_usuario_delete:
   path:     /delete/{id}
   defaults: { _controller: PPPCanBundle:Usuario:delete }
   methods: [POST, DELETE]
+
+#SOLICITUDES
+ppp_usuario_solicitudesradi:
+    path: /solicitudesradi/{idUsuario}
+    defaults: {_controller: PPPCanBundle:Usuario:solicitudesradi }
+
+ppp_usuario_solicitudes:
+    path: /solicitudes/{idUsuario}
+    defaults: {_controller: PPPCanBundle:Usuario:solicitudes }
+
+ppp_usuario_solicitudesreject:
+    path: /solicitudesreject/{idUsuario}
+    defaults: {_controller: PPPCanBundle:Usuario:solicitudesreject }
+
+ppp_usuario_solicitudesapproved:
+    path: /solicitudesapproved/{idUsuario}
+    defaults: {_controller: PPPCanBundle:Usuario:solicitudesapproved }

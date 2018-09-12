@@ -1,0 +1,25 @@
+body{
+	color:#fff;
+}
+.menu-1{
+	height: 68px;
+	background: #F2F2F2;
+}
+.slider-1, .slider-2, .slider-3, .slider-4{
+	height: 68vh;
+
+	text-align: center;
+}
+.slider-1{
+	background: #700961;
+}
+.slider-2{
+	background: #FAFAFA;
+}
+.slider-3{
+	background: #F2F2F2;
+}
+.slider-4{
+	background: #F2EDED;
+
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %} PEPPER {% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/style.css') }}">
+        <link rel="stylesheet" type="text/css"   href="{{ asset('public/css/smoothbox.css') }}">
+<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">        
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/main.css') }}">
+        <link rel="stylesheet" type="text/css"  href="{{ asset('public/css/estilo.css') }}">
+        <link rel="stylesheet" type="text/css"  href="{{ asset('public/css/styles.css') }}">
+        <link rel="stylesheet" type="text/css"  href="{{ asset('public/css/bootstrap-flex.css') }}">                
+        <link rel="stylesheet"  type="text/css"  href="{{ asset('public/css/stil.css') }}">
+        <link rel="stylesheet"  type="text/css"  href="{{ asset('public/css/nivo-slider.css') }}">
+        <link rel="stylesheet"  type="text/css"  href="{{ asset('public/css/mi-slider.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/style1.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('public/css/secre.css') }}">
+            
+
+        {% endblock %}
+       
+        
+    </head>
+    <body>
+        {% block body %} 
+            {{ include('menu1.html.twig') }}
+        {% endblock %}
+        {% block javascripts %}
+            
+            <script src="{{ asset('public/js/jquery-3.2.1.min.js') }}"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script src="{{ asset('public/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('public/js/bootbox.min.js') }}"></script>
+            <script src="{{ asset('public/js/flotante.js') }}"></script>
+            <script src="{{ asset('public/js/f1.js') }}"></script>
+            <script src="{{ asset('public/js/fl2.js') }}"></script>
+            <script src="{{ asset('public/js/flo3.js') }}"></script>
+            <script src="{{ asset('public/js/flot4.js') }}"></script>
+            <script src="{{ asset('public/js/flota5.js') }}"></script>
+            <script src="{{ asset('public/js/flotan6.js') }}"></script>
+            <script src="{{ asset('public/js/flotant7.js') }}"></script>
+            <script src="{{ asset('public/js/flotante8.js') }}"></script>
+            <script src="{{ asset('public/js/flotantea9.js') }}"></script>
+            <script src="{{ asset('public/js/flotanteb10.js') }}"></script>
+            <script src="{{ asset('public/js/flotantec11.js') }}"></script>
+            <script src="{{ asset('public/js/flotanted12.js') }}"></script>
+            <script src="{{ asset('public/js/flotantee13.js') }}"></script>
+            <script src="{{ asset('public/js/flotantef14.js') }}"></script>
+            <script src="{{ asset('public/js/flotanteg15.js') }}"></script>
+            <script src="{{ asset('public/js/flotanteh16.js') }}"></script>
+            <script src="{{ asset('public/js/flotantei17.js') }}"></script>
+            <script src="{{ asset('public/js/flotanteia18.js') }}"></script>
+            <script src="{{ asset('public/js/smooth-scroll.min.js') }}"></script>
+            <script src="{{ asset('public/js/bootstrap1.min.js') }}"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+            <script src="{{ asset('public/js/jquery.nivo.slider.js') }}"></script>
+            <script src="{{ asset('public/js/galeria.js') }}"></script>
+
+             
+    <script>
+      smoothScroll.init({
+      selector: '[data-scroll]', // Selector for links (must be a class, ID, data attribute, or element tag)
+      selectorHeader: null, // Selector for fixed headers (must be a valid CSS selector) [optional]
+      speed: 2000, // Integer. How fast to complete the scroll in milliseconds
+      easing: 'easeInOutCubic', // Easing pattern to use
+      offset: 0, // Integer. How far to offset the scrolling anchor location in pixels
+      callback: function ( anchor, toggle ) {} // Function to run after scrolling
+      });
+    </script>
+                                 
+         
+            
+         
+        {% endblock %}
+    </body>
+</html>
+
+
+
+   
+
+
+   
+  

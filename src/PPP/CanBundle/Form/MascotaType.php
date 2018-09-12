@@ -6,9 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
+//use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use PPP\CanBundle\Entity\Usuario;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class MascotaType extends AbstractType
 {
+
     /**
      * {@inheritdoc}
      */
@@ -137,7 +142,7 @@ class MascotaType extends AbstractType
                 ), 'placeholder' => 'Selectccione una opcion...'))            
 
             ->add('descripcionm')
-            ->add('generom','choice', array('choices'=> array('MACHO' => 'MACHO', 'HEMBRA' => 'HEMBRA'), 'placeholder' => 'Selectccione una opcion...'))
+            ->add('generom','choice', array('choices'=> array('MACHO' => 'MACHO', 'HEMBRA' => 'HEMBRA'), 'placeholder' => 'Seleccione una opcion...'))
             
             ->add('colorm','choice', array('choices'=> array(
                 'Negro' => 'Negro', 
@@ -145,7 +150,7 @@ class MascotaType extends AbstractType
                 'Cafe' => 'Cafe', 
                 'Gris' => 'Gris', 
                 'Mixto' => 'Mixto' 
-                ), 'placeholder' => 'Selectccione una opcion...'))            
+                ), 'placeholder' => 'Seleccione una opcion...'))            
 
             ->add('cual')
 
@@ -161,20 +166,23 @@ class MascotaType extends AbstractType
                 ))                
             **/
 
+
             ->add('usuario', 'entity', array(
                 'placeholder' => 'Seleccione una opcion...',
                 'class'=>'PPPCanBundle:Usuario',
-                 'query_builder'=>function(EntityRepository $er){
+                 'query_builder'=>function(EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->where('u.role = :role')
-                        ->setParameter(':role', 'ROLE_PROPIETARIO');                                                                                            
+                        ->setParameter(':role', 'ROLE_PROPIETARIO');                                                 
                 },
 
                 'choice_label' => 'getFullName'
 
                 ))
 
+                
 
+            //->add('usuario', TextType::class)
 
             ->add('raza', 'entity', array(
                 'placeholder' => 'Seleccione una opcion...',
@@ -199,7 +207,7 @@ class MascotaType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'mascota';
+        return null;
     }
 
 

@@ -122,14 +122,14 @@
                     {{ form_label(form.foto, ('Foto 3 x 4')) }}
                 </td>
                 <td>
-                    {{ form_widget(form.foto) }}
+                    {{ form_widget(form.foto, { 'attr' : {'accept' : '.jpg, .png, .bmp'}}) }}
                     <span class="text-danger">{{ form_errors(form.foto) }}</span>
                 </td>
                 <td>
                     {{ form_label(form.imgcedula, ('Fotocopia de la cedula')) }}
                 </td>
                 <td>
-                    {{ form_widget(form.imgcedula) }}
+                    {{ form_widget(form.imgcedula, { 'attr' : {'accept' : '.jpg, .png, .bmp'}}) }}
                     <span class="text-danger">{{ form_errors(form.imgcedula) }}</span>
                 </td></tr></table>
 

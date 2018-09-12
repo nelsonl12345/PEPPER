@@ -3,8 +3,10 @@ Dependencias
 
 - Instalación de dependencias
 ```bash
-composer install
+composer install en la misma carpet DONDE ESTA EL ARCHIVO COMPOSER.JSON 
 ```
+
+- Modificar parameter.yml
 
 - Generacion de PDF
 ```bash

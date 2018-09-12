@@ -8,6 +8,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\Common\Collections\ArrayCollection; 
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\FileValidator;
 
 /**
  * Usuario
@@ -166,6 +168,10 @@ class Usuario implements AdvancedUserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="foto", type="string", length=45, nullable=true)
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     maxSizeMessage = "El archivo no puede ser mayor a 1024 kilobytes"
+     * )
      */
     private $foto;
 
@@ -174,6 +180,10 @@ class Usuario implements AdvancedUserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="imgcedula", type="string", length=45, nullable=true)
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     maxSizeMessage = "El archivo no puede ser mayor a 1024 kilobytes"
+     * )     
      */
     private $imgcedula;
 

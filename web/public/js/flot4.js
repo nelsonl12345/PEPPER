@@ -1,0 +1,5 @@
+  $(document).on("click", ".alert4", function(e) {        	
+            bootbox.alert(" Historia. <br> El Akita Inu proviene de Japón, de la región de Akita, situada en la Isla de Honshu. Sus antepasados los empleaban para cazar osos y para acompañar a los guerreros en el combate.En el siglo XVII comenzaron a emplearse en peleas de perros y se cruzaron con mastines y tosas, con el fin de crear una raza más fuerte y resistente, consiguiendo así aumentar el tamaño del Akita.Tras la Segunda Guerra Mundial, la raza estaba al borde de la extinción y los criadores estadounidenses decidieron reponer la raza siguiendo la línea de mastín y ovejero. De ahí nació el Akita americano. Los japoneses, sin embargo, consideraron que esa línea no representaba el estilo propio japonés y decidieron repoblar la raza usando los akita matagi.  ", function() {
+                console.log("Alert Callback");
+            });
+        });

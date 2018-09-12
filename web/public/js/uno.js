@@ -1,12 +1,12 @@
-function d1(selectTag){
+function d0(selectTag){
  if(selectTag.value == 'Mixto'){
-document.getElementById('mascota_cual').disabled = false;
+document.getElementById('cual').disabled = false;
  }else{
-document.getElementById('mascota_cual').disabled = true;
+document.getElementById('cual').disabled = true;
  }
  
  if(selectTag.value != 'Mixto'){
- 	document.getElementById('mascota_cual').value="";
+ 	document.getElementById('cual').value="";
  }
 
 

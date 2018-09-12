@@ -1,0 +1,77 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+	{{ parent() }}
+	<div class="container well">
+	    <div class="col-md-9">
+	    <h2>{{ usuario.nombres }} {{ usuario.apellidos }}</h2>
+	        <br>
+	        <dl>
+
+	            
+	            <table>
+	            	<tr>
+	            		<td>
+				{% set carpeta = 'uploads/usuarios/' %}
+				{% set imagen = usuario.foto %}
+				{% set concatenar = carpeta ~ imagen  %}	
+					 {% if usuario.foto == NULL %}
+					  <img src="{{ asset('uploads/usuarios/perfil.jpg') }}" alt="Sin foto de perfil"> 
+					 {% else %}
+				<img src={{ asset( concatenar ) }} width="200" height="200"> 
+					 {% endif %}
+	            </td>
+				<td>	            
+				{% set carpeta = 'uploads/usuarios/' %}
+				{% set imagen = usuario.imgcedula %}
+				{% set concatenar = carpeta ~ imagen  %}	
+					 {% if usuario.imgcedula == NULL %}
+					  <img src="{{ asset('uploads/usuarios/perfil.jpg') }}" alt="Sin foto de perfil"> 
+					 {% else %}
+				<img src={{ asset( concatenar ) }} width="200" height="200"> 
+					 {% endif %}
+	            </td>
+	            </tr>
+	            </table>	
+
+	            <br>
+
+
+<table border="1" WIDTH="800" bordercolor="#A9D0F5">
+<tr><td bgcolor="#ECE0F8"><dt>{{'Nombre de usuario: '}}</dt></td><td>{{ usuario.usuario }}</td>
+<td bgcolor="#ECE0F8"><dt>{{'Nombres: '}}</dt></td><td>{{ usuario.nombres }}</td></tr>
+	                            
+<tr><td bgcolor="#ECE0F8"><dt>{{'Apellidos: '}}</dt></td><td>{{ usuario.apellidos }}</td>
+<td bgcolor="#ECE0F8"><dt>{{'Correo electronico: '}}</dt></td><td>{{ usuario.correo }}</td></tr>	            
+
+<tr><td bgcolor="#ECE0F8"><dt>{{'Numero telefonico: '}}</dt></td><td>{{ usuario.telefono }}</td>
+<td bgcolor="#ECE0F8"><dt>{{'Dirección: '}}</dt></td><td>{{ usuario.direccion }}</td></tr>	            
+
+<tr><td bgcolor="#ECE0F8"><dt>{{'Barrio: '}}</dt></td><td>{{ usuario.barrio }}</td>	              	           
+<td bgcolor="#ECE0F8"><dt>{{'Ocupacion: '}}</dt></td><td>{{ usuario.ocupacion }}</td></tr>
+	            
+<tr><td bgcolor="#ECE0F8"><dt>{{'Estado: '}}</dt></td>
+<td>	
+
+	               	{% if usuario.isActive == 1 %}
+						<span class="text-success">{% trans %}Habilitado{% endtrans %}</span>
+					{% elseif usuario.isActive == 0 %}
+						<span class="text-warning">{% trans %}Deshabilitado{% endtrans %}</span>
+                	{% endif %}
+
+</td>	
+<td bgcolor="#ECE0F8"><dt>{{'Creado: '}}</dt></td>	            
+<td>	            
+	{{ usuario.createdAt|date('d-m-Y H:i') }}
+</td></tr>
+	                
+<tr><td bgcolor="#ECE0F8"><dt>{{'Actualizado: '}}</dt></td>	            
+<td>{{ usuario.updatedAt|date('d-m-Y H:i') }}</td>
+<td bgcolor="#ECE0F8"><dt>{{' '|trans}}</dt></td>
+<td></td></tr></table>
+	            
+
+	    </div>
+	    
+	</div>
+{% endblock %}

@@ -21,12 +21,29 @@ class RadicadoType extends AbstractType
             ->add('archivo3', 'file', array('data_class' => null))
             ->add('estado')
             
+
             ->add('mascota', 'entity', array(
                 'placeholder' => 'Seleccione una opcion...',
                 'class'=>'PPPCanBundle:Mascota',                
                 'choice_label' => 'nombresm'
                 ))  
+
             
+            /**
+            ->add('mascota', 'entity', array(
+                'class' => 'PPPCanBundle:Mascota',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('m')
+                              ->join('m.usuario', 'u')
+                              ->where('u.id = :usuario_id')
+                              ->setParameter('usuario_id', 'app.usuario.id');
+                        
+                },
+                'choice_label' => 'nombresm'
+            ))
+            **/
+
+
             
             /**
             ->add('mascota', 'entity', array(

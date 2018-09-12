@@ -47,6 +47,10 @@ class Radicado
      * @var string
      *
      * @ORM\Column(name="archivo1", type="string", length=50)
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     maxSizeMessage = "El archivo no puede ser mayor a 1024 kilobytes"
+     * )     
      * @Assert\NotBlank()
      */
     private $archivo1;
@@ -55,6 +59,10 @@ class Radicado
      * @var string
      *
      * @ORM\Column(name="archivo2", type="string", length=50, nullable=true)
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     maxSizeMessage = "El archivo no puede ser mayor a 1024 kilobytes"
+     * )     
      */
     private $archivo2;
 
@@ -62,6 +70,10 @@ class Radicado
      * @var string
      *
      * @ORM\Column(name="archivo3", type="string", length=50)
+     * @Assert\File(
+     *     maxSize = "1024k",
+     *     maxSizeMessage = "El archivo no puede ser mayor a 1024 kilobytes"
+     * )     
      * @Assert\NotBlank()
      */
     private $archivo3;
